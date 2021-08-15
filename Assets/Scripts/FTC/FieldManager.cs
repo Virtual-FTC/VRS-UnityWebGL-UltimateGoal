@@ -166,11 +166,11 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
             if (!PhotonNetwork.IsConnected)
             {
-                setup = (GameObject)Instantiate(setupPrefab[index], new Vector3(0, 0.5f, 0), Quaternion.identity);
+                setup = (GameObject)Instantiate(setupPrefab[index], new Vector3(0, 0.0f, 0), Quaternion.identity);
             }
             else
             {
-                setup = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DynamicField-" + type), new Vector3(0, 0.5f, 0), Quaternion.identity, 0);
+                setup = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DynamicField-" + type), new Vector3(0, 0.0f, 0), Quaternion.identity, 0);
             }
             for (int x = 0; x < setup.GetComponentsInChildren<Rigidbody>().Length; x++)
             {
