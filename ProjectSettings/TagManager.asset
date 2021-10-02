@@ -24,10 +24,10 @@ TagManager:
   - Glow
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - GoalPhysics
+  - GoalMesh
+  - GoalWobble
+  - Floor
   - 
   - 
   - 
