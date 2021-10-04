@@ -17,6 +17,12 @@ TagManager:
   - 2
   - 3
   - 4
+  - Cube
+  - Ball
+  - Duck
+  - JointHub
+  - RedHub
+  - BlueHub
   layers:
   - Default
   - TransparentFX

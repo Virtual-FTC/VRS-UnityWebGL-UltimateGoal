@@ -12,7 +12,8 @@ public class IntakeControl : MonoBehaviour
     public int maxNumberBalls = 5;
     public int numBalls = 3;
     public float timeOfBallContact = 1.0f;
-    public string coliderTag = "PowerCell";
+    public string[] coliderTags = {"PowerCell" };
+    private int colliderTagIndex;
 
     [Header("Intake Motor")]
     public float wantedVelocity = 0f;
@@ -56,9 +57,16 @@ public class IntakeControl : MonoBehaviour
     {
         if (wantedVelocity != 0)
         {
-            if (collision.tag == coliderTag && numBalls < maxNumberBalls)
+            print("Test");
+            colliderTagIndex = -1;
+            foreach (string coliderTag in coliderTags)
             {
-                timer = Time.time;
+                colliderTagIndex++;
+                if (collision.tag == coliderTag && numBalls < maxNumberBalls)
+                {
+                    timer = Time.time;
+                    break;
+                }
             }
         }
         
@@ -68,19 +76,23 @@ public class IntakeControl : MonoBehaviour
     {
         if (wantedVelocity != 0 && collision.gameObject != lastRing)
         {
-            if (collision.tag == coliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
+            foreach (string coliderTag in coliderTags)
             {
-                numBalls++;
-                rings[numBalls-1].SetActive(true);
-                lastRing = collision.gameObject;
-                if (Photon.Pun.PhotonNetwork.IsConnected)
+                if (collision.tag == coliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
                 {
-                    collision.gameObject.GetComponent<Photon.Pun.PhotonView>().RPC("DestroyRing", Photon.Pun.RpcTarget.All);
-                    Photon.Pun.PhotonNetwork.Destroy(collision.gameObject);
-                }
-                else
-                {
-                    Destroy(collision.gameObject);
+                    numBalls++;
+                    //resetBalls();
+                    //rings[colliderTagIndex].SetActive(true);
+                    lastRing = collision.gameObject;
+                    if (Photon.Pun.PhotonNetwork.IsConnected)
+                    {
+                        collision.gameObject.GetComponent<Photon.Pun.PhotonView>().RPC("DestroyRing", Photon.Pun.RpcTarget.All);
+                        Photon.Pun.PhotonNetwork.Destroy(collision.gameObject);
+                    }
+                    else
+                    {
+                        Destroy(collision.gameObject);
+                    }
                 }
             }
         }
@@ -90,18 +102,14 @@ public class IntakeControl : MonoBehaviour
     public void subtractBall()
     {
         numBalls--;
-        rings[numBalls].SetActive(false);
+        //rings[numBalls].SetActive(false);
     }
 
     public void resetBalls()
     {
-        numBalls = resetNum;
         for (int x = 0; x < 3; x++)
         {
-            if (resetNum == 3)
-                rings[x].SetActive(true);
-            else
-                rings[x].SetActive(false);
+            rings[x].SetActive(false);
         }
     }
 

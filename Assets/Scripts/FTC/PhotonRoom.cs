@@ -129,7 +129,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 if (masterPlayers[x].UserId == PhotonNetwork.LocalPlayer.UserId)
                 {
-                    var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[x].transform.position, spawnPositions[x].transform.rotation, 0);
+                    var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer2"), spawnPositions[x].transform.position, spawnPositions[x].transform.rotation, 0);
                     robot.GetComponent<RobotController>().setStartPosition(spawnPositions[x].transform);
                 }
             }

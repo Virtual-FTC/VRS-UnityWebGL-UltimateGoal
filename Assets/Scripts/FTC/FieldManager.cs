@@ -143,21 +143,42 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 type = "C";
             }
 
-            GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("Cube");
 
             foreach (GameObject a in gos)
             {
                 Destroy(a);
             }
 
-            gos = GameObject.FindGameObjectsWithTag("BlueWobble");
+            gos = GameObject.FindGameObjectsWithTag("Ball");
 
             foreach (GameObject a in gos)
             {
                 Destroy(a);
             }
 
-            gos = GameObject.FindGameObjectsWithTag("RedWobble");
+            gos = GameObject.FindGameObjectsWithTag("Duck");
+
+            foreach (GameObject a in gos)
+            {
+                Destroy(a);
+            }
+
+            gos = GameObject.FindGameObjectsWithTag("BlueHub");
+
+            foreach (GameObject a in gos)
+            {
+                Destroy(a);
+            }
+
+            gos = GameObject.FindGameObjectsWithTag("RedHub");
+
+            foreach (GameObject a in gos)
+            {
+                Destroy(a);
+            }
+
+            gos = GameObject.FindGameObjectsWithTag("JointHub");
 
             foreach (GameObject a in gos)
             {
@@ -170,14 +191,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             }
             else
             {
-                setup = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DynamicField-" + type), new Vector3(0, 0.0f, 0), Quaternion.identity, 0);
-            }
-            for (int x = 0; x < setup.GetComponentsInChildren<Rigidbody>().Length; x++)
-            {
-                if (setup.GetComponentsInChildren<Rigidbody>()[x].tag == "Wobble")
-                {
-                    setup.GetComponentsInChildren<Rigidbody>()[x].centerOfMass = new Vector3(0, -0.9f, 0);
-                }
+                setup = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DynamicFieldFreight"), new Vector3(0, 0.0f, 0), Quaternion.identity, 0);
             }
         }
         else

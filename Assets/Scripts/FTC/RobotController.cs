@@ -59,13 +59,13 @@ public class RobotController : MonoBehaviour
     private float previousRealTime;
 
     [Header("Subsystem Controls")]
-    public GameObject shooter;
+    public GameObject lift;
     public GameObject intake;
-    public GameObject grabber;
+    public GameObject spinner;
 
-    private ShooterControl shooterControl;
+    private LiftControl liftControl;
     private IntakeControl intakeControl;
-    private GrabberControl grabberControl;
+    private SpinnerControl spinnerControl;
 
     private AudioManager audioManager;
     private RobotSoundControl robotSoundControl;
@@ -138,6 +138,7 @@ public class RobotController : MonoBehaviour
         previousRealTime = Time.realtimeSinceStartup;
         Console.WriteLine("Started.....");
 
+        /*
         shooterControl = shooter.GetComponent<ShooterControl>();
         shooterControl.Commands.Add(() => motorPower6 > 0, shooterControl.shooting);
         shooterControl.Commands.Add(() => motorPower7 >= 0, () =>
@@ -146,19 +147,22 @@ public class RobotController : MonoBehaviour
             shooterControl.setVelocity(motorPower7);
         });
 
+        */
+
         intakeControl = intake.GetComponent<IntakeControl>();
         intakeControl.Commands.Add(() => motorPower5 != 0, () =>
         {
-            robotSoundControl.playIntakeRev(motorPower5);
+            //robotSoundControl.playIntakeRev(motorPower5);
             intakeControl.setVelocity(motorPower5 * 150);
             intakeControl.deployIntake();
         });
         intakeControl.Commands.Add(() => motorPower5 == 0, () =>
         {
-            robotSoundControl.playIntakeRev(motorPower5);
+            //robotSoundControl.playIntakeRev(motorPower5);
             intakeControl.retractIntake();
         });
 
+        /*
         grabberControl = grabber.GetComponent<GrabberControl>();
         grabberControl.Commands.Add(() => motorPower8 > 0 , () =>
         {
@@ -172,6 +176,7 @@ public class RobotController : MonoBehaviour
         {
             grabberControl.stopGrab();
         });
+        */
     }
 
     private void OnDestroy()
@@ -191,8 +196,8 @@ public class RobotController : MonoBehaviour
         // Apply Local Velocity to Rigid Body        
         var locVel = transform.InverseTransformDirection(rb.velocity);
         locVel.x = -linearVelocityY;
-        locVel.y = -linearVelocityX;
-        locVel.z = 0f;
+        locVel.y = 0f;
+        locVel.z = -linearVelocityX;
         rb.velocity = transform.TransformDirection(locVel);
         //Apply Angular Velocity to Rigid Body
         rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
@@ -214,7 +219,7 @@ public class RobotController : MonoBehaviour
             //print("Can not find javascript functions");
         }
 
-        robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
+        //robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
     }
 
     public void resetEncoders()
@@ -279,9 +284,10 @@ public class RobotController : MonoBehaviour
         if (!Photon.Pun.PhotonNetwork.IsConnected)
         {
             driveRobot();
-            shooterControl.Commands.Process();
+
+            //shooterControl.Commands.Process();
             intakeControl.Commands.Process();
-            grabberControl.Commands.Process();
+            //grabberControl.Commands.Process();
 
             /*
             SendFrontLeftEnc(frontLeftWheelEnc);
@@ -293,9 +299,9 @@ public class RobotController : MonoBehaviour
         else if (GetComponent<Photon.Pun.PhotonView>().IsMine)
         {
             driveRobot();
-            shooterControl.Commands.Process();
+            //shooterControl.Commands.Process();
             intakeControl.Commands.Process();
-            grabberControl.Commands.Process();
+            //grabberControl.Commands.Process();
         }
     }
 
@@ -303,7 +309,7 @@ public class RobotController : MonoBehaviour
     {
         if (collision.gameObject.tag != "Floor")
         {
-            robotSoundControl.playRobotImpact();
+            //robotSoundControl.playRobotImpact();
         }
     }
 
