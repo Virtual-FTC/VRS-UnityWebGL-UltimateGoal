@@ -8676,7 +8676,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   robot: {fileID: 2164485291868637767, guid: 257ec8e35044ea245ac3a8b14f14d0b6, type: 3}
-  objectsToSpawnInWarehouse: []
+  objectsToSpawnInWarehouse:
+  - {fileID: 4587775049749013536, guid: 32f547ba92aecce48b8461a8110ef897, type: 3}
+  - {fileID: 5572538827485408295, guid: ef295f393d63982459632098eca4764d, type: 3}
+  - {fileID: 2573579806886967409, guid: 18a0abb88fae75940aaa6423ecc3fdcc, type: 3}
+  - {fileID: 4889519259361202102, guid: 31fa1cea5f756214ab64f80a38a9996f, type: 3}
+  - {fileID: 989968844902087395, guid: c308c46bf5d152d479b6581498240e7b, type: 3}
+  numObjectsToSpawn: 0d0000000900000005000000000000000a000000
   duck: {fileID: 3652492189569902913, guid: c9cd2eb26d143d74a979ad07ae53ce25, type: 3}
   blueTeamDuckSpawns:
   - {fileID: 6156699424487003798}
@@ -8692,6 +8698,7 @@ MonoBehaviour:
   redItemSpawn: {fileID: 1508647736}
   redCarouselDuckSpawn: {fileID: 575962993}
   blueCarouselDuckSpawn: {fileID: 387573782}
+  itemOffset: 0.4
 --- !u!1 &1592615008
 GameObject:
   m_ObjectHideFlags: 0

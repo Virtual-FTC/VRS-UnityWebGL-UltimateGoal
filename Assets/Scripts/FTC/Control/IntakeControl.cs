@@ -73,6 +73,7 @@ if(collision.tag == "Cube" || collision.tag == "Duck" )
         item.transform.position = itemHolder.position;
         pickedItem = item;
         item.transform.parent = itemHolder;
+        itemInBasket = true;
 
     }
 

@@ -6,15 +6,17 @@ public class RobotGameManager : MonoBehaviour
 {
     [SerializeField] GameObject robot;
     [SerializeField] GameObject[] objectsToSpawnInWarehouse;
+    [SerializeField] int[] numObjectsToSpawn;
+
     [SerializeField] GameObject duck;
     [SerializeField] Transform[] blueTeamDuckSpawns, redTeamDuckSpawns;
     [SerializeField] Transform blueSpawn, redSpawn;
     [SerializeField] Transform blueItemSpawn, redItemSpawn;
     [SerializeField]Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
 
-    
-
     List<GameObject> spawnedItems;
+
+    [SerializeField] float itemOffset;
 
     bool gameStarted;
 
@@ -46,14 +48,20 @@ public class RobotGameManager : MonoBehaviour
     {
         for (int i = 0; i < objectsToSpawnInWarehouse.Length; i++)
         {
-            Vector3 offset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
-            SpawnItem(objectsToSpawnInWarehouse[i], blueItemSpawn.position + offset);
+            for (int j = 0; j < numObjectsToSpawn[i]; j++)
+            {
+                Vector3 offset = new Vector3(Random.Range(-itemOffset, itemOffset), 0, Random.Range(-itemOffset, itemOffset));
+                SpawnItem(objectsToSpawnInWarehouse[i], blueItemSpawn.position + offset);
+            }
         }
 
         for (int i = 0; i < objectsToSpawnInWarehouse.Length; i++)
         {
-            Vector3 offset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
-            SpawnItem(objectsToSpawnInWarehouse[i], redItemSpawn.position + offset);
+            for (int j = 0; j < numObjectsToSpawn[i]; j++)
+            {
+                Vector3 offset = new Vector3(Random.Range(-itemOffset, itemOffset), 0, Random.Range(-itemOffset, itemOffset));
+                SpawnItem(objectsToSpawnInWarehouse[i], redItemSpawn.position + offset);
+            }
         }
     }
 
@@ -61,6 +69,8 @@ public class RobotGameManager : MonoBehaviour
     {
         if (gameStarted) return;
         SpawnDucks();
+        SpawnWarehouseItems();
+
         gameStarted = true;
     }
 
