@@ -11,7 +11,8 @@
                     "id": "11ca9ad5-3856-4abc-a401-2e7549c310af",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Intake",
@@ -19,7 +20,8 @@
                     "id": "17cb7798-7a5b-4456-8f18-84470ceafa54",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Spinup",
@@ -27,7 +29,8 @@
                     "id": "eab85a75-6bd1-420c-a68a-09950b0d935f",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Wobble",
@@ -35,7 +38,8 @@
                     "id": "1f23868b-40fb-400d-80a6-a75e8c8edad3",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "WobbleHigh",
@@ -43,7 +47,8 @@
                     "id": "4131396f-d7ee-4d2a-8c8b-9c0de45247bd",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "IncreaseSpin",
@@ -51,7 +56,8 @@
                     "id": "4e5b9ca1-392a-4127-924c-62881b3fe263",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DecreaseSpin",
@@ -59,7 +65,8 @@
                     "id": "9c305c25-b5c7-4414-a0d8-e0ffd966c467",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DriveForward",
@@ -67,7 +74,8 @@
                     "id": "12e1c52e-2f98-43ca-b547-b72012075913",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DriveBack",
@@ -75,7 +83,8 @@
                     "id": "7205feec-1fb6-4b29-95c3-dee09bfe9541",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DriveLeft",
@@ -83,7 +92,8 @@
                     "id": "dfc06430-2df9-45ec-8238-58e62a399fc8",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DriveRight",
@@ -91,7 +101,8 @@
                     "id": "e3e0ee03-9283-4b0c-93f6-0c3823aa9abc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TurnLeft",
@@ -99,7 +110,8 @@
                     "id": "a91c5059-4e04-4ca7-b2c4-58149497cd85",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TurnRight",
@@ -107,7 +119,8 @@
                     "id": "2c5f08f7-b84b-47af-890c-8cda6156311e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -169,7 +182,7 @@
                 {
                     "name": "",
                     "id": "ffdb7a1b-e98a-47ab-a9bd-354285050218",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

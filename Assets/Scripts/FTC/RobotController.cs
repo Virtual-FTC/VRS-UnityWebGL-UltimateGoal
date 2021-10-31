@@ -43,7 +43,7 @@ public class RobotController : MonoBehaviour
     private float motorPower5;
     private float motorPower6;
     private float motorPower7;
-    private float motorPower8;
+    public float motorPower8;
 
     public float drivetrainGearRatio = 20f;
     public float encoderTicksPerRev = 28f;
@@ -51,6 +51,8 @@ public class RobotController : MonoBehaviour
     public float wheelSeparationLength = 0.4f;
     public float wheelRadius = 0.0508f;
     public float motorRPM = 340.0f;
+
+    public float rightTrigger;
 
     private Rigidbody rb;
 
@@ -121,6 +123,8 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.TurnRight.started += ctx => usingJoystick = true;
         controls.GamePlay.TurnRight.performed += ctx => angularVelocity = -6*ctx.ReadValue<float>();
         controls.GamePlay.TurnRight.canceled += ctx => angularVelocity = 0f;
+
+        
     }
 
     private void OnEnable()
@@ -283,12 +287,14 @@ public class RobotController : MonoBehaviour
         motorPower8 = x;
     }
 
+ 
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!Photon.Pun.PhotonNetwork.IsConnected)
         {
             driveRobot();
+            rightTrigger = controls.GamePlay.IncreaseSpin.ReadValue<float>();
 
             //shooterControl.Commands.Process();
             intakeControl.Commands.Process();

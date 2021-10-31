@@ -26,6 +26,12 @@ public class IntakeControl : MonoBehaviour
 
     private GameObject lastRing;
 
+    GameObject pickedItem;
+
+    bool itemInBasket;
+
+    [SerializeField] Transform itemHolder;
+
     // Intake Motor Control
     void Start()
     {
@@ -55,21 +61,19 @@ public class IntakeControl : MonoBehaviour
     // Ball Pickup
     void OnTriggerEnter(Collider collision)
     {
-        if (desiredVelocity != 0)
+if(collision.tag == "Cube" || collision.tag == "Duck" )
         {
-            print("Test");
-            colliderTagIndex = -1;
-            foreach (string coliderTag in coliderTags)
-            {
-                colliderTagIndex++;
-                if (collision.tag == coliderTag && numBalls < maxNumberBalls)
-                {
-                    timer = Time.time;
-                    break;
-                }
-            }
+            if(!itemInBasket)PickupItem(collision.gameObject);
         }
         
+    }
+
+    void PickupItem(GameObject item)
+    {
+        item.transform.position = itemHolder.position;
+        pickedItem = item;
+        item.transform.parent = itemHolder;
+
     }
 
     void OnTriggerStay(Collider collision)
@@ -97,6 +101,14 @@ public class IntakeControl : MonoBehaviour
             }
         }
         
+    }
+
+    private void FixedUpdate()
+    {
+        if(pickedItem != null)
+        {
+            pickedItem.transform.position = itemHolder.position;
+        }
     }
 
     public void subtractBall()

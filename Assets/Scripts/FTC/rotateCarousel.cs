@@ -5,35 +5,49 @@ using UnityEngine;
 public class rotateCarousel : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField]Vector3 dir;
+    [SerializeField] Vector3 dir;
     public bool hasDuck;
     bool isSpinning;
+    RobotController controller;
+
+    [SerializeField] float baseRotateSpeed = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //  transform.eulerAngles += new Vector3(0f, -50 * Time.deltaTime, 0f);
 
         if (hasDuck && isSpinning)
         {
-            transform.eulerAngles += new Vector3(0f, -50 * Time.deltaTime, 0f);
+            if(controller == null) controller = FindObjectOfType<RobotController>(); 
+
+            float speed = controller.rightTrigger;
+            transform.eulerAngles += dir * Time.deltaTime * (baseRotateSpeed + speed);
+
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
 
         if (collision.tag == "Spinner" && !isSpinning && hasDuck)
         {
             isSpinning = true;
 
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
+    {
+        if (collision.tag == "Spinner")
+        {
+            isSpinning = false;
         }
     }
 
@@ -48,11 +62,12 @@ public class rotateCarousel : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.collider.tag == "Duck" && hasDuck)
+        if (collision.collider.tag == "Duck" && hasDuck)
         {
             hasDuck = false;
             isSpinning = false;
         }
+
     }
 
 }

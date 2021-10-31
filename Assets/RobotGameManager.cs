@@ -5,14 +5,25 @@ using UnityEngine;
 public class RobotGameManager : MonoBehaviour
 {
     [SerializeField] GameObject robot;
-    [SerializeField] GameObject xCube, lCube, mCube, hCube,duck,ball;
+    [SerializeField] GameObject[] objectsToSpawnInWarehouse;
+    [SerializeField] GameObject duck;
     [SerializeField] Transform[] blueTeamDuckSpawns, redTeamDuckSpawns;
     [SerializeField] Transform blueSpawn, redSpawn;
-    // Start is called before the first frame update
+    [SerializeField] Transform blueItemSpawn, redItemSpawn;
+    [SerializeField]Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
+
+    
+
+    List<GameObject> spawnedItems;
+
+    bool gameStarted;
+
     void Start()
     {
+        spawnedItems = new List<GameObject>();
+
         SpawnRobots();
-        SpawnDucks();
+
     }
 
     void SpawnRobots()
@@ -25,7 +36,45 @@ public class RobotGameManager : MonoBehaviour
     {
         int spawnIndex = Random.Range(0, 3);
 
-        Instantiate(duck, blueTeamDuckSpawns[spawnIndex].position + Vector3.up, Quaternion.identity);
-        Instantiate(duck, redTeamDuckSpawns[spawnIndex].position + Vector3.up,Quaternion.identity);
+        SpawnItem(duck, blueTeamDuckSpawns[spawnIndex].position);
+        SpawnItem(duck, redCarouselDuckSpawn.position);
+        SpawnItem(duck, redTeamDuckSpawns[spawnIndex].position );
+        SpawnItem(duck, blueCarouselDuckSpawn.position);
+    }
+
+    void SpawnWarehouseItems()
+    {
+        for (int i = 0; i < objectsToSpawnInWarehouse.Length; i++)
+        {
+            Vector3 offset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+            SpawnItem(objectsToSpawnInWarehouse[i], blueItemSpawn.position + offset);
+        }
+
+        for (int i = 0; i < objectsToSpawnInWarehouse.Length; i++)
+        {
+            Vector3 offset = new Vector3(Random.Range(-3f, 3f), 0, Random.Range(-3f, 3f));
+            SpawnItem(objectsToSpawnInWarehouse[i], redItemSpawn.position + offset);
+        }
+    }
+
+    public void StartGame()
+    {
+        if (gameStarted) return;
+        SpawnDucks();
+        gameStarted = true;
+    }
+
+    public void EndGame()
+    {
+        gameStarted = false;
+        foreach (GameObject obj in spawnedItems)
+        {
+            Destroy(obj);
+        }
+    }
+
+    void SpawnItem(GameObject objToSpawn,Vector3 pos)
+    {
+        spawnedItems.Add(Instantiate(objToSpawn, pos, objToSpawn.transform.rotation));
     }
 }
