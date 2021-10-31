@@ -15,7 +15,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
     private ScoreKeeper scoreKeeper;
     private IntakeControl intake;
-    private CameraPosition camera;
+    private CameraPosition cam;
 
     private GameTimer gameTimer;
 
@@ -43,6 +43,10 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             robot = (GameObject)Instantiate(robotPrefab, spawnPositions[0].transform.position, spawnPositions[0].transform.rotation);
             robot.GetComponent<RobotController>().setStartPosition(spawnPositions[0].transform);
         }
+
+        cam = FindObjectOfType<CameraPosition>();
+        gameTimer = FindObjectOfType<GameTimer>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
     }
 
     private void Start()
@@ -57,18 +61,19 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     intake = list[x].GetComponentInChildren<IntakeControl>();
                 }
             }
+
+            cam.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
+            gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
         }
         else
         {
             intake = GameObject.Find("Intake").GetComponent<IntakeControl>();
         }
-        camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
-        gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
 
-        resetField();
-        gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
+
+
+        ResetField();
+
 
         print("Started.....");
     }
@@ -92,7 +97,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
     }
 
-    public void resetField()
+    public void ResetField()
     {
         if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
         {
@@ -223,7 +228,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             currentGameStart = true;
             resetRobot();
-            resetField();
+            ResetField();
             gameTimer.startGame();
         }
     }

@@ -23,6 +23,7 @@ TagManager:
   - JointHub
   - RedHub
   - BlueHub
+  - Spinner
   layers:
   - Default
   - TransparentFX
@@ -30,8 +31,8 @@ TagManager:
   - Glow
   - Water
   - UI
-  - 
-  - 
+  - Robot
+  - Spinner
   - 
   - 
   - 

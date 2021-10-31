@@ -59,9 +59,9 @@ public class RobotController : MonoBehaviour
     private float previousRealTime;
 
     [Header("Subsystem Controls")]
-    public GameObject lift;
-    public GameObject intake;
-    public GameObject spinner;
+    GameObject lift;
+    GameObject intake;
+    GameObject spinner;
 
     private LiftControl liftControl;
     private IntakeControl intakeControl;
@@ -72,6 +72,11 @@ public class RobotController : MonoBehaviour
 
     private void Awake()
     {
+        lift = transform.Find("Lift").gameObject;
+        intake = transform.Find("Intake").gameObject;
+        spinner = transform.Find("Spinner").gameObject;
+
+
         controls = new PlayerControls();
 
         // Shooting

@@ -16,7 +16,7 @@ public class IntakeControl : MonoBehaviour
     private int colliderTagIndex;
 
     [Header("Intake Motor")]
-    public float wantedVelocity = 0f;
+    public float desiredVelocity = 0f;
 
     private float timer = 0.0f;
 
@@ -49,13 +49,13 @@ public class IntakeControl : MonoBehaviour
         //motor.targetVelocity = -wantedVelocity;
 
         //hinge.motor = motor;
-        wantedVelocity = 0f;
+        desiredVelocity = 0f;
     }
 
     // Ball Pickup
     void OnTriggerEnter(Collider collision)
     {
-        if (wantedVelocity != 0)
+        if (desiredVelocity != 0)
         {
             print("Test");
             colliderTagIndex = -1;
@@ -74,7 +74,7 @@ public class IntakeControl : MonoBehaviour
 
     void OnTriggerStay(Collider collision)
     {
-        if (wantedVelocity != 0 && collision.gameObject != lastRing)
+        if (desiredVelocity != 0 && collision.gameObject != lastRing)
         {
             foreach (string coliderTag in coliderTags)
             {
@@ -125,6 +125,6 @@ public class IntakeControl : MonoBehaviour
 
     public void setVelocity(float x)
     {
-        wantedVelocity = x;
+        desiredVelocity = x;
     }
 }

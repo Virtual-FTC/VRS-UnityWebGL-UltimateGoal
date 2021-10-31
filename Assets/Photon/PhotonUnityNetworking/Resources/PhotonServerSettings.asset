@@ -41,5 +41,5 @@ MonoBehaviour:
   - startGame
   - stopGame
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 0
