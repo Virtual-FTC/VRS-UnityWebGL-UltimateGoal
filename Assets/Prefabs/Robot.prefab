@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 123322918}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ItemHolderSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 8068833319724017167}
   - component: {fileID: 6799712123786540468}
   - component: {fileID: 188864300195257836}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: dumper:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 3085984970321145006}
   - component: {fileID: 7579577057184981897}
   - component: {fileID: 2783072850609219715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 7422031548981994827}
   - component: {fileID: 7353214383263011136}
   - component: {fileID: 3075184417297639055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Drawer Slide:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 4009922821302815942}
   - component: {fileID: 1001740936514921895}
   - component: {fileID: 9173045450171389542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:5.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 830112697789687919}
   - component: {fileID: 6231590965247416594}
   - component: {fileID: 4006009755146778543}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:7.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 6964255528263728391}
   - component: {fileID: 2668854942342211861}
   - component: {fileID: 6458560650813151541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:13.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 772202776299046272}
   - component: {fileID: 233387599674541945}
   - component: {fileID: 3527725531648420518}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:15.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   - component: {fileID: 3735947938682485043}
   - component: {fileID: 8942276952023635442}
   - component: {fileID: 1135864077717892644}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:8.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 131869016456886930}
   - component: {fileID: 1066289406001050192}
   - component: {fileID: 2561621265628085074}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:11.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 5098279460124197133}
   - component: {fileID: 7390877694698045863}
   - component: {fileID: 1602633486291559574}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 7218240598864497793}
   - component: {fileID: 4689159101723104962}
   - component: {fileID: 603596899189115823}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:14.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ GameObject:
   - component: {fileID: 1309577849178743711}
   - component: {fileID: 7121301804404839125}
   - component: {fileID: 2426889360872837028}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 6638418259279339975}
   - component: {fileID: 8105981702463574783}
   - component: {fileID: 6793245977260082665}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 14 Hole Channel:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 4430164307422321589}
   - component: {fileID: 2406488459763193631}
   - component: {fileID: 7527699688672721165}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1337,7 +1337,7 @@ GameObject:
   - component: {fileID: 91577372615464102}
   - component: {fileID: 5628926678755560197}
   - component: {fileID: 4810345309846058226}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1420,7 @@ GameObject:
   - component: {fileID: 3019703989591022422}
   - component: {fileID: 6438730490428895201}
   - component: {fileID: 7164055661661006993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1504,7 +1504,7 @@ GameObject:
   - component: {fileID: 7427318609631017226}
   - component: {fileID: 7786753309378269978}
   - component: {fileID: 2140228028450989655}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Drawer Slide:3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1598,7 +1598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2164485291282659732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1633,7 +1633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2164485291638040843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chassis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1679,11 +1679,10 @@ GameObject:
   - component: {fileID: 2164485291868637785}
   - component: {fileID: 2164485291868637786}
   - component: {fileID: 2164485291868637787}
-  - component: {fileID: 2164485291868637765}
   - component: {fileID: 2164485291868637766}
   - component: {fileID: 2164485291868637784}
   - component: {fileID: 8867604185044625619}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Robot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1718,7 +1717,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2164485291868637767}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -1739,19 +1738,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.6916451, y: 4.227606, z: 16.091972}
   m_Center: {x: 6.47, y: 2.33, z: 4.06}
---- !u!65 &2164485291868637765
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2164485291868637767}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.0301404, y: 3.4518297, z: 11.322919}
-  m_Center: {x: 1.75, y: 2.6878881, z: 2.4800003}
 --- !u!65 &2164485291868637766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1761,7 +1747,7 @@ BoxCollider:
   m_GameObject: {fileID: 2164485291868637767}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0886483, y: 12.415524, z: 2.2597995}
   m_Center: {x: 5.44, y: 7.04, z: 3.82}
@@ -1807,6 +1793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2164485292285654584}
   - component: {fileID: 2164485292285654591}
+  - component: {fileID: 100135102}
   m_Layer: 0
   m_Name: Spinner
   m_TagString: Spinner
@@ -1821,7 +1808,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2164485292285654585}
-  m_LocalRotation: {x: 0.70704734, y: 0.009167783, z: -0.009167767, w: 0.70704734}
+  m_LocalRotation: {x: 0.7034326, y: 0.019557126, z: -0.0047560507, w: 0.71047693}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 39.666054, y: 39.666073, z: 39.66607}
   m_ConstrainProportionsScale: 0
@@ -1829,7 +1816,7 @@ Transform:
   - {fileID: 6695850647162538814}
   m_Father: {fileID: 2164485291868637785}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -1.486}
+  m_LocalEulerAnglesHint: {x: 88.672, y: 65.534, z: 63.563}
 --- !u!65 &2164485292285654591
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1838,11 +1825,27 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2164485292285654585}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.07081026, y: 0.07673403, z: 0.03923207}
   m_Center: {x: 0.16153662, y: 0.04576645, z: -0.34207952}
+--- !u!54 &100135102
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164485292285654585}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2164485292361444329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2164485292361444328}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1888,7 +1891,7 @@ GameObject:
   - component: {fileID: 2164485292898462565}
   - component: {fileID: 2164485292898462564}
   - component: {fileID: 2164485292898462587}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Intake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1942,7 +1945,7 @@ MonoBehaviour:
   - Cube
   - Ball
   - Duck
-  wantedVelocity: 150
+  desiredVelocity: 0
   rings: []
 --- !u!1 &2262999294826907123
 GameObject:
@@ -1955,7 +1958,7 @@ GameObject:
   - component: {fileID: 4076286215162536522}
   - component: {fileID: 1417252594946534452}
   - component: {fileID: 78203661365201013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:16.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2038,7 +2041,7 @@ GameObject:
   - component: {fileID: 8925490319576478764}
   - component: {fileID: 1695454416552491783}
   - component: {fileID: 5377517638023804645}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0100-0100_SIDE_PLATE:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2121,7 +2124,7 @@ GameObject:
   - component: {fileID: 6958745817740147538}
   - component: {fileID: 2374350502951404196}
   - component: {fileID: 3837470570095795624}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2285,7 +2288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 891166134848871835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0100-0100_ASSEMBLY_ASM:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2329,7 +2332,7 @@ GameObject:
   - component: {fileID: 435808277082456886}
   - component: {fileID: 3103661749061505750}
   - component: {fileID: 2878021860073538981}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4 Hole Channel with holes:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2410,7 +2413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4366933400409277373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0000-0100_ASSEMBLY_ASM:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2454,7 +2457,7 @@ GameObject:
   - component: {fileID: 1454886329229630284}
   - component: {fileID: 3197214317898091086}
   - component: {fileID: 2820368367314289528}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2537,7 +2540,7 @@ GameObject:
   - component: {fileID: 525524417756861658}
   - component: {fileID: 238684621802569676}
   - component: {fileID: 8788515127931474235}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0000-0100_SIDE_PLATE:2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2618,7 +2621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1050813368187331451}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: gecko wheel:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2653,7 +2656,7 @@ GameObject:
   - component: {fileID: 5896971336907329666}
   - component: {fileID: 7032224287716203420}
   - component: {fileID: 7423733876920067206}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 216mm axle:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2736,7 +2739,7 @@ GameObject:
   - component: {fileID: 6290883586355670930}
   - component: {fileID: 8454260600678552813}
   - component: {fileID: 238708874088021968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: duck tower:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,7 +2822,7 @@ GameObject:
   - component: {fileID: 7521781385409628428}
   - component: {fileID: 2647716524487780071}
   - component: {fileID: 6913418572647041011}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0000-0100_SIDE_PLATE:1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2985,7 +2988,7 @@ GameObject:
   - component: {fileID: 5615041237821370994}
   - component: {fileID: 2817041403209383893}
   - component: {fileID: 6812875584778466031}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:17.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3066,7 +3069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119997905326775609}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0100-0100_ASSEMBLY_ASM:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3110,7 +3113,7 @@ GameObject:
   - component: {fileID: 1686869726747536955}
   - component: {fileID: 7394991468735983955}
   - component: {fileID: 4882492979458468485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3193,7 +3196,7 @@ GameObject:
   - component: {fileID: 1580669609818233347}
   - component: {fileID: 4458435400506374374}
   - component: {fileID: 1932390592841046833}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0000-0100_SIDE_PLATE:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3279,7 @@ GameObject:
   - component: {fileID: 95776539160591195}
   - component: {fileID: 2775487176847494813}
   - component: {fileID: 7977638777616376160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4 Hole Channel:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3359,7 +3362,7 @@ GameObject:
   - component: {fileID: 7742586640581953018}
   - component: {fileID: 4468024748072359357}
   - component: {fileID: 9198514490324174730}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:4.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3442,7 +3445,7 @@ GameObject:
   - component: {fileID: 2602046752088757992}
   - component: {fileID: 7892009627735704395}
   - component: {fileID: 175733548346261657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Drawer Slide:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3525,7 +3528,7 @@ GameObject:
   - component: {fileID: 8511340036249672235}
   - component: {fileID: 6877594540007657016}
   - component: {fileID: 7473641165501993475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:3.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3608,7 +3611,7 @@ GameObject:
   - component: {fileID: 4803247414665788091}
   - component: {fileID: 555967297764216517}
   - component: {fileID: 2088193775056638467}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:6.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3691,7 +3694,7 @@ GameObject:
   - component: {fileID: 5600389684438691347}
   - component: {fileID: 8191799178208263109}
   - component: {fileID: 3702924736498767468}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 14 Hole Channel:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3774,7 +3777,7 @@ GameObject:
   - component: {fileID: 7039332635636818571}
   - component: {fileID: 228356198857028343}
   - component: {fileID: 8063145015672573800}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3857,7 +3860,7 @@ GameObject:
   - component: {fileID: 3110915129541700547}
   - component: {fileID: 1034302786543892999}
   - component: {fileID: 5192546772730987474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3940,7 +3943,7 @@ GameObject:
   - component: {fileID: 3673657694001917335}
   - component: {fileID: 2363078502537113703}
   - component: {fileID: 4560252962898390660}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4023,7 +4026,7 @@ GameObject:
   - component: {fileID: 746732413832986745}
   - component: {fileID: 3273478684016839121}
   - component: {fileID: 6581046272816075072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3613-0014-0096 Core:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4189,7 +4192,7 @@ GameObject:
   - component: {fileID: 3093203482112632543}
   - component: {fileID: 5716558584757254682}
   - component: {fileID: 8097452135681259202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4272,7 +4275,7 @@ GameObject:
   - component: {fileID: 6896456930357674403}
   - component: {fileID: 9081462479805598063}
   - component: {fileID: 1032922877088178060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4355,7 +4358,7 @@ GameObject:
   - component: {fileID: 5656602136975442372}
   - component: {fileID: 7187830754741819528}
   - component: {fileID: 4692977532936415067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0000-0100_SIDE_PLATE:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4438,7 +4441,7 @@ GameObject:
   - component: {fileID: 1796571461321963171}
   - component: {fileID: 6076804504541617451}
   - component: {fileID: 5663732211283634451}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4521,7 +4524,7 @@ GameObject:
   - component: {fileID: 5450530116448797380}
   - component: {fileID: 5231407640232420600}
   - component: {fileID: 2640575358894882488}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4604,7 +4607,7 @@ GameObject:
   - component: {fileID: 7074604837102066532}
   - component: {fileID: 438900706958001893}
   - component: {fileID: 7987630503689872479}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:12.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4685,7 +4688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1373394807643870089}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0000-0100_ASSEMBLY_ASM:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4729,7 +4732,7 @@ GameObject:
   - component: {fileID: 3348349504146997761}
   - component: {fileID: 254571911745748498}
   - component: {fileID: 5416388847552778304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: half channel:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4812,7 +4815,7 @@ GameObject:
   - component: {fileID: 5686100259062836043}
   - component: {fileID: 1596598428714357108}
   - component: {fileID: 1889113996002147987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: half channel:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4895,7 +4898,7 @@ GameObject:
   - component: {fileID: 3845816211083021190}
   - component: {fileID: 7466336833216456342}
   - component: {fileID: 8545171843481837133}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4978,7 +4981,7 @@ GameObject:
   - component: {fileID: 7147389183773723361}
   - component: {fileID: 7294005374616831321}
   - component: {fileID: 9006696539577504475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5061,7 +5064,7 @@ GameObject:
   - component: {fileID: 5416267067910679557}
   - component: {fileID: 7838674316317059424}
   - component: {fileID: 7576881782867240929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:18.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5144,7 +5147,7 @@ GameObject:
   - component: {fileID: 3809181322745450266}
   - component: {fileID: 7444171975863033721}
   - component: {fileID: 2752652459303334211}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0100-0100_SIDE_PLATE:2.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5227,7 +5230,7 @@ GameObject:
   - component: {fileID: 8974786903343514414}
   - component: {fileID: 5946650157313731724}
   - component: {fileID: 1743966824951363654}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4 Hole Channel with holes:2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5310,7 +5313,7 @@ GameObject:
   - component: {fileID: 3782730193094843338}
   - component: {fileID: 3575470921770735000}
   - component: {fileID: 8776732551587689517}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: slide mount:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5393,7 +5396,7 @@ GameObject:
   - component: {fileID: 2033534341725393118}
   - component: {fileID: 192181024200431328}
   - component: {fileID: 7674199262852518696}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:9.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5476,7 +5479,7 @@ GameObject:
   - component: {fileID: 183180901018157738}
   - component: {fileID: 1002770742382227177}
   - component: {fileID: 4485188981747842162}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: servo:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5559,7 +5562,7 @@ GameObject:
   - component: {fileID: 5758005271787067437}
   - component: {fileID: 6518719073065962175}
   - component: {fileID: 7620026384880801580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5642,7 +5645,7 @@ GameObject:
   - component: {fileID: 2913907257677762969}
   - component: {fileID: 1152687656944223840}
   - component: {fileID: 4492735003874353128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:10.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5725,7 +5728,7 @@ GameObject:
   - component: {fileID: 4440974955393335120}
   - component: {fileID: 862272637288916097}
   - component: {fileID: 6764097002849485032}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3613-0014-0096 Rubber:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5808,7 +5811,7 @@ GameObject:
   - component: {fileID: 1349265394712312238}
   - component: {fileID: 2068937647706042744}
   - component: {fileID: 6737426425043345757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-XXXX-0100_HI_DURABILITY_RO:3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5891,7 +5894,7 @@ GameObject:
   - component: {fileID: 4417688419898921270}
   - component: {fileID: 1833573517347456725}
   - component: {fileID: 7337380661530917457}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0100-0100_SIDE_PLATE:1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5974,7 +5977,7 @@ GameObject:
   - component: {fileID: 5594389302363834459}
   - component: {fileID: 4492147040225608552}
   - component: {fileID: 6735232300437349878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3606-0100-0100_SIDE_PLATE:1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

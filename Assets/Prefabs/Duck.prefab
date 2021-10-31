@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4178094604085867515}
   - component: {fileID: 3652492189569902915}
+  - component: {fileID: 3718173428811747840}
   m_Layer: 0
   m_Name: Duck
   m_TagString: Duck
@@ -41,14 +42,27 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3652492189569902913}
   serializedVersion: 2
-  m_Mass: 0.0158
-  m_Drag: 1
+  m_Mass: 0.058
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!65 &3718173428811747840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652492189569902913}
+  m_Material: {fileID: 13400000, guid: f3cb4e3ee8aeb8c4a9e951ecede9688d, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 63.65953, y: 55.36344, z: 40}
+  m_Center: {x: -0.9767487, y: 50.322308, z: -1.9826888}
 --- !u!1 &8017338136593243262
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,10 +74,9 @@ GameObject:
   - component: {fileID: 5836218987333080971}
   - component: {fileID: 5891134225655329901}
   - component: {fileID: 8362677148773675914}
-  - component: {fileID: 3718173428466356144}
   m_Layer: 0
   m_Name: Body1
-  m_TagString: Untagged
+  m_TagString: Duck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,16 +147,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3718173428466356144
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8017338136593243262}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.87232, y: 5.728693, z: 4.939403}
-  m_Center: {x: -0.34714165, y: 5.114343, z: -0.00086772454}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class rotateCarousel : MonoBehaviour
 {
+    Rigidbody rb;
     [SerializeField]Vector3 dir;
     public bool hasDuck;
     bool isSpinning;
@@ -11,18 +12,18 @@ public class rotateCarousel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //  transform.Rotate(0f, -50 * Time.deltaTime, 0f, Space.Self);
+        //  transform.eulerAngles += new Vector3(0f, -50 * Time.deltaTime, 0f);
 
         if (hasDuck && isSpinning)
         {
-            transform.Rotate((dir * Time.deltaTime),Space.Self);
+            transform.eulerAngles += new Vector3(0f, -50 * Time.deltaTime, 0f);
         }
     }
 
@@ -31,7 +32,6 @@ public class rotateCarousel : MonoBehaviour
 
         if (collision.tag == "Spinner" && !isSpinning && hasDuck)
         {
-            print("Collinbso");
             isSpinning = true;
 
         }
