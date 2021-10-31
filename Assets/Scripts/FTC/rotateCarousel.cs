@@ -51,6 +51,7 @@ public class rotateCarousel : MonoBehaviour
         if(collision.collider.tag == "Duck" && hasDuck)
         {
             hasDuck = false;
+            isSpinning = false;
         }
     }
 
