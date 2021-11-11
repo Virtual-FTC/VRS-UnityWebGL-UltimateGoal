@@ -353,7 +353,7 @@ public class UserManager : MonoBehaviour
             currentGameStart = true;
             resetRobot();
             resetField(websiteCommands.gameSetup);
-            gameTimer.startGame();
+            gameTimer.StartGame();
         }
         else if (!websiteCommands.startGame && currentGameStart)
         {

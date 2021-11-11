@@ -12,19 +12,21 @@ public class RobotGameManager : MonoBehaviour
     [SerializeField] Transform[] blueTeamDuckSpawns, redTeamDuckSpawns;
     [SerializeField] Transform blueSpawn, redSpawn;
     [SerializeField] Transform blueItemSpawn, redItemSpawn;
-    [SerializeField]Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
+    [SerializeField] Transform redCarouselDuckSpawn, blueCarouselDuckSpawn;
 
     List<GameObject> spawnedItems;
 
     [SerializeField] float itemOffset;
+
+    GameTimer timer;
 
     bool gameStarted;
 
     void Start()
     {
         spawnedItems = new List<GameObject>();
-
-        SpawnRobots();
+        timer = FindObjectOfType<GameTimer>();
+       // SpawnRobots();
 
     }
 
@@ -70,6 +72,7 @@ public class RobotGameManager : MonoBehaviour
         if (gameStarted) return;
         SpawnDucks();
         SpawnWarehouseItems();
+        timer.StartGame();
 
         gameStarted = true;
     }

@@ -229,7 +229,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             currentGameStart = true;
             resetRobot();
             ResetField();
-            gameTimer.startGame();
+            gameTimer.StartGame();
         }
     }
 

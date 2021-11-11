@@ -8619,6 +8619,7 @@ GameObject:
   - component: {fileID: 1581290504}
   - component: {fileID: 1581290505}
   - component: {fileID: 1581290506}
+  - component: {fileID: 1581290507}
   m_Layer: 0
   m_Name: FieldManager
   m_TagString: Untagged
@@ -8693,12 +8694,32 @@ MonoBehaviour:
   - {fileID: 6319341700427041065}
   - {fileID: 2438900859927569225}
   blueSpawn: {fileID: 1916599337}
-  redSpawn: {fileID: 0}
+  redSpawn: {fileID: 1092728833}
   blueItemSpawn: {fileID: 1619030561}
   redItemSpawn: {fileID: 1508647736}
   redCarouselDuckSpawn: {fileID: 575962993}
   blueCarouselDuckSpawn: {fileID: 387573782}
   itemOffset: 0.4
+--- !u!114 &1581290507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581290502}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aac913136c3f959469fa2f5ed50b39cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setupPrefab:
+  - {fileID: 2164485291868637767, guid: 257ec8e35044ea245ac3a8b14f14d0b6, type: 3}
+  - {fileID: 2164485291868637767, guid: 257ec8e35044ea245ac3a8b14f14d0b6, type: 3}
+  spawnPositions:
+  - {fileID: 1916599337}
+  - {fileID: 1092728833}
+  robotPrefab: {fileID: 2164485291868637767, guid: 257ec8e35044ea245ac3a8b14f14d0b6,
+    type: 3}
 --- !u!1 &1592615008
 GameObject:
   m_ObjectHideFlags: 0

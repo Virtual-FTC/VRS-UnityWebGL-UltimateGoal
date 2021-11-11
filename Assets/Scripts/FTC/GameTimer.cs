@@ -33,8 +33,9 @@ public class GameTimer : MonoBehaviour
         scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
     }
 
-    public void startGame()
+    public void StartGame()
     {
+        print("Started");
         audioManager.reset();
 
         startToggle = true;
