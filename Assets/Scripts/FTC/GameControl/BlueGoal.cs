@@ -9,6 +9,8 @@ public class BlueGoal : MonoBehaviour
     public string tagOfGameObject = "Ring";
 
     public string goalType = "";
+    public enum goalType2 { low, mid, high, power }
+    public goalType2 dropDownList;
 
     private GameTimer gameTimer;
     private AudioManager audioManager;

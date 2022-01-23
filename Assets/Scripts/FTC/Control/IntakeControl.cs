@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class IntakeControl : MonoBehaviour
 {
@@ -70,23 +71,29 @@ public class IntakeControl : MonoBehaviour
         {
             if (collision.tag == coliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
             {
-                numBalls++;
-                rings[numBalls-1].SetActive(true);
-                lastRing = collision.gameObject;
-                if (Photon.Pun.PhotonNetwork.IsConnected)
-                {
-                    collision.gameObject.GetComponent<Photon.Pun.PhotonView>().RPC("DestroyRing", Photon.Pun.RpcTarget.All);
-                    Photon.Pun.PhotonNetwork.Destroy(collision.gameObject);
-                }
-                else
-                {
-                    Destroy(collision.gameObject);
-                }
+                addBall(collision.gameObject);
             }
         }
         
     }
 
+    public void addBall(GameObject ball)
+    {
+        numBalls++;
+        rings[numBalls - 1].SetActive(true);
+        lastRing = ball;
+        if (PhotonNetwork.IsConnected)
+        {
+            ball.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.All);
+            PhotonNetwork.Destroy(ball);
+        }
+        else
+        {
+            Destroy(ball);
+        }
+    }
+
+    [PunRPC]
     public void subtractBall()
     {
         numBalls--;

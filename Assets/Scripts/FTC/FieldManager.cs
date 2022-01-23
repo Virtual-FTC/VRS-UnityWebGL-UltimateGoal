@@ -91,7 +91,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
     }
-
+    [PunRPC]
     public void resetField()
     {
         if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
@@ -101,6 +101,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             scoreKeeper.resetScore();
             if (PhotonNetwork.IsConnected)
             {
+                GetComponent<PhotonView>().RPC("resetField", RpcTarget.Others);
                 PhotonNetwork.Destroy(setup);
             }
             else
@@ -143,26 +144,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 type = "C";
             }
 
-            GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
-
-            foreach (GameObject a in gos)
-            {
-                Destroy(a);
-            }
-
-            gos = GameObject.FindGameObjectsWithTag("BlueWobble");
-
-            foreach (GameObject a in gos)
-            {
-                Destroy(a);
-            }
-
-            gos = GameObject.FindGameObjectsWithTag("RedWobble");
-
-            foreach (GameObject a in gos)
-            {
-                Destroy(a);
-            }
+            emptyField();
 
             if (!PhotonNetwork.IsConnected)
             {
@@ -183,7 +165,32 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         else
         {
             resetRobot();
+            emptyField();
             scoreKeeper.resetScore();
+        }
+    }
+
+    public void emptyField()
+    {
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
+
+        foreach (GameObject a in gos)
+        {
+            Destroy(a);
+        }
+
+        gos = GameObject.FindGameObjectsWithTag("BlueWobble");
+
+        foreach (GameObject a in gos)
+        {
+            Destroy(a);
+        }
+
+        gos = GameObject.FindGameObjectsWithTag("RedWobble");
+
+        foreach (GameObject a in gos)
+        {
+            Destroy(a);
         }
     }
     public void buttonStartGame()
@@ -208,7 +215,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         if (!currentGameStart)
         {
             currentGameStart = true;
-            resetRobot();
+            //resetRobot();
             resetField();
             gameTimer.startGame();
         }
