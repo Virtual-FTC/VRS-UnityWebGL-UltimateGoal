@@ -41,7 +41,6 @@ public class ShooterControl : MonoBehaviour
     {
         if (Time.time - timer >= timeBetweenShots & intakeControl.getNumberBalls() > 0)
         {
-            Debug.LogError("called shooting");
             robotSoundControl.playRobotShoot();
             timer = Time.time;
             var newPosition = transform.position;

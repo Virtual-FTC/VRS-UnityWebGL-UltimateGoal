@@ -322,14 +322,12 @@ public class RobotController : MonoBehaviour
     [PunRPC]
     public void subtractBall()
     {
-        Debug.LogError("called subtractBall");
         intakeControl.subtractBall();
     }
 
     [PunRPC]
     public void addBall()
     {
-        Debug.LogError("called addBall");
         intakeControl.addBall();
     }
 
