@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class IntakeControl : MonoBehaviour
 {
     public CommandProcessor Commands = new CommandProcessor();
-
+    public PhotonView player;
+    
     [Header("Ball Pickup")]
     public int maxNumberBalls = 5;
     public int numBalls = 3;
@@ -70,21 +72,31 @@ public class IntakeControl : MonoBehaviour
         {
             if (collision.tag == coliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
             {
-                numBalls++;
-                rings[numBalls-1].SetActive(true);
-                lastRing = collision.gameObject;
-                if (Photon.Pun.PhotonNetwork.IsConnected)
-                {
-                    collision.gameObject.GetComponent<Photon.Pun.PhotonView>().RPC("DestroyRing", Photon.Pun.RpcTarget.All);
-                    Photon.Pun.PhotonNetwork.Destroy(collision.gameObject);
-                }
-                else
-                {
-                    Destroy(collision.gameObject);
-                }
+                player.RPC("addBall", RpcTarget.AllBuffered);
+                destroyBall(collision.gameObject);
             }
         }
         
+    }
+
+    public void addBall()
+    {
+        numBalls++;
+        rings[numBalls - 1].SetActive(true);
+    }
+
+    public void destroyBall(GameObject ball)
+    {
+        lastRing = ball;
+        if (PhotonNetwork.IsConnected)
+        {
+            ball.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.All);
+            PhotonNetwork.Destroy(ball);
+        }
+        else
+        {
+            Destroy(ball);
+        }
     }
 
     public void subtractBall()

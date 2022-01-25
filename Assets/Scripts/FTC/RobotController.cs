@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using UnityEngine.InputSystem;
+using Photon.Pun;
+
 
 public class RobotController : MonoBehaviour
 {
@@ -197,17 +199,17 @@ public class RobotController : MonoBehaviour
         //Apply Angular Velocity to Rigid Body
         rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
         //Encoder Calculations 
-        frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        backLeftWheelEnc += (motorRPM / 60) * backLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        backRightWheelEnc += (motorRPM / 60) * backRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        //frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        //frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        //backLeftWheelEnc += (motorRPM / 60) * backLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        //backRightWheelEnc += (motorRPM / 60) * backRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
 
         try
         {
-            updateFrontRightEncoders(frontRightWheelEnc);
-            updateFrontLeftEncoders(frontLeftWheelEnc);
-            updateBackRightEncoders(backRightWheelEnc);
-            updateBackLeftEncoders(backLeftWheelEnc);
+            //updateFrontRightEncoders(frontRightWheelEnc);
+            //updateFrontLeftEncoders(frontLeftWheelEnc);
+            //updateBackRightEncoders(backRightWheelEnc);
+            //updateBackLeftEncoders(backLeftWheelEnc);
         }
         catch
         {
@@ -316,4 +318,17 @@ public class RobotController : MonoBehaviour
     {
         return posiiton;
     }
+
+    [PunRPC]
+    public void subtractBall()
+    {
+        intakeControl.subtractBall();
+    }
+
+    [PunRPC]
+    public void addBall()
+    {
+        intakeControl.addBall();
+    }
+
 }

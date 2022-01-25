@@ -3345,6 +3345,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 8933417340650409222}
+  - {fileID: 2331215088059271261}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3852,7 +3853,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6506226505424176645}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
@@ -3940,6 +3941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe3b01ce140fb94b897396ae19ed190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 7579781651525901156}
   maxNumberBalls: 3
   numBalls: 3
   timeOfBallContact: 0.25
@@ -4330,6 +4332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intake: {fileID: 6506226505863710965}
+  player: {fileID: 7579781651525901156}
   timeBetweenShots: 1
   shotForceMult: 3.16
   shootingAngle: {fileID: 8622124234069995941}

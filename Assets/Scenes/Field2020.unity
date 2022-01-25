@@ -5963,6 +5963,7 @@ MonoBehaviour:
   pointsPerGoal: 2
   tagOfGameObject: Ring
   goalType: mid
+  dropDownList: 0
 --- !u!1 &422227431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,6 +6189,7 @@ MonoBehaviour:
   pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: power
+  dropDownList: 0
 --- !u!224 &508094679 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5716465713065431417, guid: ce875ceeaf5474c83a7ae0fce3b869b4,
@@ -6989,6 +6991,7 @@ MonoBehaviour:
   pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: power
+  dropDownList: 0
 --- !u!1 &962991541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7748,6 +7751,7 @@ MonoBehaviour:
   pointsPerGoal: 1
   tagOfGameObject: Ring
   goalType: low
+  dropDownList: 0
 --- !u!1 &1210851193
 GameObject:
   m_ObjectHideFlags: 0
@@ -8658,6 +8662,7 @@ GameObject:
   - component: {fileID: 1441923429}
   - component: {fileID: 1441923428}
   - component: {fileID: 1441923432}
+  - component: {fileID: 1441923433}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -8780,6 +8785,26 @@ MonoBehaviour:
   - {fileID: 1996246789}
   - {fileID: 1410753523}
   - {fileID: 422227432}
+--- !u!114 &1441923433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441923427}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5867a53c8db0e6745818285bb6b6e1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WindowRect:
+    serializedVersion: 2
+    x: 0
+    y: 100
+    width: 120
+    height: 100
+  WindowId: 101
+  Visible: 1
 --- !u!1 &1480213367
 GameObject:
   m_ObjectHideFlags: 0
@@ -16845,6 +16870,7 @@ MonoBehaviour:
   pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: power
+  dropDownList: 0
 --- !u!1 &2108980440
 GameObject:
   m_ObjectHideFlags: 0
@@ -16947,6 +16973,7 @@ MonoBehaviour:
   pointsPerGoal: 3
   tagOfGameObject: Ring
   goalType: high
+  dropDownList: 2
 --- !u!1 &2124137037
 GameObject:
   m_ObjectHideFlags: 0

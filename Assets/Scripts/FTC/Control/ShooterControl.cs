@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using Photon.Pun;
 
 public class ShooterControl : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ShooterControl : MonoBehaviour
 
     [Header("Other Controls")]
     public GameObject intake;
+    public PhotonView player;
 
     private IntakeControl intakeControl;
 
@@ -65,7 +67,8 @@ public class ShooterControl : MonoBehaviour
             var rigid = instance.GetComponent<Rigidbody>();
 
             rigid.AddForce((shootingAngle.transform.rotation * Vector3.forward) * wantedVelocity * shotForceMult, ForceMode.Impulse);
-            intakeControl.subtractBall();
+            player.RPC("subtractBall", RpcTarget.All);
+            //intakeControl.subtractBall();
         }
     }
 
