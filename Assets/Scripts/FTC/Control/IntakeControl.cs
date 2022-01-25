@@ -99,7 +99,6 @@ public class IntakeControl : MonoBehaviour
         }
     }
 
-    [PunRPC]
     public void subtractBall()
     {
         numBalls--;
