@@ -91,6 +91,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
     }
+
     [PunRPC]
     public void resetField()
     {
@@ -101,7 +102,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             scoreKeeper.resetScore();
             if (PhotonNetwork.IsConnected)
             {
-                GetComponent<PhotonView>().RPC("resetField", RpcTarget.Others);
+                if(!currentGameStart)
+                    GetComponent<PhotonView>().RPC("resetField", RpcTarget.Others);
                 PhotonNetwork.Destroy(setup);
             }
             else
@@ -214,9 +216,9 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         if (!currentGameStart)
         {
-            currentGameStart = true;
             //resetRobot();
             resetField();
+            currentGameStart = true;
             gameTimer.startGame();
         }
     }

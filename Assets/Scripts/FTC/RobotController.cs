@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using UnityEngine.InputSystem;
+using Photon.Pun;
+
 
 public class RobotController : MonoBehaviour
 {
@@ -316,4 +318,19 @@ public class RobotController : MonoBehaviour
     {
         return posiiton;
     }
+
+    [PunRPC]
+    public void subtractBall()
+    {
+        Debug.LogError("called subtractBall");
+        intakeControl.subtractBall();
+    }
+
+    [PunRPC]
+    public void addBall()
+    {
+        Debug.LogError("called addBall");
+        intakeControl.addBall();
+    }
+
 }

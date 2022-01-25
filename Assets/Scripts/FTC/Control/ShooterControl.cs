@@ -11,6 +11,7 @@ public class ShooterControl : MonoBehaviour
 
     [Header("Other Controls")]
     public GameObject intake;
+    public PhotonView player;
 
     private IntakeControl intakeControl;
 
@@ -40,6 +41,7 @@ public class ShooterControl : MonoBehaviour
     {
         if (Time.time - timer >= timeBetweenShots & intakeControl.getNumberBalls() > 0)
         {
+            Debug.LogError("called shooting");
             robotSoundControl.playRobotShoot();
             timer = Time.time;
             var newPosition = transform.position;
@@ -66,8 +68,8 @@ public class ShooterControl : MonoBehaviour
             var rigid = instance.GetComponent<Rigidbody>();
 
             rigid.AddForce((shootingAngle.transform.rotation * Vector3.forward) * wantedVelocity * shotForceMult, ForceMode.Impulse);
-            //intakeControl.GetComponent<PhotonView>().RPC("subtractBall", RpcTarget.All);
-            intakeControl.subtractBall();
+            player.RPC("subtractBall", RpcTarget.All);
+            //intakeControl.subtractBall();
         }
     }
 

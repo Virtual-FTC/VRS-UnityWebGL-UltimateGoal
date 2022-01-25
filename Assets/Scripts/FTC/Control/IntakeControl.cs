@@ -8,7 +8,8 @@ using Photon.Pun;
 public class IntakeControl : MonoBehaviour
 {
     public CommandProcessor Commands = new CommandProcessor();
-
+    public PhotonView player;
+    
     [Header("Ball Pickup")]
     public int maxNumberBalls = 5;
     public int numBalls = 3;
@@ -71,16 +72,21 @@ public class IntakeControl : MonoBehaviour
         {
             if (collision.tag == coliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
             {
-                addBall(collision.gameObject);
+                player.RPC("addBall", RpcTarget.AllBuffered);
+                destroyBall(collision.gameObject);
             }
         }
         
     }
 
-    public void addBall(GameObject ball)
+    public void addBall()
     {
         numBalls++;
         rings[numBalls - 1].SetActive(true);
+    }
+
+    public void destroyBall(GameObject ball)
+    {
         lastRing = ball;
         if (PhotonNetwork.IsConnected)
         {
