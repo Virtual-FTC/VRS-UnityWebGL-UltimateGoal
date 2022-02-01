@@ -13,17 +13,6 @@ using Photon.Pun;
 
 public class RobotController : MonoBehaviour
 {
-    [DllImport("__Internal")]
-    private static extern void updateFrontRightEncoders(float x);
-
-    [DllImport("__Internal")]
-    private static extern void updateFrontLeftEncoders(float x);
-
-    [DllImport("__Internal")]
-    private static extern void updateBackRightEncoders(float x);
-
-    [DllImport("__Internal")]
-    private static extern void updateBackLeftEncoders(float x);
 
     PlayerControls controls;
     private float linearVelocityX;
@@ -198,23 +187,6 @@ public class RobotController : MonoBehaviour
         rb.velocity = transform.TransformDirection(locVel);
         //Apply Angular Velocity to Rigid Body
         rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
-        //Encoder Calculations 
-        //frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        //frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        //backLeftWheelEnc += (motorRPM / 60) * backLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        //backRightWheelEnc += (motorRPM / 60) * backRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-
-        try
-        {
-            //updateFrontRightEncoders(frontRightWheelEnc);
-            //updateFrontLeftEncoders(frontLeftWheelEnc);
-            //updateBackRightEncoders(backRightWheelEnc);
-            //updateBackLeftEncoders(backLeftWheelEnc);
-        }
-        catch
-        {
-            //print("Can not find javascript functions");
-        }
 
         robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
     }
@@ -284,13 +256,6 @@ public class RobotController : MonoBehaviour
             shooterControl.Commands.Process();
             intakeControl.Commands.Process();
             grabberControl.Commands.Process();
-
-            /*
-            SendFrontLeftEnc(frontLeftWheelEnc);
-            SendFrontRightEnc(frontRightWheelEnc);
-            SendBackLeftEnc(backLeftWheelEnc);
-            SendBackRightEnc(backRightWheelEnc);
-            */
         }
         else if (GetComponent<Photon.Pun.PhotonView>().IsMine)
         {
