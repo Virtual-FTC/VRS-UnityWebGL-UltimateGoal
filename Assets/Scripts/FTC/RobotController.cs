@@ -54,6 +54,7 @@ public class RobotController : MonoBehaviour
     public GameObject intake;
     public GameObject grabber;
 
+    public PhotonView PV;
     private ShooterControl shooterControl;
     private IntakeControl intakeControl;
     private GrabberControl grabberControl;
@@ -257,7 +258,7 @@ public class RobotController : MonoBehaviour
             intakeControl.Commands.Process();
             grabberControl.Commands.Process();
         }
-        else if (GetComponent<Photon.Pun.PhotonView>().IsMine)
+        else if (PV.IsMine)
         {
             driveRobot();
             shooterControl.Commands.Process();
@@ -296,4 +297,9 @@ public class RobotController : MonoBehaviour
         intakeControl.addBall();
     }
 
+    [PunRPC]
+    public void resetBalls()
+    {
+        intakeControl.resetBalls();
+    }
 }

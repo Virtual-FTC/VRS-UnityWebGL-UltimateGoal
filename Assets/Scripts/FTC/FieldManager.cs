@@ -86,7 +86,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 }
             }
         }
-        intake.resetBalls();
+        robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.All);
 
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
