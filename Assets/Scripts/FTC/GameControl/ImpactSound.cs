@@ -5,12 +5,14 @@ using Photon.Pun;
 
 public class ImpactSound : MonoBehaviour
 {
+    public PhotonView thisView;
     private AudioManager audioManager;
 
     private float timer = 0;
 
     void Start()
     {
+        thisView = GetComponent<PhotonView>();
         audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
     }
 
@@ -32,7 +34,8 @@ public class ImpactSound : MonoBehaviour
         {
             if (Time.realtimeSinceStartup-timer >= 5.0)
             {
-                Destroy(gameObject);
+                
+                //Destroy(gameObject);//TODELETE
             }
         }
     }
@@ -40,6 +43,7 @@ public class ImpactSound : MonoBehaviour
     [PunRPC]
     public void DestroyRing()
     {
-        PhotonNetwork.Destroy(this.gameObject);
+        if(thisView.IsMine)
+            PhotonNetwork.Destroy(this.gameObject);
     }
 }
