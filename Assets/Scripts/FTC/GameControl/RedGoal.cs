@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RedGoal : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class RedGoal : MonoBehaviour
         {
             if (goalType == "low")
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
                 pointsPerGoal = 2;
                 if (gameTimer.getGameType() == "auto")
@@ -39,7 +40,7 @@ public class RedGoal : MonoBehaviour
             }
             if (goalType == "mid")
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
                 pointsPerGoal = 4;
                 if (gameTimer.getGameType() == "auto")
@@ -47,7 +48,7 @@ public class RedGoal : MonoBehaviour
             }
             if (goalType == "high")
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
                 pointsPerGoal = 6;
                 if (gameTimer.getGameType() == "auto")
@@ -58,7 +59,7 @@ public class RedGoal : MonoBehaviour
                 pointsPerGoal = 0;
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
                 {
-                    Destroy(collision.gameObject.transform.parent.gameObject);
+                    PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                     audioManager.playRingBounce();
                     pointsPerGoal = 15;
                 }

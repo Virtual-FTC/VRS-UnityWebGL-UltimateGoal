@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class BlueGoal : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class BlueGoal : MonoBehaviour
         {
             if (goalType == "low")
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
                 pointsPerGoal = 2;
                 if (gameTimer.getGameType() == "auto")
@@ -43,7 +44,7 @@ public class BlueGoal : MonoBehaviour
             }
             if (goalType == "mid")
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
                 pointsPerGoal = 4;
                 if (gameTimer.getGameType() == "auto")
@@ -51,7 +52,7 @@ public class BlueGoal : MonoBehaviour
             }
             if (goalType == "high")
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
+                PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
                 pointsPerGoal = 6;
                 if (gameTimer.getGameType() == "auto")
@@ -63,7 +64,7 @@ public class BlueGoal : MonoBehaviour
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
                 {
                     pointsPerGoal = 15;
-                    Destroy(collision.gameObject.transform.parent.gameObject);
+                    PhotonNetwork.Destroy(collision.gameObject.transform.parent.gameObject);
                     audioManager.playRingBounce();
                 }
             }
