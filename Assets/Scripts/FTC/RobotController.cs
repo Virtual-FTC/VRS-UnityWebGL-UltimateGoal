@@ -26,11 +26,6 @@ public class RobotController : MonoBehaviour
     private float backLeftWheelCmd = 0f;
     private float backRightWheelCmd = 0f;
 
-    private float frontLeftWheelEnc = 0f;
-    private float frontRightWheelEnc = 0f;
-    private float backLeftWheelEnc = 0f;
-    private float backRightWheelEnc = 0f;
-
     private float motorPower5;
     private float motorPower6;
     private float motorPower7;
@@ -190,14 +185,6 @@ public class RobotController : MonoBehaviour
         rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
 
         robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
-    }
-
-    public void resetEncoders()
-    {
-        frontLeftWheelEnc = 0f;
-        frontRightWheelEnc = 0f;
-        backLeftWheelEnc = 0f;
-        backRightWheelEnc = 0f;
     }
 
     public void setFrontLeftVel(float x)
