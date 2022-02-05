@@ -8,6 +8,8 @@ public class DynamicFieldSetup : MonoBehaviour
 {
     private void Start()
     {
+        if (!PhotonNetwork.IsMasterClient)
+            return;
         foreach (RingController ring in GetComponentsInChildren<RingController>())
         {
             Transform ringTrans = ring.gameObject.transform;
