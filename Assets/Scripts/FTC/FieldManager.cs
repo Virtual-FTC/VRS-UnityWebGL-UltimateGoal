@@ -175,10 +175,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     setup.GetComponentsInChildren<Rigidbody>()[x].centerOfMass = new Vector3(0, -0.9f, 0);
                 }
             }
-            if(PhotonNetwork.IsConnected)
-            {
-                setup.AddComponent(typeof(DynamicFieldSetup));
-            }
         }
         else
         {
