@@ -177,10 +177,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             }
             if(PhotonNetwork.IsConnected)
             {
-                foreach (PhotonView pv in setup.GetComponentsInChildren<PhotonView>())
-                {
-                    pv.gameObject.transform.parent = null;
-                }
+                setup.AddComponent(typeof(DynamicFieldSetup));
             }
         }
         else
