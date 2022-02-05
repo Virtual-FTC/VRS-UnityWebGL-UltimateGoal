@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4739425185913452200}
   - component: {fileID: 3774747042545468459}
   - component: {fileID: -3774275552744802366}
+  - component: {fileID: 7711835285142110742}
   m_Layer: 0
   m_Name: Ring
   m_TagString: OutsideRing
@@ -170,7 +171,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 2
-  OwnershipTransfer: 0
+  OwnershipTransfer: 2
   observableSearch: 2
   ObservedComponents:
   - {fileID: 3774747042545468459}
@@ -210,6 +211,19 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &7711835285142110742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4940796868498771376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d3f472cf3c2d642ad65329b6b4a578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisView: {fileID: 4739425185913452200}
 --- !u!1 &7893728621862423458
 GameObject:
   m_ObjectHideFlags: 0

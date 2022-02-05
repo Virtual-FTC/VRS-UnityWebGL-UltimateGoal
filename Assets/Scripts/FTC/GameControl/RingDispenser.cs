@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Random = System.Random;
+using Photon.Pun;
 
 public class RingDispenser : MonoBehaviour
 {
@@ -43,15 +44,18 @@ public class RingDispenser : MonoBehaviour
         GameObject ring = null;
         if (Photon.Pun.PhotonNetwork.IsConnected && Photon.Pun.PhotonNetwork.IsMasterClient)
         {
-            ring = Photon.Pun.PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Ring"), pos.position, Quaternion.Euler(0f, index1, 90f), 0);
+            ring = Photon.Pun.PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "Ring"), pos.position, Quaternion.Euler(0f, index1, 90f), 0);
         }
         else if(!Photon.Pun.PhotonNetwork.IsConnected)
         {
             ring = (GameObject)Instantiate(prefab, pos.position, Quaternion.Euler(0f, index1, 90f));
         }
-        var rigid = ring.GetComponent<Rigidbody>();
+        if (ring)
+        {
+            var rigid = ring.GetComponent<Rigidbody>();
 
-        rigid.AddForce((Vector3.forward) * (shotForceMult + (index/6f)), ForceMode.Impulse);
+            rigid.AddForce((Vector3.forward) * (shotForceMult + (index / 6f)), ForceMode.Impulse);
+        }
     }
 
     // Update is called once per frame
@@ -82,7 +86,10 @@ public class RingDispenser : MonoBehaviour
         {
             if (a.transform.position.y < -5)
             {
-                Destroy(a);
+                if(PhotonNetwork.IsConnected)
+                    a.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+                else
+                    Destroy(a);
             }
         }
     }

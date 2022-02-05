@@ -48,7 +48,7 @@ public class RedGoal : MonoBehaviour
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
                 {
                     pointsPerGoal = 15;
-                    collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
+                    collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
                     audioManager.playRingBounce();
                 }
             }
@@ -60,7 +60,7 @@ public class RedGoal : MonoBehaviour
     }
     void destroyRing(GameObject ring, int pointA, int pointB)
     {
-        ring.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
+        ring.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
         audioManager.playRingBounce();
         pointsPerGoal = pointA;
         if (gameTimer.getGameType() == "auto")
