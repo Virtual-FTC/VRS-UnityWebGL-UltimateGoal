@@ -87,7 +87,7 @@ public class RingDispenser : MonoBehaviour
             if (a.transform.position.y < -5)
             {
                 if(PhotonNetwork.IsConnected)
-                    a.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+                    a.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
                 else
                     Destroy(a);
             }

@@ -175,6 +175,13 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     setup.GetComponentsInChildren<Rigidbody>()[x].centerOfMass = new Vector3(0, -0.9f, 0);
                 }
             }
+            if(PhotonNetwork.IsConnected)
+            {
+                foreach (PhotonView pv in setup.GetComponentsInChildren<PhotonView>())
+                {
+                    pv.gameObject.transform.parent = null;
+                }
+            }
         }
         else
         {
