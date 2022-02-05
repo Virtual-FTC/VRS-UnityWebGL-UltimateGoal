@@ -73,7 +73,7 @@ public class BlueGoal : MonoBehaviour
     }
     void destroyRing(GameObject ring, int pointA, int pointB)
     {
-        ring.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+        ring.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
         audioManager.playRingBounce();
         pointsPerGoal = pointA;
         if (gameTimer.getGameType() == "auto")

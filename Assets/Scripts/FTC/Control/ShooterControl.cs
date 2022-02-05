@@ -69,7 +69,7 @@ public class ShooterControl : MonoBehaviour
 
             rigid.AddForce((shootingAngle.transform.rotation * Vector3.forward) * wantedVelocity * shotForceMult, ForceMode.Impulse);
             player.RPC("subtractBall", RpcTarget.All);
-            instance.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.MasterClient);
+            //instance.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.MasterClient);
         }
     }
 
