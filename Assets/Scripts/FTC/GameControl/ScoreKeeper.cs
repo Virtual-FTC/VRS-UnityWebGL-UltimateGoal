@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ScoreKeeper : MonoBehaviour
 {
     public Text redScoreText;
     public Text blueScoreText;
+
+    public PhotonView thisView;
 
     private int redScore = 0;
     private int blueScore = 0;
@@ -15,6 +18,7 @@ public class ScoreKeeper : MonoBehaviour
 
     public Light[] lights;
 
+    [PunRPC]
     public void addScoreRed(int points)
     {
         if (!freeze)
@@ -28,6 +32,7 @@ public class ScoreKeeper : MonoBehaviour
             setLightsNorm();
     }
 
+    [PunRPC]
     public void addScoreBlue(int points)
     {
         if (!freeze)
@@ -51,16 +56,19 @@ public class ScoreKeeper : MonoBehaviour
         return blueScore;
     }
 
+    [PunRPC]
     void updateRedScore()
     {
         redScoreText.text = "" + redScore;
     }
 
+    [PunRPC]
     void updateBlueScore()
     {
         blueScoreText.text = "" + blueScore;
     }
 
+    [PunRPC]
     public void resetScore()
     {
         freeze = false;

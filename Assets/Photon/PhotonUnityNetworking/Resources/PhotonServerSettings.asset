@@ -29,7 +29,7 @@ MonoBehaviour:
     NetworkLogging: 1
   DevRegion: us
   PunLogging: 0
-  EnableSupportLogger: 1
+  EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
@@ -43,6 +43,13 @@ MonoBehaviour:
   - resetField
   - subtractBall
   - addBall
+  - resetBalls
+  - resetFieldHelper
+  - addScoreBlue
+  - addScoreRed
+  - resetScore
+  - updateBlueScore
+  - updateRedScore
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

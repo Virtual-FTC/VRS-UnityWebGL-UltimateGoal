@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 3
   tagOfGameObject: Ring
-  goalType: high
+  goalType: 0
 --- !u!1001 &187605189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5962,8 +5962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 2
   tagOfGameObject: Ring
-  goalType: mid
-  dropDownList: 0
+  goalType: 0
 --- !u!1 &422227431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6188,8 +6187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
-  dropDownList: 0
+  goalType: 0
 --- !u!224 &508094679 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5716465713065431417, guid: ce875ceeaf5474c83a7ae0fce3b869b4,
@@ -6255,7 +6253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
+  goalType: 0
 --- !u!1 &594992077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6494,7 +6492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
+  goalType: 0
 --- !u!1 &758895128
 GameObject:
   m_ObjectHideFlags: 0
@@ -6837,7 +6835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
+  goalType: 0
 --- !u!1 &922953582
 GameObject:
   m_ObjectHideFlags: 0
@@ -6990,8 +6988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
-  dropDownList: 0
+  goalType: 0
 --- !u!1 &962991541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7750,8 +7747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 1
   tagOfGameObject: Ring
-  goalType: low
-  dropDownList: 0
+  goalType: 0
 --- !u!1 &1210851193
 GameObject:
   m_ObjectHideFlags: 0
@@ -9451,7 +9447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 1
   tagOfGameObject: Ring
-  goalType: low
+  goalType: 0
 --- !u!1001 &1761118014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14945,7 +14941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 2
   tagOfGameObject: Ring
-  goalType: mid
+  goalType: 0
 --- !u!1 &1962518727
 GameObject:
   m_ObjectHideFlags: 0
@@ -15299,6 +15295,7 @@ GameObject:
   - component: {fileID: 2060291411}
   - component: {fileID: 2060291410}
   - component: {fileID: 2060291416}
+  - component: {fileID: 2060291417}
   m_Layer: 0
   m_Name: ScoreKeeper
   m_TagString: Untagged
@@ -16810,6 +16807,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2060291417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060291397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2105644964
 GameObject:
   m_ObjectHideFlags: 0
@@ -16869,8 +16888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
-  dropDownList: 0
+  goalType: 0
 --- !u!1 &2108980440
 GameObject:
   m_ObjectHideFlags: 0
@@ -16972,8 +16990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 3
   tagOfGameObject: Ring
-  goalType: high
-  dropDownList: 2
+  goalType: 0
 --- !u!1 &2124137037
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,8 @@ public class RedGoal : MonoBehaviour
     public int pointsPerGoal = 0;
     public string tagOfGameObject = "Ring";
 
-    public string goalType = "";
+    public enum goal { low, mid, high, power }
+    public goal goalType;
 
     private GameTimer gameTimer;
     private AudioManager audioManager;
@@ -29,7 +30,7 @@ public class RedGoal : MonoBehaviour
     {
         if (collision.tag == tagOfGameObject)
         {
-            if (goalType == "low")
+            if (goalType == goal.low)
             {
                 Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
@@ -37,7 +38,7 @@ public class RedGoal : MonoBehaviour
                 if (gameTimer.getGameType() == "auto")
                     pointsPerGoal = 3;
             }
-            if (goalType == "mid")
+            if (goalType == goal.mid)
             {
                 Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
@@ -45,7 +46,7 @@ public class RedGoal : MonoBehaviour
                 if (gameTimer.getGameType() == "auto")
                     pointsPerGoal = 6;
             }
-            if (goalType == "high")
+            if (goalType == goal.high)
             {
                 Destroy(collision.gameObject.transform.parent.gameObject);
                 audioManager.playRingBounce();
@@ -53,7 +54,7 @@ public class RedGoal : MonoBehaviour
                 if (gameTimer.getGameType() == "auto")
                     pointsPerGoal = 12;
             }
-            if (goalType == "power")
+            if (goalType == goal.power)
             {
                 pointsPerGoal = 0;
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
