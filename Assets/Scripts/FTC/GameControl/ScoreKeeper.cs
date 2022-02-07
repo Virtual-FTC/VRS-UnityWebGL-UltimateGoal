@@ -56,13 +56,11 @@ public class ScoreKeeper : MonoBehaviour
         return blueScore;
     }
 
-    [PunRPC]
     void updateRedScore()
     {
         redScoreText.text = "" + redScore;
     }
 
-    [PunRPC]
     void updateBlueScore()
     {
         blueScoreText.text = "" + blueScore;
@@ -80,6 +78,7 @@ public class ScoreKeeper : MonoBehaviour
         setLightsNorm();
     }
 
+    [PunRPC]
     public void freezeScore()
     {
         freeze = true;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RedWobbleGoal : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class RedWobbleGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            return;
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -30,13 +33,17 @@ public class RedWobbleGoal : MonoBehaviour
                 pointsPerGoal = 20;
             else
                 pointsPerGoal = 0;
-
-            scoreKeeper.addScoreRed(pointsPerGoal);
+            if (!PhotonNetwork.IsConnected)
+                scoreKeeper.addScoreRed(pointsPerGoal);
+            else
+                GetComponent<PhotonView>().RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            return;
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -48,7 +55,10 @@ public class RedWobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            scoreKeeper.addScoreRed(-pointsPerGoal);
+            if (!PhotonNetwork.IsConnected)
+                scoreKeeper.addScoreRed(-pointsPerGoal);
+            else
+                GetComponent<PhotonView>().RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class WhiteLineGoal : MonoBehaviour
 {
@@ -21,29 +22,55 @@ public class WhiteLineGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        PhotonView colView = collision.GetComponent<PhotonView>();
+        if (PhotonNetwork.IsConnected && !colView.IsMine)
+            return;
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && inZone == false && gameTimer.getGameType() == "auto")
         {
             pointsPerGoal = 5;
 
             inZone = true;
-            if (collision.tag == tagOfGameObject1)
-                scoreKeeper.addScoreBlue(pointsPerGoal);
+            if (!PhotonNetwork.IsConnected)
+            {
+                if (collision.tag == tagOfGameObject1)
+                    scoreKeeper.addScoreBlue(pointsPerGoal);
+                else
+                    scoreKeeper.addScoreRed(pointsPerGoal);
+            }
             else
-                scoreKeeper.addScoreRed(pointsPerGoal);
+            {
+                if (collision.tag == tagOfGameObject1)
+                    colView.RPC("addScoreBlue", RpcTarget.AllBuffered, pointsPerGoal);
+                else
+                    colView.RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
+            }
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
+        PhotonView colView = collision.GetComponent<PhotonView>();
+        if (PhotonNetwork.IsConnected && !colView.IsMine)
+            return;
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && inZone == false && gameTimer.getGameType() == "auto")
         {
             pointsPerGoal = 5;
 
             inZone = false;
-            if (collision.tag == tagOfGameObject1)
-                scoreKeeper.addScoreBlue(-pointsPerGoal);
+            if (!PhotonNetwork.IsConnected)
+            {
+                if (collision.tag == tagOfGameObject1)
+                    scoreKeeper.addScoreBlue(-pointsPerGoal);
+                else
+                    scoreKeeper.addScoreRed(-pointsPerGoal);
+            }
             else
-                scoreKeeper.addScoreRed(-pointsPerGoal);
+            {
+                if (collision.tag == tagOfGameObject1)
+                    colView.RPC("addScoreBlue", RpcTarget.AllBuffered, -pointsPerGoal);
+                else
+                    colView.RPC("addScoreRed", RpcTarget.AllBuffered, -pointsPerGoal);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +29,9 @@ public class RedGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        PhotonView colView = collision.GetComponent<PhotonView>();
+        if (PhotonNetwork.IsConnected && !colView.IsMine)
+            return;
         if (collision.tag == tagOfGameObject)
         {
             if (goalType == goal.low)
@@ -65,7 +69,15 @@ public class RedGoal : MonoBehaviour
                 }
                     
             }
-            scoreKeeper.addScoreRed(pointsPerGoal);
+
+            if (!PhotonNetwork.IsConnected)
+            {
+                scoreKeeper.addScoreRed(pointsPerGoal);
+            }
+            else
+            {
+                colView.RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
+            }
 
             particle.transform.position = transform.position;
             partSystem.Play();
