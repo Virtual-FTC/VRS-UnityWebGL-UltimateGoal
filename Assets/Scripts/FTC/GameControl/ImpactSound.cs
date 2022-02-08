@@ -32,14 +32,10 @@ public class ImpactSound : MonoBehaviour
         {
             if (Time.realtimeSinceStartup-timer >= 5.0)
             {
-                Destroy(gameObject);
+                
+                //Destroy(gameObject);//TODELETE
             }
         }
     }
 
-    [PunRPC]
-    public void DestroyRing()
-    {
-        PhotonNetwork.Destroy(this.gameObject);
-    }
 }

@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 8731798300787139657}
   - component: {fileID: 3749250696756696664}
   - component: {fileID: 5910612565607629757}
+  - component: {fileID: 8362066992233921121}
   m_Layer: 0
   m_Name: RedWobble
   m_TagString: RedWobble
@@ -344,7 +345,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
@@ -385,6 +386,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &8362066992233921121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049736333341021152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2141339008e5dc04385c02af78e0ca44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2297511912481186515
 GameObject:
   m_ObjectHideFlags: 0

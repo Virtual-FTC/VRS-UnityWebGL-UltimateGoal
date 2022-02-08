@@ -86,14 +86,28 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 }
             }
         }
-        intake.resetBalls();
+        print("ROBOT: " + robot);
+        robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.AllBuffered);
 
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
     }
 
-    [PunRPC]
     public void resetField()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            if (!currentGameStart && PhotonNetwork.IsMasterClient)
+                GetComponent<PhotonView>().RPC("resetFieldHelper", RpcTarget.All);
+            else if(currentGameStart)
+                GetComponent<PhotonView>().RPC("resetFieldHelper", RpcTarget.All);
+        }
+        else
+            resetFieldHelper();
+    }
+
+    [PunRPC]
+    public void resetFieldHelper() 
     {
         if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
         {
@@ -102,8 +116,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             scoreKeeper.resetScore();
             if (PhotonNetwork.IsConnected)
             {
-                if(!currentGameStart)
-                    GetComponent<PhotonView>().RPC("resetField", RpcTarget.Others);
                 PhotonNetwork.Destroy(setup);
             }
             else
@@ -216,7 +228,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         if (!currentGameStart)
         {
-            //resetRobot();
+            resetRobot();
             resetField();
             currentGameStart = true;
             gameTimer.startGame();

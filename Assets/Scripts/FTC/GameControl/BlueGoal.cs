@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class BlueGoal : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class BlueGoal : MonoBehaviour
         audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
     }
 
+
     void OnTriggerEnter(Collider collision)
     {
         PhotonView colView = collision.GetComponent<PhotonView>();
@@ -38,27 +40,15 @@ public class BlueGoal : MonoBehaviour
         {
             if (goalType == goal.low)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
-                audioManager.playRingBounce();
-                pointsPerGoal = 2;
-                if (gameTimer.getGameType() == "auto")
-                    pointsPerGoal = 3;
+                destroyRing(collision.gameObject.transform.parent.gameObject, 2, 3);
             }
             if (goalType == goal.mid)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
-                audioManager.playRingBounce();
-                pointsPerGoal = 4;
-                if (gameTimer.getGameType() == "auto")
-                    pointsPerGoal = 6;
+                destroyRing(collision.gameObject.transform.parent.gameObject, 4, 6);
             }
             if (goalType == goal.high)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
-                audioManager.playRingBounce();
-                pointsPerGoal = 6;
-                if (gameTimer.getGameType() == "auto")
-                    pointsPerGoal = 12;
+                destroyRing(collision.gameObject.transform.parent.gameObject, 6, 12);
             }
             if (goalType == goal.power)
             {
@@ -66,7 +56,7 @@ public class BlueGoal : MonoBehaviour
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
                 {
                     pointsPerGoal = 15;
-                    Destroy(collision.gameObject.transform.parent.gameObject);
+                    collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
                     audioManager.playRingBounce();
                 }
             }
@@ -90,5 +80,13 @@ public class BlueGoal : MonoBehaviour
             particle.transform.position = transform.position;
             partSystem.Play();
         }
+    }
+    void destroyRing(GameObject ring, int pointA, int pointB)
+    {
+        ring.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
+        audioManager.playRingBounce();
+        pointsPerGoal = pointA;
+        if (gameTimer.getGameType() == "auto")
+            pointsPerGoal = pointB;
     }
 }

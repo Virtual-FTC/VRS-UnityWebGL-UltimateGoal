@@ -90,8 +90,8 @@ public class IntakeControl : MonoBehaviour
         lastRing = ball;
         if (PhotonNetwork.IsConnected)
         {
-            ball.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.All);
-            PhotonNetwork.Destroy(ball);
+            ball.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+            //PhotonNetwork.Destroy(ball);TODELETE
         }
         else
         {

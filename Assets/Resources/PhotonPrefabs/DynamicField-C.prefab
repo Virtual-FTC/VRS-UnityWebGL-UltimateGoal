@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 967123220099379782}
   - component: {fileID: 4015026296792691012}
+  - component: {fileID: -2190688266214722927}
   m_Layer: 0
   m_Name: DynamicField-C
   m_TagString: Untagged
@@ -65,6 +66,18 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-2190688266214722927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967123220099379783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f56a987a7bf6a42a36c4d6017577da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &731982737717889778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,7 +88,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -155,7 +168,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -240,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -320,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -400,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -485,7 +498,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -565,7 +578,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
@@ -645,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 2738446298733616675, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940796868498771376, guid: 7ace453621e9f174b9323ad5f515de05,
         type: 3}

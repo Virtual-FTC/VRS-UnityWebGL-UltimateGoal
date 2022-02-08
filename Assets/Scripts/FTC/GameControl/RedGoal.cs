@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RedGoal : MonoBehaviour
 {
@@ -36,38 +37,25 @@ public class RedGoal : MonoBehaviour
         {
             if (goalType == goal.low)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
-                audioManager.playRingBounce();
-                pointsPerGoal = 2;
-                if (gameTimer.getGameType() == "auto")
-                    pointsPerGoal = 3;
+                destroyRing(collision.gameObject.transform.parent.gameObject, 2, 3);
             }
             if (goalType == goal.mid)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
-                audioManager.playRingBounce();
-                pointsPerGoal = 4;
-                if (gameTimer.getGameType() == "auto")
-                    pointsPerGoal = 6;
+                destroyRing(collision.gameObject.transform.parent.gameObject, 4, 6);
             }
             if (goalType == goal.high)
             {
-                Destroy(collision.gameObject.transform.parent.gameObject);
-                audioManager.playRingBounce();
-                pointsPerGoal = 6;
-                if (gameTimer.getGameType() == "auto")
-                    pointsPerGoal = 12;
+                destroyRing(collision.gameObject.transform.parent.gameObject, 6, 12);
             }
             if (goalType == goal.power)
             {
                 pointsPerGoal = 0;
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
                 {
-                    Destroy(collision.gameObject.transform.parent.gameObject);
-                    audioManager.playRingBounce();
                     pointsPerGoal = 15;
+                    collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+                    audioManager.playRingBounce();
                 }
-                    
             }
 
             if (!PhotonNetwork.IsConnected)
@@ -82,5 +70,13 @@ public class RedGoal : MonoBehaviour
             particle.transform.position = transform.position;
             partSystem.Play();
         }
+    }
+    void destroyRing(GameObject ring, int pointA, int pointB)
+    {
+        ring.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
+        audioManager.playRingBounce();
+        pointsPerGoal = pointA;
+        if (gameTimer.getGameType() == "auto")
+            pointsPerGoal = pointB;
     }
 }
