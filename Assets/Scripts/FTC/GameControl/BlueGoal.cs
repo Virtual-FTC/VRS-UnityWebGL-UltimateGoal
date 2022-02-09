@@ -30,7 +30,7 @@ public class BlueGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        PhotonView colView = collision.GetComponent<PhotonView>();
+        PhotonView colView = collision.GetComponentInParent<PhotonView>();
         if (PhotonNetwork.IsConnected && !colView.IsMine)
             return;
         if (collision.tag == tagOfGameObject)
