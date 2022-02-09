@@ -39,8 +39,9 @@ public class ScoreKeeper : MonoBehaviour
     [PunRPC]
     public void addScoreRedHelper(int points)
     {
-        if (!freeze)
-            redScore += points;
+        if (freeze)
+            return;
+        redScore += points;
         updateRedScore();
         if (redScore > blueScore)
             setLightsRed();
@@ -61,7 +62,7 @@ public class ScoreKeeper : MonoBehaviour
         else
         {
             print("RPCcall");
-            thisView.RPC("addScoreRedHelper", RpcTarget.AllBuffered, points);
+            thisView.RPC("addScoreBlueHelper", RpcTarget.AllBuffered, points);
         } 
     }
 
@@ -69,8 +70,9 @@ public class ScoreKeeper : MonoBehaviour
     public void addScoreBlueHelper(int points)
     {
         print("BLUEhelper");
-        if (!freeze)
-            blueScore += points;
+        if (freeze)
+            return;
+        blueScore += points;
         updateBlueScore();
         if (redScore > blueScore)
             setLightsRed();

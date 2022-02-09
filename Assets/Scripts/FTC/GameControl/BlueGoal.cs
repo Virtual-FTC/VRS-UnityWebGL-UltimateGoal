@@ -64,7 +64,7 @@ public class BlueGoal : MonoBehaviour
             }
             else
             {
-                colView.RPC("addScoreBlue", RpcTarget.AllBuffered, pointsPerGoal);
+                ScoreKeeper._Instance.thisView.RPC("addScoreBlue", RpcTarget.AllBuffered, pointsPerGoal);
             }
 
             //mat.EnableKeyword("_EMISSION");

@@ -61,7 +61,7 @@ public class RedGoal : MonoBehaviour
             }
             else
             {
-                colView.RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
+                ScoreKeeper._Instance.thisView.RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
             }
 
             particle.transform.position = transform.position;
