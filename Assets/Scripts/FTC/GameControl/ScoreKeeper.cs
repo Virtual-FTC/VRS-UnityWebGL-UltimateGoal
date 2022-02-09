@@ -22,6 +22,7 @@ public class ScoreKeeper : MonoBehaviour
 
     private void Awake()
     {
+        thisView = GetComponent<PhotonView>();
         if (_Instance == null)
             _Instance = this;
         else
