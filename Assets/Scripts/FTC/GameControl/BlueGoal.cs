@@ -58,14 +58,7 @@ public class BlueGoal : MonoBehaviour
                 }
             }
 
-            if (!PhotonNetwork.IsConnected)
-            {
-                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
-            }
-            else
-            {
-                ScoreKeeper._Instance.thisView.RPC("addScoreBlue", RpcTarget.AllBuffered, pointsPerGoal);
-            }
+            ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
 
             //mat.EnableKeyword("_EMISSION");
             //Color myColor = new Color();

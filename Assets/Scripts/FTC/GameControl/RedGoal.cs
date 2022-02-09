@@ -55,14 +55,7 @@ public class RedGoal : MonoBehaviour
                 }
             }
 
-            if (!PhotonNetwork.IsConnected)
-            {
-                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
-            }
-            else
-            {
-                ScoreKeeper._Instance.thisView.RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
-            }
+            ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
 
             particle.transform.position = transform.position;
             partSystem.Play();
