@@ -29,7 +29,6 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && !grabing)
         {
             grabing = true;
-            field = (wobble.transform.parent).gameObject;
             wobble.transform.SetParent(robot);
             var rb = wobble.GetComponent<Rigidbody>();
             rb.isKinematic = true;
@@ -50,7 +49,7 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && grabing)
         {
             grabing = false;
-            wobble.transform.SetParent(field.transform);
+            wobble.transform.SetParent(null);
             var rb = wobble.GetComponent<Rigidbody>();
             rb.isKinematic = false;
         }
