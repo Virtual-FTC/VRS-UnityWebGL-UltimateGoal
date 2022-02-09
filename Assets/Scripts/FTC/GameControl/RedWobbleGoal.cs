@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class RedWobbleGoal : MonoBehaviour
 {
-    private ScoreKeeper scoreKeeper;
     public int pointsPerGoal = 0;
     public string tagOfGameObject = "RedWobble";
 
@@ -13,10 +12,9 @@ public class RedWobbleGoal : MonoBehaviour
 
     private GameTimer gameTimer;
 
-    void Awake()
+    void Start()
     {
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
+        gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
     }
 
     void OnTriggerEnter(Collider collision)
@@ -33,10 +31,8 @@ public class RedWobbleGoal : MonoBehaviour
                 pointsPerGoal = 20;
             else
                 pointsPerGoal = 0;
-            if (!PhotonNetwork.IsConnected)
-                scoreKeeper.addScoreRed(pointsPerGoal);
-            else
-                GetComponent<PhotonView>().RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
+
+            ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
         }
     }
 
@@ -55,10 +51,7 @@ public class RedWobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            if (!PhotonNetwork.IsConnected)
-                scoreKeeper.addScoreRed(-pointsPerGoal);
-            else
-                GetComponent<PhotonView>().RPC("addScoreRed", RpcTarget.AllBuffered, pointsPerGoal);
+            ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
         }
     }
 }

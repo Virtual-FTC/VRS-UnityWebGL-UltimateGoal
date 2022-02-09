@@ -2,11 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class BlueGoal : MonoBehaviour
 {
-    private ScoreKeeper scoreKeeper;
     public int pointsPerGoal = 0;
     public string tagOfGameObject = "Ring";
 
@@ -21,12 +19,11 @@ public class BlueGoal : MonoBehaviour
 
     //public Material mat;
 
-    void Awake()
+    void Start()
     {
         particle = GameObject.Find("ScoreFlash-Blue");
         partSystem = particle.GetComponent<ParticleSystem>();
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
+        gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
         audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
     }
 
@@ -63,7 +60,7 @@ public class BlueGoal : MonoBehaviour
 
             if (!PhotonNetwork.IsConnected)
             {
-                scoreKeeper.addScoreBlue(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
             }
             else
             {

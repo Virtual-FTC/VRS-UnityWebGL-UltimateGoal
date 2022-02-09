@@ -6,6 +6,8 @@ using Photon.Pun;
 
 public class ScoreKeeper : MonoBehaviour
 {
+    public static ScoreKeeper _Instance;
+    
     public Text redScoreText;
     public Text blueScoreText;
 
@@ -18,8 +20,24 @@ public class ScoreKeeper : MonoBehaviour
 
     public Light[] lights;
 
-    [PunRPC]
+    private void Awake()
+    {
+        if (_Instance == null)
+            _Instance = this;
+        else
+            Destroy(this);
+    }
+
     public void addScoreRed(int points)
+    {
+        if (!PhotonNetwork.IsConnected)
+            addScoreRedHelper(points);
+        else
+            thisView.RPC("addScoreRedHelper", RpcTarget.AllBuffered, points);
+    }
+
+    [PunRPC]
+    public void addScoreRedHelper(int points)
     {
         if (!freeze)
             redScore += points;
@@ -32,9 +50,25 @@ public class ScoreKeeper : MonoBehaviour
             setLightsNorm();
     }
 
-    [PunRPC]
     public void addScoreBlue(int points)
     {
+        print("BLUE");
+        if (!PhotonNetwork.IsConnected)
+        {
+            print("local");
+            addScoreRedHelper(points);
+        }
+        else
+        {
+            print("RPCcall");
+            thisView.RPC("addScoreRedHelper", RpcTarget.AllBuffered, points);
+        } 
+    }
+
+    [PunRPC]
+    public void addScoreBlueHelper(int points)
+    {
+        print("BLUEhelper");
         if (!freeze)
             blueScore += points;
         updateBlueScore();
