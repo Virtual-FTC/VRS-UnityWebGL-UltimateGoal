@@ -64,12 +64,13 @@ public class ShooterControl : MonoBehaviour
             {
                 instance = (GameObject)Instantiate(prefab, newPosition, newRotationQ);
             }
-            print("new ring instance: " + instance);
             var rigid = instance.GetComponent<Rigidbody>();
 
             rigid.AddForce((shootingAngle.transform.rotation * Vector3.forward) * wantedVelocity * shotForceMult, ForceMode.Impulse);
-            player.RPC("subtractBall", RpcTarget.All);
-            //instance.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.MasterClient);
+            if (PhotonNetwork.IsConnected)
+                player.RPC("subtractBall", RpcTarget.All);
+            else
+                intakeControl.subtractBall();
         }
     }
 

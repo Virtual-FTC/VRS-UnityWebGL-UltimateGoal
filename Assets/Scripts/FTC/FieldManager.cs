@@ -85,10 +85,13 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     robot = list[x];
                 }
             }
+            print("ROBOT: " + robot);
+            robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.AllBuffered);
         }
-        print("ROBOT: " + robot);
-        robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.AllBuffered);
-
+        else
+        {
+            robot.GetComponent<RobotController>().resetBalls();
+        }
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
     }
@@ -114,14 +117,17 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();
             resetRobot();
             scoreKeeper.resetScore();
-            if (PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.Destroy(setup);
-            }
-            else
-            {
-                Destroy(setup);
-            }
+            //if (setup != null)
+            //{
+                if (PhotonNetwork.IsConnected)
+                {
+                    PhotonNetwork.Destroy(setup);
+                }
+                else
+                {
+                    Destroy(setup);
+                }
+            //}
 
             int index;
             if (type == "A")
