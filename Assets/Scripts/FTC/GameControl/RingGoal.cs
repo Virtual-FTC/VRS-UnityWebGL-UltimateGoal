@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedGoal : MonoBehaviour
+public class RingGoal : MonoBehaviour
 {
     public int pointsPerGoal = 0;
     public string tagOfGameObject = "Ring";
 
     public enum goal { low, mid, high, power }
     public goal goalType;
+    public enum goalColor { red, blue }
+    public goalColor goalCol;
 
     private GameTimer gameTimer;
     private AudioManager audioManager;
@@ -54,8 +56,10 @@ public class RedGoal : MonoBehaviour
                     audioManager.playRingBounce();
                 }
             }
-
-            ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            if(goalCol == goalColor.red)
+                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            else
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
 
             particle.transform.position = transform.position;
             partSystem.Play();

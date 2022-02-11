@@ -75,10 +75,10 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.Intake.canceled += ctx => motorPower5 = 0.0f;
 
         //Wobble
-        //controls.GamePlay.Wobble.performed += ctx => motorPower8 = 0.3f;
-        //controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
-        //controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
-        //controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.0f;
+        controls.GamePlay.Wobble.performed += ctx => motorPower8 = 0.3f;
+        controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
+        controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
+        controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.0f;
 
         //Driving Controls
         controls.GamePlay.DriveForward.started += ctx => usingJoystick = true;

@@ -10,10 +10,8 @@ public class RingController : MonoBehaviour
     [PunRPC]
     public void DestroyRing()
     {
-        print("destroying ring");
         if (thisView.IsMine)
         {
-            print("view is mine");
             PhotonNetwork.Destroy(this.gameObject);
         }
     }

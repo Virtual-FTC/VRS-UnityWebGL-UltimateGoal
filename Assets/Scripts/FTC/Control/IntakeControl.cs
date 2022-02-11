@@ -14,7 +14,7 @@ public class IntakeControl : MonoBehaviour
     public int maxNumberBalls = 5;
     public int numBalls = 3;
     public float timeOfBallContact = 1.0f;
-    public string coliderTag = "PowerCell";
+    public string colliderTag;
 
     [Header("Intake Motor")]
     public float wantedVelocity = 0f;
@@ -58,7 +58,7 @@ public class IntakeControl : MonoBehaviour
     {
         if (wantedVelocity != 0)
         {
-            if (collision.tag == coliderTag && numBalls < maxNumberBalls)
+            if (collision.tag == colliderTag && numBalls < maxNumberBalls)
             {
                 timer = Time.time;
             }
@@ -70,9 +70,12 @@ public class IntakeControl : MonoBehaviour
     {
         if (wantedVelocity != 0 && collision.gameObject != lastRing)
         {
-            if (collision.tag == coliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
+            if (collision.tag == colliderTag && numBalls < maxNumberBalls && Time.time - timer >= timeOfBallContact)
             {
-                player.RPC("addBall", RpcTarget.AllBuffered);
+                if (PhotonNetwork.IsConnected)
+                    player.RPC("addBall", RpcTarget.AllBuffered);
+                else
+                    addBall();
                 destroyBall(collision.gameObject);
             }
         }
@@ -90,8 +93,7 @@ public class IntakeControl : MonoBehaviour
         lastRing = ball;
         if (PhotonNetwork.IsConnected)
         {
-            ball.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
-            //PhotonNetwork.Destroy(ball);TODELETE
+            ball.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.AllBuffered);
         }
         else
         {

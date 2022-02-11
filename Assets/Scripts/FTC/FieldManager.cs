@@ -13,7 +13,6 @@ using UnityEngine.SceneManagement;
 
 public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    private ScoreKeeper scoreKeeper;
     private IntakeControl intake;
     private CameraPosition camera;
 
@@ -64,7 +63,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
         gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
         camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
 
         resetField();
@@ -116,7 +114,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();
             resetRobot();
-            scoreKeeper.resetScore();
+            ScoreKeeper._Instance.resetScore();
             //if (setup != null)
             //{
                 if (PhotonNetwork.IsConnected)

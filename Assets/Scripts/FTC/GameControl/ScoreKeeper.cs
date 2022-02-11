@@ -54,15 +54,12 @@ public class ScoreKeeper : MonoBehaviour
 
     public void addScoreBlue(int points)
     {
-        print("BLUE");
         if (!PhotonNetwork.IsConnected)
         {
-            print("local");
             addScoreRedHelper(points);
         }
         else
         {
-            print("RPCcall");
             thisView.RPC("addScoreBlueHelper", RpcTarget.AllBuffered, points);
         } 
     }
@@ -70,7 +67,6 @@ public class ScoreKeeper : MonoBehaviour
     [PunRPC]
     public void addScoreBlueHelper(int points)
     {
-        print("BLUEhelper");
         if (freeze)
             return;
         blueScore += points;

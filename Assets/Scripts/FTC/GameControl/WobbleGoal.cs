@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class RedWobbleGoal : MonoBehaviour
+public class WobbleGoal : MonoBehaviour
 {
     public int pointsPerGoal = 0;
-    public string tagOfGameObject = "RedWobble";
+    private string tagOfGameObject;
 
+    public enum goalColor { red, blue }
+    public goalColor goalCol;
     public string goalType = "A";
 
     private GameTimer gameTimer;
@@ -15,6 +17,10 @@ public class RedWobbleGoal : MonoBehaviour
     void Start()
     {
         gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
+        if (goalCol == goalColor.red)
+            tagOfGameObject = "RedWobble";
+        else
+            tagOfGameObject = "BlueWobble";
     }
 
     void OnTriggerEnter(Collider collision)
@@ -32,7 +38,10 @@ public class RedWobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            if(goalCol == goalColor.red)
+                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            else
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
         }
     }
 
@@ -51,7 +60,10 @@ public class RedWobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
+            if (goalCol == goalColor.red)
+                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            else
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
         }
     }
 }

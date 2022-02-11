@@ -3946,7 +3946,7 @@ MonoBehaviour:
   maxNumberBalls: 3
   numBalls: 3
   timeOfBallContact: 0.25
-  coliderTag: OutsideRing
+  colliderTag: OutsideRing
   wantedVelocity: 150
   rings:
   - {fileID: 1767086697947871976}
