@@ -99,8 +99,14 @@ public class ScoreKeeper : MonoBehaviour
         blueScoreText.text = "" + blueScore;
     }
 
-    [PunRPC]
     public void resetScore()
+    {
+        if (PhotonNetwork.IsConnected)
+            thisView.RPC("resetScoreHelper", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void resetScoreHelper()
     {
         freeze = false;
         redScore = 0;

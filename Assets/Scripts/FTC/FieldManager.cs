@@ -184,7 +184,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             resetRobot();
             emptyField();
-            scoreKeeper.resetScore();
         }
     }
 

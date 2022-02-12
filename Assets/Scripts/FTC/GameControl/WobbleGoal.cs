@@ -38,7 +38,7 @@ public class WobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            if(goalCol == goalColor.red)
+            if (goalCol == goalColor.red)
                 ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
             else
                 ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
@@ -61,9 +61,9 @@ public class WobbleGoal : MonoBehaviour
                 pointsPerGoal = 0;
 
             if (goalCol == goalColor.red)
-                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
             else
-                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreBlue(-pointsPerGoal);
         }
     }
 }
