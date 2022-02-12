@@ -7,7 +7,7 @@ public class GrabberControl : MonoBehaviour
 {
     public CommandProcessor Commands = new CommandProcessor();
 
-    private bool grabing = false;
+    private bool grabbing = false;
     public int pointsPerGoal = 0;
     private string tagOfGameObject1 = "RedWobble";
     private string tagOfGameObject2 = "BlueWobble";
@@ -26,9 +26,9 @@ public class GrabberControl : MonoBehaviour
 
     public void startGrab()
     {
-        if (wobble != null && !grabing)
+        if (wobble != null && !grabbing)
         {
-            grabing = true;
+            grabbing = true;
             wobble.transform.SetParent(robot);
             var rb = wobble.GetComponent<Rigidbody>();
             rb.isKinematic = true;
@@ -38,7 +38,7 @@ public class GrabberControl : MonoBehaviour
 
     public void lift()
     {
-        if (wobble != null && grabing)
+        if (wobble != null && grabbing)
         {
             wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
         }
@@ -46,9 +46,9 @@ public class GrabberControl : MonoBehaviour
 
     public void stopGrab()
     {
-        if (wobble != null && grabing)
+        if (wobble != null && grabbing)
         {
-            grabing = false;
+            grabbing = false;
             wobble.transform.SetParent(null);
             var rb = wobble.GetComponent<Rigidbody>();
             rb.isKinematic = false;

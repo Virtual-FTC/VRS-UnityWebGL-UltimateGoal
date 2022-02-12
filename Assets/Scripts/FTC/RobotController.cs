@@ -78,7 +78,7 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.Wobble.performed += ctx => motorPower8 = 0.3f;
         controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
         controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
-        controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.0f;
+        controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.3f;
 
         //Driving Controls
         controls.GamePlay.DriveForward.started += ctx => usingJoystick = true;
@@ -147,7 +147,7 @@ public class RobotController : MonoBehaviour
         });
 
         grabberControl = grabber.GetComponent<GrabberControl>();
-        grabberControl.Commands.Add(() => motorPower8 > 0 , () =>
+        grabberControl.Commands.Add(() => motorPower8 > 0  && motorPower8 < 0.5, () =>
         {
             grabberControl.startGrab();
         });
