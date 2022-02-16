@@ -13,6 +13,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Join Field
     public GameObject[] objList;
     private List<RoomInfo> rooms;
+    private bool lobbyIsActive;
 
     // Create Field
     private string fieldName;
@@ -39,6 +40,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("Connected to lobby");
+        lobbyIsActive = true;
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -57,7 +59,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 GameObject gam = objList[i];
 
                 gam.GetComponentInChildren<Text>().text = room.Name;
-                gam.SetActive(true);
+                if(room.PlayerCount < room.MaxPlayers)
+                    gam.SetActive(true);
             }
         }
     }
@@ -118,13 +121,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             maxPlayers = 1;
         else if (maxPlayers < 1)
             maxPlayers = 4;
-        Debug.Log(maxPlayers);
+        Debug.Log("maxPlayers: " + maxPlayers);
     }
 
     public void CreateRoom()
     {
         if (PhotonNetwork.IsConnected)
         {
+            if (!lobbyIsActive)
+                return;
             PhotonNetwork.LocalPlayer.NickName = playerName; //1
             Debug.Log(PhotonNetwork.LocalPlayer.NickName);
             PhotonNetwork.CreateRoom(fieldName, new RoomOptions() { MaxPlayers = (byte)maxPlayers }, null); //4
@@ -135,6 +140,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
+            lobbyIsActive = true;
             PhotonNetwork.LocalPlayer.NickName = playerName; //1
             PhotonNetwork.JoinRoom(rooms[index].Name);
             Debug.Log("Trying to join room");
@@ -152,6 +158,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void ChangeScene(int sceneInx)
     {
+        if (!lobbyIsActive)
+            return;
         PhotonNetwork.LoadLevel(sceneInx);
     }
 }

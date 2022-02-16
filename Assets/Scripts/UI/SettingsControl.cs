@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SettingsControl : MonoBehaviour
 {
@@ -17,22 +18,26 @@ public class SettingsControl : MonoBehaviour
 
     public void setGameTypeLeft()
     {
-        settings.setGameTypeLeft();
+        if (PhotonNetwork.IsMasterClient)
+            settings.setGameTypeLeft();
     }
 
     public void setGameTypeRight()
     {
-        settings.setGameTypeRight();
+        if (PhotonNetwork.IsMasterClient)
+            settings.setGameTypeRight();
     }
 
     public void setFieldSetupLeft()
     {
-        settings.setFieldSetupLeft();
+        if (PhotonNetwork.IsMasterClient)
+            settings.setFieldSetupLeft();
     }
 
     public void setFieldSetupRight()
     {
-        settings.setFieldSetupRight();
+        if (PhotonNetwork.IsMasterClient)
+            settings.setFieldSetupRight();
     }
 
     public void setCamSetupLeft()
