@@ -1,25 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class RedWobbleGoal : MonoBehaviour
+public class WobbleGoal : MonoBehaviour
 {
-    private ScoreKeeper scoreKeeper;
     public int pointsPerGoal = 0;
-    public string tagOfGameObject = "RedWobble";
+    private string tagOfGameObject;
 
+    public enum goalColor { red, blue }
+    public goalColor goalCol;
     public string goalType = "A";
 
     private GameTimer gameTimer;
 
-    void Awake()
+    void Start()
     {
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
+        gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
+        if (goalCol == goalColor.red)
+            tagOfGameObject = "RedWobble";
+        else
+            tagOfGameObject = "BlueWobble";
     }
 
     void OnTriggerEnter(Collider collision)
     {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            return;
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -31,12 +38,17 @@ public class RedWobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            scoreKeeper.addScoreRed(pointsPerGoal);
+            if (goalCol == goalColor.red)
+                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            else
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            return;
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -48,7 +60,10 @@ public class RedWobbleGoal : MonoBehaviour
             else
                 pointsPerGoal = 0;
 
-            scoreKeeper.addScoreRed(-pointsPerGoal);
+            if (goalCol == goalColor.red)
+                ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
+            else
+                ScoreKeeper._Instance.addScoreBlue(-pointsPerGoal);
         }
     }
 }

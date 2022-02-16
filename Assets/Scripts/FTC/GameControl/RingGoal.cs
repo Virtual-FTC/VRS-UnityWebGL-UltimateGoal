@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueGoal : MonoBehaviour
+public class RingGoal : MonoBehaviour
 {
     public int pointsPerGoal = 0;
     public string tagOfGameObject = "Ring";
 
     public enum goal { low, mid, high, power }
     public goal goalType;
+    public enum goalColor { red, blue }
+    public goalColor goalCol;
 
     private GameTimer gameTimer;
     private AudioManager audioManager;
@@ -17,16 +19,13 @@ public class BlueGoal : MonoBehaviour
     private GameObject particle;
     private ParticleSystem partSystem;
 
-    //public Material mat;
-
     void Start()
     {
-        particle = GameObject.Find("ScoreFlash-Blue");
+        particle = GameObject.Find("ScoreFlash-Yellow");
         partSystem = particle.GetComponent<ParticleSystem>();
         gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
         audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
     }
-
 
     void OnTriggerEnter(Collider collision)
     {
@@ -57,15 +56,10 @@ public class BlueGoal : MonoBehaviour
                     audioManager.playRingBounce();
                 }
             }
-
-            ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
-
-            //mat.EnableKeyword("_EMISSION");
-            //Color myColor = new Color();
-            //var color = "#3A2CDC";
-            //ColorUtility.TryParseHtmlString(color, out myColor);
-            //mat.color = myColor;
-            //mat.SetColor("_EmissionColor", myColor);
+            if(goalCol == goalColor.red)
+                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+            else
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
 
             particle.transform.position = transform.position;
             partSystem.Play();

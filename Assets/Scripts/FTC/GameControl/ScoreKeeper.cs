@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class ScoreKeeper : MonoBehaviour
 {
+    public static ScoreKeeper _Instance;
+    
     public Text redScoreText;
     public Text blueScoreText;
+
+    public PhotonView thisView;
 
     private int redScore = 0;
     private int blueScore = 0;
@@ -15,10 +20,29 @@ public class ScoreKeeper : MonoBehaviour
 
     public Light[] lights;
 
+    private void Awake()
+    {
+        thisView = GetComponent<PhotonView>();
+        if (_Instance == null)
+            _Instance = this;
+        else
+            Destroy(this);
+    }
+
     public void addScoreRed(int points)
     {
-        if (!freeze)
-            redScore += points;
+        if (!PhotonNetwork.IsConnected)
+            addScoreRedHelper(points);
+        else
+            thisView.RPC("addScoreRedHelper", RpcTarget.AllBuffered, points);
+    }
+
+    [PunRPC]
+    public void addScoreRedHelper(int points)
+    {
+        if (freeze)
+            return;
+        redScore += points;
         updateRedScore();
         if (redScore > blueScore)
             setLightsRed();
@@ -30,8 +54,22 @@ public class ScoreKeeper : MonoBehaviour
 
     public void addScoreBlue(int points)
     {
-        if (!freeze)
-            blueScore += points;
+        if (!PhotonNetwork.IsConnected)
+        {
+            addScoreRedHelper(points);
+        }
+        else
+        {
+            thisView.RPC("addScoreBlueHelper", RpcTarget.AllBuffered, points);
+        } 
+    }
+
+    [PunRPC]
+    public void addScoreBlueHelper(int points)
+    {
+        if (freeze)
+            return;
+        blueScore += points;
         updateBlueScore();
         if (redScore > blueScore)
             setLightsRed();
@@ -63,6 +101,13 @@ public class ScoreKeeper : MonoBehaviour
 
     public void resetScore()
     {
+        if (PhotonNetwork.IsConnected)
+            thisView.RPC("resetScoreHelper", RpcTarget.AllBuffered);
+    }
+
+    [PunRPC]
+    public void resetScoreHelper()
+    {
         freeze = false;
         redScore = 0;
         blueScore = 0;
@@ -72,6 +117,7 @@ public class ScoreKeeper : MonoBehaviour
         setLightsNorm();
     }
 
+    [PunRPC]
     public void freezeScore()
     {
         freeze = true;

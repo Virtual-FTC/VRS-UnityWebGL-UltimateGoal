@@ -3273,7 +3273,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 1
 --- !u!114 &2764044901563459722
 MonoBehaviour:
@@ -3297,6 +3297,7 @@ MonoBehaviour:
   shooter: {fileID: 8622124234069995941}
   intake: {fileID: 6506226505863710965}
   grabber: {fileID: 8622124235094853404}
+  PV: {fileID: 7579781651525901156}
 --- !u!114 &3080137380110599889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3945,7 +3946,7 @@ MonoBehaviour:
   maxNumberBalls: 3
   numBalls: 3
   timeOfBallContact: 0.25
-  coliderTag: OutsideRing
+  colliderTag: OutsideRing
   wantedVelocity: 150
   rings:
   - {fileID: 1767086697947871976}

@@ -13,7 +13,6 @@ using UnityEngine.SceneManagement;
 
 public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
-    private ScoreKeeper scoreKeeper;
     private IntakeControl intake;
     private CameraPosition camera;
 
@@ -64,7 +63,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
         gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
         camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
 
         resetField();
@@ -85,31 +83,49 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     robot = list[x];
                 }
             }
+            print("ROBOT: " + robot);
+            robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.AllBuffered);
         }
-        intake.resetBalls();
-
+        else
+        {
+            robot.GetComponent<RobotController>().resetBalls();
+        }
         robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
         robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
     }
 
-    [PunRPC]
     public void resetField()
+    {
+        if (PhotonNetwork.IsConnected)
+        {
+            if (!currentGameStart && PhotonNetwork.IsMasterClient)
+                GetComponent<PhotonView>().RPC("resetFieldHelper", RpcTarget.All);
+            else if(currentGameStart)
+                GetComponent<PhotonView>().RPC("resetFieldHelper", RpcTarget.All);
+        }
+        else
+            resetFieldHelper();
+    }
+
+    [PunRPC]
+    public void resetFieldHelper() 
     {
         if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
         {
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();
             resetRobot();
-            scoreKeeper.resetScore();
-            if (PhotonNetwork.IsConnected)
-            {
-                if(!currentGameStart)
-                    GetComponent<PhotonView>().RPC("resetField", RpcTarget.Others);
-                PhotonNetwork.Destroy(setup);
-            }
-            else
-            {
-                Destroy(setup);
-            }
+            ScoreKeeper._Instance.resetScore();
+            //if (setup != null)
+            //{
+                if (PhotonNetwork.IsConnected)
+                {
+                    PhotonNetwork.Destroy(setup);
+                }
+                else
+                {
+                    Destroy(setup);
+                }
+            //}
 
             int index;
             if (type == "A")
@@ -168,7 +184,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             resetRobot();
             emptyField();
-            scoreKeeper.resetScore();
         }
     }
 
@@ -216,7 +231,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         if (!currentGameStart)
         {
-            //resetRobot();
+            resetRobot();
             resetField();
             currentGameStart = true;
             gameTimer.startGame();

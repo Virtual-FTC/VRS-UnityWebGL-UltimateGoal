@@ -16,7 +16,7 @@ MonoBehaviour:
     AppIdRealtime: 15307716-05c7-4d1f-8f41-e35d4350693d
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 1.0
+    AppVersion: 
     UseNameServer: 1
     FixedRegion: 
     Server: 
@@ -29,20 +29,25 @@ MonoBehaviour:
     NetworkLogging: 1
   DevRegion: us
   PunLogging: 0
-  EnableSupportLogger: 1
+  EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - addBall
+  - addScoreBlueHelper
+  - addScoreRedHelper
   - ClickRpc
   - CreatePlayer
   - DestroyRing
   - DestroyRpc
+  - freezeScore
+  - resetBalls
+  - resetFieldHelper
+  - resetScore
   - RPC_LoadedGameScene
   - startGame
   - stopGame
-  - resetField
   - subtractBall
-  - addBall
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

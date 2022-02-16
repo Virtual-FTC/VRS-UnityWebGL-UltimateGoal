@@ -56,9 +56,9 @@ public class ShooterControl : MonoBehaviour
             newRotationQ.eulerAngles = newRotation;
 
             GameObject instance = null;
-            if (Photon.Pun.PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsConnected)
             {
-                instance = Photon.Pun.PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Ring"), newPosition, newRotationQ, 0);
+                instance = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Ring"), newPosition, newRotationQ, 0);
             }
             else
             {
@@ -67,8 +67,10 @@ public class ShooterControl : MonoBehaviour
             var rigid = instance.GetComponent<Rigidbody>();
 
             rigid.AddForce((shootingAngle.transform.rotation * Vector3.forward) * wantedVelocity * shotForceMult, ForceMode.Impulse);
-            player.RPC("subtractBall", RpcTarget.All);
-            //intakeControl.subtractBall();
+            if (PhotonNetwork.IsConnected)
+                player.RPC("subtractBall", RpcTarget.All);
+            else
+                intakeControl.subtractBall();
         }
     }
 
