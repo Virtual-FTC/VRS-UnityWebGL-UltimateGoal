@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6302972885635954145}
   - component: {fileID: 1002922020100423447}
+  - component: {fileID: -3747566279321820609}
   m_Layer: 0
   m_Name: DynamicField-B
   m_TagString: Untagged
@@ -59,6 +60,18 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-3747566279321820609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302972885635954144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f56a987a7bf6a42a36c4d6017577da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3266824844094081738
 PrefabInstance:
   m_ObjectHideFlags: 0

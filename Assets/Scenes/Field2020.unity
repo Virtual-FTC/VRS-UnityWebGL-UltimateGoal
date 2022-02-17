@@ -182,7 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 3
   tagOfGameObject: Ring
-  goalType: high
+  goalType: 2
+  goalCol: 0
 --- !u!1001 &187605189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -519,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
-  tagOfGameObject: RedWobble
+  goalCol: 0
   goalType: C
 --- !u!1 &290415611
 GameObject:
@@ -5957,13 +5958,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 418960231}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1150433cc5156284fbec1d42cbd1c083, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 2
   tagOfGameObject: Ring
-  goalType: mid
-  dropDownList: 0
+  goalType: 1
+  goalCol: 1
 --- !u!1 &422227431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6052,7 +6053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 5
-  tagOfGameObject: RedWobble
+  goalCol: 0
   goalType: line
 --- !u!1 &488922332
 GameObject:
@@ -6183,13 +6184,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 498353784}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1150433cc5156284fbec1d42cbd1c083, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
-  dropDownList: 0
+  goalType: 3
+  goalCol: 1
 --- !u!224 &508094679 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5716465713065431417, guid: ce875ceeaf5474c83a7ae0fce3b869b4,
@@ -6255,7 +6256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
+  goalType: 3
+  goalCol: 0
 --- !u!1 &594992077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,7 +6391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
-  tagOfGameObject: RedWobble
+  goalCol: 0
   goalType: B
 --- !u!1 &665880168
 GameObject:
@@ -6494,7 +6496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
+  goalType: 3
+  goalCol: 0
 --- !u!1 &758895128
 GameObject:
   m_ObjectHideFlags: 0
@@ -6506,8 +6509,9 @@ GameObject:
   - component: {fileID: 758895129}
   - component: {fileID: 758895131}
   - component: {fileID: 758895130}
+  - component: {fileID: 758895133}
   m_Layer: 0
-  m_Name: BlueDrop
+  m_Name: WobbleDrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6536,11 +6540,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 758895128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca106cebd8ce934ebb27a3c5e17f76c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 0
-  tagOfGameObject: BlueWobble
+  goalCol: 1
   goalType: drop
 --- !u!65 &758895131
 BoxCollider:
@@ -6555,6 +6559,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.5297985, y: 0.27215737, z: 0.4365369}
   m_Center: {x: -0.92058563, y: 0.11190382, z: 0.22286767}
+--- !u!114 &758895133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758895128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsPerGoal: 0
+  goalCol: 0
+  goalType: drop
 --- !u!1 &791938209
 GameObject:
   m_ObjectHideFlags: 0
@@ -6837,7 +6856,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
+  goalType: 3
+  goalCol: 0
 --- !u!1 &922953582
 GameObject:
   m_ObjectHideFlags: 0
@@ -6985,13 +7005,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 943271559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1150433cc5156284fbec1d42cbd1c083, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
-  dropDownList: 0
+  goalType: 3
+  goalCol: 1
 --- !u!1 &962991541
 GameObject:
   m_ObjectHideFlags: 0
@@ -7745,13 +7765,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1184343651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1150433cc5156284fbec1d42cbd1c083, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 1
   tagOfGameObject: Ring
-  goalType: low
-  dropDownList: 0
+  goalType: 0
+  goalCol: 1
 --- !u!1 &1210851193
 GameObject:
   m_ObjectHideFlags: 0
@@ -7911,11 +7931,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1280169469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca106cebd8ce934ebb27a3c5e17f76c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 5
-  tagOfGameObject: BlueWobble
+  goalCol: 1
   goalType: line
 --- !u!1 &1331720012
 GameObject:
@@ -7971,11 +7991,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1331720012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca106cebd8ce934ebb27a3c5e17f76c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 5
-  tagOfGameObject: BlueWobble
+  goalCol: 1
   goalType: line
 --- !u!1 &1332205323
 GameObject:
@@ -8536,11 +8556,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1372056848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca106cebd8ce934ebb27a3c5e17f76c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
-  tagOfGameObject: BlueWobble
+  goalCol: 1
   goalType: B
 --- !u!1 &1410753522
 GameObject:
@@ -8997,68 +9017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
-  tagOfGameObject: RedWobble
+  goalCol: 0
   goalType: A
---- !u!1 &1522466243
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1522466244}
-  - component: {fileID: 1522466246}
-  - component: {fileID: 1522466245}
-  m_Layer: 0
-  m_Name: RedDrop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1522466244
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522466243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.285, y: -0.733, z: 1.718}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2108980441}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1522466245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522466243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointsPerGoal: 0
-  tagOfGameObject: RedWobble
-  goalType: drop
---- !u!65 &1522466246
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1522466243}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.6101947, y: 0.27215737, z: 0.4365369}
-  m_Center: {x: 0.91994077, y: 0.11190382, z: 0.22286767}
 --- !u!1 &1547302549
 GameObject:
   m_ObjectHideFlags: 0
@@ -9386,11 +9346,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1726135570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca106cebd8ce934ebb27a3c5e17f76c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
-  tagOfGameObject: BlueWobble
+  goalCol: 1
   goalType: A
 --- !u!1 &1735554631
 GameObject:
@@ -9451,7 +9411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 1
   tagOfGameObject: Ring
-  goalType: low
+  goalType: 1
+  goalCol: 0
 --- !u!1001 &1761118014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9688,11 +9649,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1823863747}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca106cebd8ce934ebb27a3c5e17f76c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
-  tagOfGameObject: BlueWobble
+  goalCol: 1
   goalType: C
 --- !u!1 &1835151185
 GameObject:
@@ -14945,7 +14906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsPerGoal: 2
   tagOfGameObject: Ring
-  goalType: mid
+  goalType: 1
+  goalCol: 0
 --- !u!1 &1962518727
 GameObject:
   m_ObjectHideFlags: 0
@@ -15299,6 +15261,7 @@ GameObject:
   - component: {fileID: 2060291411}
   - component: {fileID: 2060291410}
   - component: {fileID: 2060291416}
+  - component: {fileID: 2060291417}
   m_Layer: 0
   m_Name: ScoreKeeper
   m_TagString: Untagged
@@ -15334,6 +15297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redScoreText: {fileID: 804755463}
   blueScoreText: {fileID: 1944246507}
+  thisView: {fileID: 0}
   lights: []
 --- !u!114 &2060291400
 MonoBehaviour:
@@ -16810,6 +16774,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2060291417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060291397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 27
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2105644964
 GameObject:
   m_ObjectHideFlags: 0
@@ -16864,13 +16850,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2105644964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1150433cc5156284fbec1d42cbd1c083, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 15
   tagOfGameObject: Ring
-  goalType: power
-  dropDownList: 0
+  goalType: 3
+  goalCol: 1
 --- !u!1 &2108980440
 GameObject:
   m_ObjectHideFlags: 0
@@ -16909,7 +16895,6 @@ Transform:
   - {fileID: 1331720013}
   - {fileID: 1280169470}
   - {fileID: 758895129}
-  - {fileID: 1522466244}
   m_Father: {fileID: 234635430}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16967,13 +16952,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2121399831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1150433cc5156284fbec1d42cbd1c083, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 3
   tagOfGameObject: Ring
-  goalType: high
-  dropDownList: 2
+  goalType: 2
+  goalCol: 1
 --- !u!1 &2124137037
 GameObject:
   m_ObjectHideFlags: 0
@@ -17032,7 +17017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsPerGoal: 5
-  tagOfGameObject: RedWobble
+  goalCol: 0
   goalType: line
 --- !u!4 &136997307843369
 Transform:

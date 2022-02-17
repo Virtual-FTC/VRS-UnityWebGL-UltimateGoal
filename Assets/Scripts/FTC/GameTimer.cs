@@ -119,7 +119,7 @@ public class GameTimer : MonoBehaviour
         {
             timer = Time.realtimeSinceStartup - previousRealTime;
             timerText = "" + (int)timer / 60 + " : " + (int)timer % 60;
-            if (timer < 10)
+            if (timer % 60 < 10)
             {
                 timerText = timerText[0] + " : 0" + timerText[4];
             }

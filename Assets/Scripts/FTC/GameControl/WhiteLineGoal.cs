@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class WhiteLineGoal : MonoBehaviour
 {
-    private ScoreKeeper scoreKeeper;
     public int pointsPerGoal = 0;
     public string tagOfGameObject1 = "BlueRobot";
     public string tagOfGameObject2 = "RedRobot";
@@ -13,37 +13,42 @@ public class WhiteLineGoal : MonoBehaviour
 
     private GameTimer gameTimer;
 
-    void Awake()
+    void Start()
     {
-        scoreKeeper = GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>();
-        gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
+        gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
     }
 
     void OnTriggerEnter(Collider collision)
     {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            return;
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && inZone == false && gameTimer.getGameType() == "auto")
         {
             pointsPerGoal = 5;
 
             inZone = true;
+
             if (collision.tag == tagOfGameObject1)
-                scoreKeeper.addScoreBlue(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
             else
-                scoreKeeper.addScoreRed(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+            return;
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && inZone == false && gameTimer.getGameType() == "auto")
         {
             pointsPerGoal = 5;
 
             inZone = false;
+
             if (collision.tag == tagOfGameObject1)
-                scoreKeeper.addScoreBlue(-pointsPerGoal);
+                ScoreKeeper._Instance.addScoreBlue(-pointsPerGoal);
             else
-                scoreKeeper.addScoreRed(-pointsPerGoal);
+                ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
         }
     }
 }
