@@ -10,6 +10,7 @@ using System.IO;
 using Photon.Realtime;
 using Random = System.Random;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
@@ -83,15 +84,18 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     robot = list[x];
                 }
             }
-            print("ROBOT: " + robot);
-            robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.AllBuffered);
+            if (robot != null)
+                robot.GetComponent<PhotonView>().RPC("resetBalls", RpcTarget.AllBuffered);
         }
         else
         {
             robot.GetComponent<RobotController>().resetBalls();
         }
-        robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
-        robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
+        if (robot != null)
+        {
+            robot.transform.position = robot.GetComponent<RobotController>().getStartPosition().position;
+            robot.transform.rotation = robot.GetComponent<RobotController>().getStartPosition().rotation;
+        }
     }
 
     public void resetField()
@@ -117,14 +121,14 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             ScoreKeeper._Instance.resetScore();
             //if (setup != null)
             //{
-                if (PhotonNetwork.IsConnected)
-                {
-                    PhotonNetwork.Destroy(setup);
-                }
-                else
-                {
-                    Destroy(setup);
-                }
+            if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.Destroy(setup);
+            }
+            else if (!PhotonNetwork.IsConnected)
+            {
+                Destroy(setup);
+            }
             //}
 
             int index;
