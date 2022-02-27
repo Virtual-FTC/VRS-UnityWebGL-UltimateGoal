@@ -10,6 +10,7 @@ using System.IO;
 using Photon.Realtime;
 using Random = System.Random;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
