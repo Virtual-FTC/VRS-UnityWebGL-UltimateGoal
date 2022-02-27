@@ -114,22 +114,22 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [PunRPC]
     public void resetFieldHelper() 
     {
-        if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
         {
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();
             resetRobot();
             ScoreKeeper._Instance.resetScore();
-            //if (setup != null)
-            //{
-            if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
+            if (setup != null)
             {
-                PhotonNetwork.Destroy(setup);
+                if (PhotonNetwork.IsConnected)
+                {
+                    PhotonNetwork.Destroy(setup);
+                }
+                else
+                {
+                    Destroy(setup);
+                }
             }
-            else if (!PhotonNetwork.IsConnected)
-            {
-                Destroy(setup);
-            }
-            //}
 
             int index;
             if (type == "A")
@@ -175,6 +175,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             else
             {
                 setup = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DynamicField-" + type), new Vector3(0, 0.0f, 0), Quaternion.identity, 0);
+                PhotonNetwork.SendAllOutgoingCommands();
             }
             for (int x = 0; x < setup.GetComponentsInChildren<Rigidbody>().Length; x++)
             {
@@ -184,7 +185,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 }
             }
         }
-        else
+        else if(!PhotonNetwork.IsConnected)
         {
             resetRobot();
             emptyField();
@@ -193,25 +194,56 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void emptyField()
     {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
+        Debug.Log("calling empty field");
 
-        foreach (GameObject a in gos)
+        if(PhotonNetwork.IsConnected)
         {
-            Destroy(a);
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
+
+            foreach (GameObject a in gos)
+            {
+                if(a.GetPhotonView().IsMine)
+                    PhotonNetwork.Destroy(a.GetPhotonView());
+            }
+
+            gos = GameObject.FindGameObjectsWithTag("BlueWobble");
+
+            foreach (GameObject a in gos)
+            {
+                if (a.GetPhotonView().IsMine)
+                    PhotonNetwork.Destroy(a.GetPhotonView());
+            }
+
+            gos = GameObject.FindGameObjectsWithTag("RedWobble");
+
+            foreach (GameObject a in gos)
+            {
+                if (a.GetPhotonView().IsMine)
+                    PhotonNetwork.Destroy(a.GetPhotonView());
+            }
         }
-
-        gos = GameObject.FindGameObjectsWithTag("BlueWobble");
-
-        foreach (GameObject a in gos)
+        else
         {
-            Destroy(a);
-        }
+            GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
 
-        gos = GameObject.FindGameObjectsWithTag("RedWobble");
+            foreach (GameObject a in gos)
+            {
+                Destroy(a);
+            }
 
-        foreach (GameObject a in gos)
-        {
-            Destroy(a);
+            gos = GameObject.FindGameObjectsWithTag("BlueWobble");
+
+            foreach (GameObject a in gos)
+            {
+                Destroy(a);
+            }
+
+            gos = GameObject.FindGameObjectsWithTag("RedWobble");
+
+            foreach (GameObject a in gos)
+            {
+                Destroy(a);
+            }
         }
     }
     public void buttonStartGame()

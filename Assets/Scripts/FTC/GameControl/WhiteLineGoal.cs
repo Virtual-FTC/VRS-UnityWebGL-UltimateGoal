@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class WhiteLineGoal : MonoBehaviour
 {
-    public int pointsPerGoal = 0;
     public string tagOfGameObject1 = "BlueRobot";
     public string tagOfGameObject2 = "RedRobot";
 
@@ -24,14 +23,12 @@ public class WhiteLineGoal : MonoBehaviour
             return;
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && inZone == false && gameTimer.getGameType() == "auto")
         {
-            pointsPerGoal = 5;
-
             inZone = true;
 
             if (collision.tag == tagOfGameObject1)
-                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreBlue(ScoreKeeper._Instance.WhiteLineGoal);
             else
-                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
+                ScoreKeeper._Instance.addScoreRed(ScoreKeeper._Instance.WhiteLineGoal);
         }
     }
 
@@ -41,14 +38,12 @@ public class WhiteLineGoal : MonoBehaviour
             return;
         if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && inZone == false && gameTimer.getGameType() == "auto")
         {
-            pointsPerGoal = 5;
-
             inZone = false;
 
             if (collision.tag == tagOfGameObject1)
-                ScoreKeeper._Instance.addScoreBlue(-pointsPerGoal);
+                ScoreKeeper._Instance.addScoreBlue(-ScoreKeeper._Instance.WhiteLineGoal);
             else
-                ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
+                ScoreKeeper._Instance.addScoreRed(-ScoreKeeper._Instance.WhiteLineGoal);
         }
     }
 }

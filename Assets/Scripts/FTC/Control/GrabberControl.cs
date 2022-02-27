@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Control;
+using Photon.Pun;
 
 public class GrabberControl : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class GrabberControl : MonoBehaviour
     private GameObject wobble = null;
     private GameObject field;
     public Transform robot;
+    public BoxCollider wobblePlaceholder;
 
     void OnTriggerEnter(Collider collision)
     {
@@ -30,9 +32,10 @@ public class GrabberControl : MonoBehaviour
         {
             grabbing = true;
             wobble.transform.SetParent(robot);
-            var rb = wobble.GetComponent<Rigidbody>();
-            rb.isKinematic = true;
+            wobble.GetComponent<Rigidbody>().isKinematic = true;
+            wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, false);
             wobble.transform.localPosition = new Vector3(0f,-0.39f, 0.05f);
+            //wobblePlaceholder.enabled = true;
         }
     }
 
@@ -41,6 +44,7 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && grabbing)
         {
             wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
+            //wobblePlaceholder.enabled = false;
         }
     }
 
@@ -50,8 +54,9 @@ public class GrabberControl : MonoBehaviour
         {
             grabbing = false;
             wobble.transform.SetParent(null);
-            var rb = wobble.GetComponent<Rigidbody>();
-            rb.isKinematic = false;
+            wobble.GetComponent<Rigidbody>().isKinematic = false;
+            wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, true);
+            //wobblePlaceholder.enabled = false;
         }
         wobble = null;
     }
