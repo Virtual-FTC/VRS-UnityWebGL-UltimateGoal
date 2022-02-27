@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using UnityEngine.InputSystem;
-using Photon.Pun;
-
 
 public class RobotController : MonoBehaviour
 {
@@ -37,6 +35,11 @@ public class RobotController : MonoBehaviour
     private float backLeftWheelCmd = 0f;
     private float backRightWheelCmd = 0f;
 
+    private float frontLeftWheelEnc = 0f;
+    private float frontRightWheelEnc = 0f;
+    private float backLeftWheelEnc = 0f;
+    private float backRightWheelEnc = 0f;
+
     private float motorPower5;
     private float motorPower6;
     private float motorPower7;
@@ -60,7 +63,6 @@ public class RobotController : MonoBehaviour
     public GameObject intake;
     public GameObject grabber;
 
-    public PhotonView PV;
     private ShooterControl shooterControl;
     private IntakeControl intakeControl;
     private GrabberControl grabberControl;
@@ -70,7 +72,6 @@ public class RobotController : MonoBehaviour
 
     private void Awake()
     {
-        intakeControl = intake.GetComponent<IntakeControl>();
         controls = new PlayerControls();
 
         // Shooting
@@ -86,10 +87,10 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.Intake.canceled += ctx => motorPower5 = 0.0f;
 
         //Wobble
-        //controls.GamePlay.Wobble.performed += ctx => motorPower8 = 0.3f;
-        //controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
-        //controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
-        //controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.3f;
+        controls.GamePlay.Wobble.performed += ctx => motorPower8 = 0.3f;
+        controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
+        controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
+        controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.0f;
 
         //Driving Controls
         controls.GamePlay.DriveForward.started += ctx => usingJoystick = true;
@@ -145,6 +146,7 @@ public class RobotController : MonoBehaviour
             shooterControl.setVelocity(motorPower7);
         });
 
+        intakeControl = intake.GetComponent<IntakeControl>();
         intakeControl.Commands.Add(() => motorPower5 != 0, () =>
         {
             robotSoundControl.playIntakeRev(motorPower5);
@@ -158,10 +160,10 @@ public class RobotController : MonoBehaviour
         });
 
         grabberControl = grabber.GetComponent<GrabberControl>();
-        grabberControl.Commands.Add(() => motorPower8 > 0 && motorPower8 < 0.5, () =>
-       {
-           grabberControl.startGrab();
-       });
+        grabberControl.Commands.Add(() => motorPower8 > 0 , () =>
+        {
+            grabberControl.startGrab();
+        });
         grabberControl.Commands.Add(() => motorPower8 > 0.5, () =>
         {
             grabberControl.lift();
@@ -195,17 +197,17 @@ public class RobotController : MonoBehaviour
         //Apply Angular Velocity to Rigid Body
         rb.angularVelocity = new Vector3(0f, -angularVelocity, 0f);
         //Encoder Calculations 
-        //frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        //frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        //backLeftWheelEnc += (motorRPM / 60) * backLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
-        //backRightWheelEnc += (motorRPM / 60) * backRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        frontLeftWheelEnc += (motorRPM / 60) * frontLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        frontRightWheelEnc += (motorRPM / 60) * frontRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        backLeftWheelEnc += (motorRPM / 60) * backLeftWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
+        backRightWheelEnc += (motorRPM / 60) * backRightWheelCmd * Time.deltaTime * encoderTicksPerRev * drivetrainGearRatio;
 
         try
         {
-            //updateFrontRightEncoders(frontRightWheelEnc);
-            //updateFrontLeftEncoders(frontLeftWheelEnc);
-            //updateBackRightEncoders(backRightWheelEnc);
-            //updateBackLeftEncoders(backLeftWheelEnc);
+            updateFrontRightEncoders(frontRightWheelEnc);
+            updateFrontLeftEncoders(frontLeftWheelEnc);
+            updateBackRightEncoders(backRightWheelEnc);
+            updateBackLeftEncoders(backLeftWheelEnc);
         }
         catch
         {
@@ -213,6 +215,14 @@ public class RobotController : MonoBehaviour
         }
 
         robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);
+    }
+
+    public void resetEncoders()
+    {
+        frontLeftWheelEnc = 0f;
+        frontRightWheelEnc = 0f;
+        backLeftWheelEnc = 0f;
+        backRightWheelEnc = 0f;
     }
 
     public void setFrontLeftVel(float x)
@@ -280,7 +290,7 @@ public class RobotController : MonoBehaviour
             SendBackRightEnc(backRightWheelEnc);
             */
         }
-        else if (PV.IsMine)
+        else if (GetComponent<Photon.Pun.PhotonView>().IsMine)
         {
             driveRobot();
             shooterControl.Commands.Process();
