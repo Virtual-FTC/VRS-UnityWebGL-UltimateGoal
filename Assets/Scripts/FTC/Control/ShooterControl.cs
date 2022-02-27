@@ -59,6 +59,7 @@ public class ShooterControl : MonoBehaviour
             if (PhotonNetwork.IsConnected)
             {
                 instance = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "Ring"), newPosition, newRotationQ, 0);
+                PhotonNetwork.SendAllOutgoingCommands();
             }
             else
             {
