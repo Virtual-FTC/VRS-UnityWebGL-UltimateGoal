@@ -33,7 +33,7 @@ public class GrabberControl : MonoBehaviour
             grabbing = true;
             wobble.transform.SetParent(robot);
             wobble.GetComponent<Rigidbody>().isKinematic = true;
-            wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, false);
+            //wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, false);
             wobble.transform.localPosition = new Vector3(0f,-0.39f, 0.05f);
             //wobblePlaceholder.enabled = true;
         }
@@ -55,7 +55,7 @@ public class GrabberControl : MonoBehaviour
             grabbing = false;
             wobble.transform.SetParent(null);
             wobble.GetComponent<Rigidbody>().isKinematic = false;
-            wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, true);
+            //wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, true);
             //wobblePlaceholder.enabled = false;
         }
         wobble = null;

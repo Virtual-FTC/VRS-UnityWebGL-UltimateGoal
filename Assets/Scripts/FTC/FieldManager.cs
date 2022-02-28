@@ -190,6 +190,10 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             resetRobot();
             emptyField();
         }
+        else//for non-master clients
+        {
+            resetRobot();
+        }
     }
 
     public void emptyField()
