@@ -11,6 +11,20 @@ public class ScoreKeeper : MonoBehaviour
     public Text redScoreText;
     public Text blueScoreText;
 
+    [Header("Score Values")]
+    public int WobbleAuto = 15;
+    public int WobbleLine = 5;
+    public int WobbleDrop = 20;
+    public int PowerGoal = 15;
+    public int FreeplayRingHigh = 6;
+    public int FreeplayRingMid = 4;
+    public int FreeplayRingLow = 2;
+    public int AutoRingHigh = 12;
+    public int AutoRingMid = 6;
+    public int AutoRingLow = 3;
+    public int WhiteLineGoal = 5;
+
+    [HideInInspector]
     public PhotonView thisView;
 
     private int redScore = 0;

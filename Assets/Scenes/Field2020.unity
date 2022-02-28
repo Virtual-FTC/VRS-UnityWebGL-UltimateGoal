@@ -7695,7 +7695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20848dae813003349a5db7269dda0bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 0
   tagOfGameObject1: BlueRobot
   tagOfGameObject2: RedRobot
 --- !u!65 &1143105666
@@ -15297,7 +15296,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redScoreText: {fileID: 804755463}
   blueScoreText: {fileID: 1944246507}
-  thisView: {fileID: 0}
+  WobbleAuto: 15
+  WobbleLine: 5
+  WobbleDrop: 20
+  PowerGoal: 15
+  FreeplayRingHigh: 6
+  FreeplayRingMid: 4
+  FreeplayRingLow: 2
+  AutoRingHigh: 12
+  AutoRingMid: 6
+  AutoRingLow: 3
+  WhiteLineGoal: 5
+  thisView: {fileID: 2060291417}
   lights: []
 --- !u!114 &2060291400
 MonoBehaviour:

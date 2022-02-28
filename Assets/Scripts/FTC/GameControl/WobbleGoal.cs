@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class WobbleGoal : MonoBehaviour
 {
-    public int pointsPerGoal = 0;
+    private int pointsPerGoal = 0;
     private string tagOfGameObject;
 
     public enum goalColor { red, blue }
@@ -30,14 +30,16 @@ public class WobbleGoal : MonoBehaviour
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                pointsPerGoal = 15;
+                pointsPerGoal = ScoreKeeper._Instance.WobbleAuto;
             else if (goalType == "line" && gameTimer.getGameType() == "end")
-                pointsPerGoal = 5;
+                pointsPerGoal = ScoreKeeper._Instance.WobbleLine;
             else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                pointsPerGoal = 20;
+                pointsPerGoal = ScoreKeeper._Instance.WobbleDrop;
             else
+            {
                 pointsPerGoal = 0;
-
+            }
+            print("scoring points: " + pointsPerGoal);
             if (goalCol == goalColor.red)
                 ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
             else
@@ -52,14 +54,15 @@ public class WobbleGoal : MonoBehaviour
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                pointsPerGoal = 15;
+                pointsPerGoal = ScoreKeeper._Instance.WobbleAuto;
             else if (goalType == "line" && gameTimer.getGameType() == "end")
-                pointsPerGoal = 5;
+                pointsPerGoal = ScoreKeeper._Instance.WobbleLine;
             else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                pointsPerGoal = 20;
+                pointsPerGoal = ScoreKeeper._Instance.WobbleDrop;
             else
                 pointsPerGoal = 0;
 
+            print("REMOVING points: " + pointsPerGoal);
             if (goalCol == goalColor.red)
                 ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
             else
