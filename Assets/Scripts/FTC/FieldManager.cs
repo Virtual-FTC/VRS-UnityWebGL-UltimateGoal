@@ -114,7 +114,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [PunRPC]
     public void resetFieldHelper() 
     {
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.IsConnected)
+        print("resetting");
+        if (PhotonNetwork.IsMasterClient)
         {
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();
             resetRobot();
@@ -170,7 +171,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
             if (!PhotonNetwork.IsConnected)
             {
-                setup = (GameObject)Instantiate(setupPrefab[index], new Vector3(0, 0.0f, 0), Quaternion.identity);
             }
             else
             {
@@ -187,8 +187,50 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         else if(!PhotonNetwork.IsConnected)
         {
+            string type = "C";
             resetRobot();
+            ScoreKeeper._Instance.resetScore();
+            if (setup != null)
+            {
+                Destroy(setup);
+            }
+
+            int index;
+            if (type == "A")
+            {
+                index = 0;
+            }
+            else if (type == "B")
+            {
+                index = 1;
+            }
+            else if (type == "C")
+            {
+                index = 2;
+            }
+            else
+            {
+                Random rnd = new Random();
+                index = rnd.Next(3);
+            }
+
+            if (index == 0)
+            {
+                gameTimer.setGameSetup("A");
+                type = "A";
+            }
+            else if (index == 1)
+            {
+                gameTimer.setGameSetup("B");
+                type = "B";
+            }
+            else if (index == 2)
+            {
+                gameTimer.setGameSetup("C");
+                type = "C";
+            }
             emptyField();
+            setup = (GameObject)Instantiate(setupPrefab[index], new Vector3(0, 0.0f, 0), Quaternion.identity);
         }
         else//for non-master clients
         {
@@ -198,8 +240,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void emptyField()
     {
-        Debug.Log("calling empty field");
-
         if(PhotonNetwork.IsConnected)
         {
             GameObject[] gos = GameObject.FindGameObjectsWithTag("OutsideRing");
