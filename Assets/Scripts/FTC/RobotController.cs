@@ -182,12 +182,44 @@ public class RobotController : MonoBehaviour
 
     private void driveRobot()
     {
+        if (Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0 || Input.GetKey(KeyCode.Joystick1Button5))
+            usingJoystick = true;
         // Strafer Drivetrain Control
         if (!usingJoystick)
         {
             linearVelocityX = ((frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd + backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
             linearVelocityY = ((-frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd - backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
             angularVelocity = (((-frontLeftWheelCmd + frontRightWheelCmd - backLeftWheelCmd + backRightWheelCmd) / 3) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI) / (Mathf.PI * wheelSeparationWidth)) * 2 * Mathf.PI;
+        }
+        else
+        {
+            linearVelocityX = Input.GetAxisRaw("Vertical") * 1.5f;
+            linearVelocityY = Input.GetAxisRaw("Horizontal") * 1.5f;
+            angularVelocity = -6 * Input.GetAxisRaw("Horizontal2");
+
+            //raise arm
+            if (Input.GetKey(KeyCode.Joystick1Button5))
+                motorPower5 = 1f;
+            else
+                motorPower5 = 0f;
+
+            //lower arm
+            if (Input.GetKey(KeyCode.Joystick1Button4))
+                motorPower6 = 1f;
+            else
+                motorPower6 = 0f;
+
+            //arm rotate backward 
+            if (Input.GetKey(KeyCode.Joystick1Button6))
+                motorPower7 = 1f;
+            else
+                motorPower7 = 0f;
+
+            //arm rotate forward
+            if (Input.GetKey(KeyCode.Joystick1Button7))
+                motorPower8 = 1f;
+            else
+                motorPower8 = 0f;
         }
         // Apply Local Velocity to Rigid Body        
         var locVel = transform.InverseTransformDirection(rb.velocity);
@@ -333,6 +365,7 @@ public class RobotController : MonoBehaviour
     [PunRPC]
     public void resetBalls()
     {
-        intakeControl.resetBalls();
+        if(intakeControl!=null)
+            intakeControl.resetBalls();
     }
 }
