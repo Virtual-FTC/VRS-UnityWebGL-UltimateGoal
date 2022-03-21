@@ -117,7 +117,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [PunRPC]
     public void resetFieldHelper() 
     {
-        print("resetting");
         if (PhotonNetwork.IsMasterClient)
         {
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();

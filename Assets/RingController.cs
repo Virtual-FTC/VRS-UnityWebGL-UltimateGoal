@@ -30,12 +30,9 @@ public class RingController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //print(rb.velocity + " : "  + Vector3.Distance(rb.velocity, Vector3.zero));
         if (IsBetween(rb.velocity.x, -minVelocityForMovement, minVelocityForMovement))
             return;
         transView.enabled = true;
-        //print("RING IS MOVING");
-        //print(rb.velocity);
     }
     public bool IsBetween(double testValue, double bound1, double bound2)
     {

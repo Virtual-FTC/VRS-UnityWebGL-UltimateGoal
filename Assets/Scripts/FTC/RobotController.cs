@@ -244,7 +244,7 @@ public class RobotController : MonoBehaviour
         }
         catch
         {
-            //print("Can not find javascript functions");
+            print("Can not find javascript functions");
         }
 
         robotSoundControl.playRobotDrive((Mathf.Abs(linearVelocityX) + Mathf.Abs(linearVelocityY) + Mathf.Abs(angularVelocity)) / 4f);

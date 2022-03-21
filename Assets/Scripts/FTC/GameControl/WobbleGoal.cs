@@ -60,7 +60,6 @@ public class WobbleGoal : MonoBehaviour
 
     private void Score(Collider collision, int points)
     {
-        print("scoring " + goalType + " " + points);
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
@@ -79,7 +78,6 @@ public class WobbleGoal : MonoBehaviour
 
     private void Unscore(Collider collision, int points)
     {
-        print("unscoring " + goalType + " -" + points);
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
