@@ -15,6 +15,7 @@ public class RingController : MonoBehaviour
     private void Start()
     {
         transView = GetComponent<PhotonTransformView>();
+        if(transView!=null)
         transView.enabled = false;
     }
 

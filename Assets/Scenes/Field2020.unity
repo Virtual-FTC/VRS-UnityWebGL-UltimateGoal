@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 3
   tagOfGameObject: Ring
   goalType: 2
   goalCol: 0
@@ -519,7 +518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   goalCol: 0
   goalType: C
 --- !u!1 &290415611
@@ -5961,7 +5959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 2
   tagOfGameObject: Ring
   goalType: 1
   goalCol: 1
@@ -6052,7 +6049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 5
   goalCol: 0
   goalType: line
 --- !u!1 &488922332
@@ -6187,7 +6183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 1
@@ -6254,7 +6249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 0
@@ -6390,7 +6384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   goalCol: 0
   goalType: B
 --- !u!1 &665880168
@@ -6494,7 +6487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 0
@@ -6543,7 +6535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 0
   goalCol: 1
   goalType: drop
 --- !u!65 &758895131
@@ -6571,7 +6562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 0
   goalCol: 0
   goalType: drop
 --- !u!1 &791938209
@@ -6728,16 +6718,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 865557370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &865557372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6854,7 +6863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 0
@@ -7008,7 +7016,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 1
@@ -7767,7 +7774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 1
   tagOfGameObject: Ring
   goalType: 0
   goalCol: 1
@@ -7933,7 +7939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 5
   goalCol: 1
   goalType: line
 --- !u!1 &1331720012
@@ -7993,7 +7998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 5
   goalCol: 1
   goalType: line
 --- !u!1 &1332205323
@@ -8558,7 +8562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   goalCol: 1
   goalType: B
 --- !u!1 &1410753522
@@ -9015,7 +9018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   goalCol: 0
   goalType: A
 --- !u!1 &1547302549
@@ -9348,7 +9350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   goalCol: 1
   goalType: A
 --- !u!1 &1735554631
@@ -9408,7 +9409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 1
   tagOfGameObject: Ring
   goalType: 1
   goalCol: 0
@@ -9651,7 +9651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   goalCol: 1
   goalType: C
 --- !u!1 &1835151185
@@ -14903,7 +14902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 2
   tagOfGameObject: Ring
   goalType: 1
   goalCol: 0
@@ -16863,7 +16861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 15
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 1
@@ -16965,7 +16962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d397a59c0930ca48b321b2608c971b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 3
   tagOfGameObject: Ring
   goalType: 2
   goalCol: 1
@@ -17026,7 +17022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4911888fda6b2bf488fd644f81688c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsPerGoal: 5
   goalCol: 0
   goalType: line
 --- !u!4 &136997307843369
