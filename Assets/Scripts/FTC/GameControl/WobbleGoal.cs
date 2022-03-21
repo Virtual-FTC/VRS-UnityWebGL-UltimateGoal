@@ -60,17 +60,39 @@ public class WobbleGoal : MonoBehaviour
 
     private void Score(Collider collision, int points)
     {
-        if (goalCol == goalColor.red)
-            collision.GetComponent<RedWobble>().ScoreWobble(points);
+        print("scoring " + goalType + " " + points);
+        if (!(goalType == "line" || goalType == "drop"))
+        {
+            if (goalCol == goalColor.red)
+                collision.GetComponent<RedWobble>().ScoreWobble(points);
+            else
+                collision.GetComponent<BlueWobble>().ScoreWobble(points);
+        }
         else
-            collision.GetComponent<BlueWobble>().ScoreWobble(points);
+        {
+            if (goalCol == goalColor.red)
+                collision.GetComponent<RedWobble>().ScoreWobbleTeleop(goalType, points);
+            else
+                collision.GetComponent<BlueWobble>().ScoreWobbleTeleop(goalType, points);
+        }
     }
 
     private void Unscore(Collider collision, int points)
     {
-        if (goalCol == goalColor.red)
-            collision.GetComponent<RedWobble>().UnscoreWobble(-points);
+        print("unscoring " + goalType + " -" + points);
+        if (!(goalType == "line" || goalType == "drop"))
+        {
+            if (goalCol == goalColor.red)
+                collision.GetComponent<RedWobble>().UnscoreWobble(-points);
+            else
+                collision.GetComponent<BlueWobble>().UnscoreWobble(-points);
+    }
         else
-            collision.GetComponent<BlueWobble>().UnscoreWobble(-points);
+        {
+            if (goalCol == goalColor.red)
+                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType, -points);
+            else
+                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType, -points);
+}
     }
 }
