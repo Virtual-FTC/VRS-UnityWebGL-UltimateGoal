@@ -30,20 +30,13 @@ public class WobbleGoal : MonoBehaviour
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                pointsPerGoal = ScoreKeeper._Instance.WobbleAuto;
+                Score(collision, ScoreKeeper._Instance.WobbleAuto);
             else if (goalType == "line" && gameTimer.getGameType() == "end")
-                pointsPerGoal = ScoreKeeper._Instance.WobbleLine;
+                Score(collision, ScoreKeeper._Instance.WobbleLine);
             else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                pointsPerGoal = ScoreKeeper._Instance.WobbleDrop;
+                Score(collision, ScoreKeeper._Instance.WobbleDrop);
             else
-            {
                 pointsPerGoal = 0;
-            }
-            print("scoring points: " + pointsPerGoal);
-            if (goalCol == goalColor.red)
-                ScoreKeeper._Instance.addScoreRed(pointsPerGoal);
-            else
-                ScoreKeeper._Instance.addScoreBlue(pointsPerGoal);
         }
     }
 
@@ -54,19 +47,30 @@ public class WobbleGoal : MonoBehaviour
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                pointsPerGoal = ScoreKeeper._Instance.WobbleAuto;
+                Unscore(collision, ScoreKeeper._Instance.WobbleAuto);
             else if (goalType == "line" && gameTimer.getGameType() == "end")
-                pointsPerGoal = ScoreKeeper._Instance.WobbleLine;
+                Unscore(collision, ScoreKeeper._Instance.WobbleLine);
             else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                pointsPerGoal = ScoreKeeper._Instance.WobbleDrop;
+                Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
             else
                 pointsPerGoal = 0;
 
-            print("REMOVING points: " + pointsPerGoal);
-            if (goalCol == goalColor.red)
-                ScoreKeeper._Instance.addScoreRed(-pointsPerGoal);
-            else
-                ScoreKeeper._Instance.addScoreBlue(-pointsPerGoal);
         }
+    }
+
+    private void Score(Collider collision, int points)
+    {
+        if (goalCol == goalColor.red)
+            collision.GetComponent<RedWobble>().ScoreWobble(points);
+        else
+            collision.GetComponent<BlueWobble>().ScoreWobble(points);
+    }
+
+    private void Unscore(Collider collision, int points)
+    {
+        if (goalCol == goalColor.red)
+            collision.GetComponent<RedWobble>().UnscoreWobble(-points);
+        else
+            collision.GetComponent<BlueWobble>().UnscoreWobble(-points);
     }
 }
