@@ -62,9 +62,9 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             intake = GameObject.Find("Intake").GetComponent<IntakeControl>();
         }
-        //camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
+        camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
         gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
-        //camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
+        camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
 
         resetField();
         if (MultiplayerSetting.multiplayerSetting != null)
@@ -117,7 +117,6 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [PunRPC]
     public void resetFieldHelper() 
     {
-        print("resetting");
         if (PhotonNetwork.IsMasterClient)
         {
             string type = MultiplayerSetting.multiplayerSetting.getFieldSetup();
