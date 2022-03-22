@@ -67,7 +67,10 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
 
         resetField();
-        gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
+        if (MultiplayerSetting.multiplayerSetting != null)
+            gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
+        else
+            gameTimer.setGameType("auto");
 
         print("Started.....");
     }

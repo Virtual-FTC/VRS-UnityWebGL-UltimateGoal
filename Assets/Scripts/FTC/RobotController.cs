@@ -333,6 +333,7 @@ public class RobotController : MonoBehaviour
     [PunRPC]
     public void resetBalls()
     {
-        intakeControl.resetBalls();
+        if(intakeControl!=null)
+            intakeControl.resetBalls();
     }
 }
