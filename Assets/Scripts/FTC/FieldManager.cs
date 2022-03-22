@@ -62,15 +62,12 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             intake = GameObject.Find("Intake").GetComponent<IntakeControl>();
         }
-        //camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
+        camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
         gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
-        //camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
+        camera.switchCamera(MultiplayerSetting.multiplayerSetting.getCamSetup());
 
         resetField();
-        if (MultiplayerSetting.multiplayerSetting != null)
-            gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
-        else
-            gameTimer.setGameType("auto");
+        gameTimer.setGameType(MultiplayerSetting.multiplayerSetting.getGameType());
 
         print("Started.....");
     }

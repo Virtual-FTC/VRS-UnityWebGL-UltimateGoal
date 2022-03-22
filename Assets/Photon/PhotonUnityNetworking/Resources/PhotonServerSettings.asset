@@ -18,7 +18,7 @@ MonoBehaviour:
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: 
+    FixedRegion: us
     Server: 
     Port: 0
     ProxyServer: 
@@ -43,15 +43,18 @@ MonoBehaviour:
   - freezeScore
   - resetBalls
   - resetFieldHelper
-  - resetScoreHelper
+  - resetScore
   - RPC_LoadedGameScene
+  - startGame
+  - stopGame
+  - subtractBall
+  - resetScoreHelper
+  - startGrabRPC
+  - stopGrabRPC
   - setFieldSetupLeftHelper
   - setFieldSetupRightHelper
   - setGameTypeLeftHelper
   - setGameTypeRightHelper
-  - startGame
-  - stopGame
-  - subtractBall
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
-  DevRegionSetOnce: 0
+  ShowSettings: 1
+  DevRegionSetOnce: 1

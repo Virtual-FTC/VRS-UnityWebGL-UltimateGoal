@@ -70,7 +70,7 @@ public class ScoreKeeper : MonoBehaviour
     {
         if (!PhotonNetwork.IsConnected)
         {
-            addScoreBlueHelper(points);
+            addScoreRedHelper(points);
         }
         else
         {
