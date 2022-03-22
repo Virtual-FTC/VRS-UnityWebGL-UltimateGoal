@@ -197,26 +197,28 @@ public class RobotController : MonoBehaviour
             linearVelocityY = Input.GetAxisRaw("Horizontal") * 1.5f;
             angularVelocity = -6 * Input.GetAxisRaw("Horizontal2");
 
-            //raise arm
-            if (Input.GetKey(KeyCode.Joystick1Button5))
+            //intake motor
+            if (Input.GetKey(KeyCode.Joystick1Button0))
                 motorPower5 = 1f;
             else
                 motorPower5 = 0f;
 
-            //lower arm
-            if (Input.GetKey(KeyCode.Joystick1Button4))
+            //shoot
+            if (Mathf.Round(Input.GetAxisRaw("rightTrigger")) != 0)
+            {
                 motorPower6 = 1f;
+            }
             else
                 motorPower6 = 0f;
 
-            //arm rotate backward 
-            if (Input.GetKey(KeyCode.Joystick1Button6))
+            //shoot spin
+            if (Mathf.Round(Input.GetAxisRaw("leftTrigger")) != 0)
                 motorPower7 = 1f;
             else
                 motorPower7 = 0f;
 
-            //arm rotate forward
-            if (Input.GetKey(KeyCode.Joystick1Button7))
+            //wobble goal grab and lift
+            if (Input.GetKey(KeyCode.Joystick1Button4))
                 motorPower8 = 1f;
             else
                 motorPower8 = 0f;
