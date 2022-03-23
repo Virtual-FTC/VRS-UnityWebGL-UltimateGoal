@@ -19,7 +19,7 @@ public class Wobble : MonoBehaviourPun
             }
         }
 
-        this.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
+        this.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
         this.GetComponent<Rigidbody>().isKinematic = true;
         this.GetComponent<PhotonRigidbodyView>().enabled = false;
         this.GetComponent<PhotonTransformView>().enabled = true;

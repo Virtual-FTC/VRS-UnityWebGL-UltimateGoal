@@ -43,11 +43,17 @@ public class GrabberControl : MonoBehaviourPun
             else
             {
                 wobble.transform.SetParent(robot);
-                wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
+                wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
                 wobble.GetComponent<Rigidbody>().isKinematic = true;
                 wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
                 wobble.GetComponent<PhotonTransformView>().enabled = true;
             }
+        }
+
+        if (wobble != null && grabbing)
+        {
+            Debug.Log("lifting");
+            wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
         }
     }
 
