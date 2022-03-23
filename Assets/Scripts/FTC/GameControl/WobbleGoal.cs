@@ -81,16 +81,16 @@ public class WobbleGoal : MonoBehaviour
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobble(-points);
+                collision.GetComponent<RedWobble>().UnscoreWobble();
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobble(-points);
+                collision.GetComponent<BlueWobble>().UnscoreWobble();
     }
         else
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType, -points);
+                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType);
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType, -points);
-}
+                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType);
+        }
     }
 }

@@ -32,8 +32,9 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && !grabbing)
         {
             grabbing = true;
+            
 
-            if(PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsConnected)
             {
                 wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
                 PhotonNetwork.SendAllOutgoingCommands();
@@ -52,7 +53,15 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && grabbing)
         {
             wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
-            //wobblePlaceholder.enabled = false;
+
+            if (wobble.GetComponent<RedWobble>())
+            {
+                wobble.GetComponent<RedWobble>().UnscoreWobble();
+            }
+            else if (wobble.GetComponent<BlueWobble>())
+            {
+                wobble.GetComponent<BlueWobble>().UnscoreWobble();
+            }
         }
     }
 

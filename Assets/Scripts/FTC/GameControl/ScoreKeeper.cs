@@ -117,6 +117,8 @@ public class ScoreKeeper : MonoBehaviour
     {
         if (PhotonNetwork.IsConnected)
             thisView.RPC("resetScoreHelper", RpcTarget.AllBuffered);
+        else
+            resetScoreHelper();
     }
 
     [PunRPC]
