@@ -25,8 +25,9 @@ public class WobbleGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        //if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
-          //  return;
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -42,8 +43,9 @@ public class WobbleGoal : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        //if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
-          //  return;
+        if (!PhotonNetwork.IsMasterClient)
+            return;
+
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -54,7 +56,6 @@ public class WobbleGoal : MonoBehaviour
                 Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
             else
                 pointsPerGoal = 0;
-
         }
     }
 
