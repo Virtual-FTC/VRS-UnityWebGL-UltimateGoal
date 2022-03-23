@@ -38,9 +38,6 @@ public class GrabberControl : MonoBehaviourPun
             {
                 wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
                 PhotonNetwork.SendAllOutgoingCommands();
-
-                
-
                 photonView.RPC("NetworkGrab", RpcTarget.All);
             }
         }
@@ -49,7 +46,7 @@ public class GrabberControl : MonoBehaviourPun
     [PunRPC]
     public void NetworkGrab(PhotonMessageInfo info)
     {
-        wobble.transform.SetParent(info.photonView.gameObject.transform);        
+        wobble.transform.SetParent(info.photonView.gameObject.GetComponent<GrabberControl>().robot);
         wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
 
         wobble.GetComponent<Rigidbody>().isKinematic = true;        
