@@ -32,15 +32,18 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && !grabbing)
         {
             grabbing = true;
-            wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
-            PhotonNetwork.SendAllOutgoingCommands();
+
+            if(PhotonNetwork.IsConnected)
+            {
+                wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
+                PhotonNetwork.SendAllOutgoingCommands();
+                wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
+                wobble.GetComponent<PhotonTransformView>().enabled = true;
+            }
+
             wobble.transform.SetParent(robot);
-            wobble.GetComponent<Rigidbody>().isKinematic = true;
-            wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
-            wobble.GetComponent<PhotonTransformView>().enabled = true;
-            //wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, false);
+            wobble.GetComponent<Rigidbody>().isKinematic = true;            
             wobble.transform.localPosition = new Vector3(0f,-0.39f, 0.05f);
-            //wobblePlaceholder.enabled = true;
         }
     }
 
@@ -57,13 +60,16 @@ public class GrabberControl : MonoBehaviour
     {
         if (wobble != null && grabbing)
         {
-            grabbing = false;
+            grabbing = false;            
+
+            if (PhotonNetwork.IsConnected)
+            { 
+                wobble.GetComponent<PhotonRigidbodyView>().enabled = true;
+                wobble.GetComponent<PhotonTransformView>().enabled = false;
+            }
+
             wobble.transform.SetParent(null);
-            wobble.GetComponent<Rigidbody>().isKinematic = false;
-            wobble.GetComponent<PhotonRigidbodyView>().enabled = true;
-            wobble.GetComponent<PhotonTransformView>().enabled = false;
-            //wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, true);
-            //wobblePlaceholder.enabled = false;
+            wobble.GetComponent<Rigidbody>().isKinematic = false;            
         }
         wobble = null;
     }
