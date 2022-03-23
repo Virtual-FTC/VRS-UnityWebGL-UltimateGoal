@@ -38,7 +38,10 @@ public class GrabberControl : MonoBehaviourPun
             {
                 wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
                 PhotonNetwork.SendAllOutgoingCommands();
-                
+
+                wobble.transform.SetParent(robot);
+                wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
+
                 photonView.RPC("NetworkGrab", RpcTarget.All);
             }
         }
@@ -47,11 +50,9 @@ public class GrabberControl : MonoBehaviourPun
     [PunRPC]
     public void NetworkGrab()
     {
-        //wobble.transform.SetParent(robot);
-        wobble.GetComponent<Rigidbody>().isKinematic = true;
-        wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
-        wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
-        wobble.GetComponent<PhotonTransformView>().enabled = true;
+        wobble.GetComponent<Rigidbody>().isKinematic = true;        
+        //wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
+        //wobble.GetComponent<PhotonTransformView>().enabled = true;
     }
 
     public void lift()
@@ -79,6 +80,7 @@ public class GrabberControl : MonoBehaviourPun
 
             if (PhotonNetwork.IsConnected)
             {
+                wobble.transform.SetParent(null);
                 photonView.RPC("NetworkStopGrab", RpcTarget.All);
             }         
         }
@@ -88,10 +90,8 @@ public class GrabberControl : MonoBehaviourPun
     [PunRPC]
     public void NetworkStopGrab()
     {
-        //wobble.transform.SetParent(robot);
         wobble.GetComponent<PhotonRigidbodyView>().enabled = true;
         wobble.GetComponent<PhotonTransformView>().enabled = false;
-        wobble.transform.SetParent(null);
         wobble.GetComponent<Rigidbody>().isKinematic = false;
     }
 }
