@@ -121,14 +121,14 @@ public class WobbleGoal : MonoBehaviour
             if (goalCol == goalColor.red)
             {
                 if (PhotonNetwork.IsConnected)
-                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered, goalType);
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered);
                 else
                     collision.GetComponent<RedWobble>().UnscoreWobbleTeleop();
             }
             else
             {
                 if (PhotonNetwork.IsConnected)
-                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered, goalType);
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered);
                 else
                     collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop();
             }
