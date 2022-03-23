@@ -239,16 +239,14 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
             foreach (GameObject a in gos)
             {
-                if (a.GetPhotonView().IsMine)
-                    PhotonNetwork.Destroy(a.GetPhotonView());
+                a.GetPhotonView().RPC("NetworkDestroy", RpcTarget.AllBuffered);
             }
 
             gos = GameObject.FindGameObjectsWithTag("RedWobble");
 
             foreach (GameObject a in gos)
             {
-                if (a.GetPhotonView().IsMine)
-                    PhotonNetwork.Destroy(a.GetPhotonView());
+                a.GetPhotonView().RPC("NetworkDestroy", RpcTarget.AllBuffered);
             }
         }
         else

@@ -4444,6 +4444,7 @@ MonoBehaviour:
   pointsPerGoal: 0
   robot: {fileID: 5836966544834976959}
   wobblePlaceholder: {fileID: 3664012642636270335}
+  wobblePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &8249556146572977924
 MonoBehaviour:
   m_ObjectHideFlags: 0

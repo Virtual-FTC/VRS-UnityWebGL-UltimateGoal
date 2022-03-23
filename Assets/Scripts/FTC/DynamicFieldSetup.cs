@@ -27,7 +27,7 @@ public class DynamicFieldSetup : MonoBehaviour
             Destroy(wobble.gameObject);
 
             if (PhotonNetwork.IsMasterClient)
-                PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "BlueWobble"), wobTrans.position, Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "BlueWobble"), wobTrans.position, Quaternion.identity);
             else if (!PhotonNetwork.IsConnected)
                 Instantiate(prefabs[1], wobTrans.position, Quaternion.identity);
         }
@@ -38,7 +38,7 @@ public class DynamicFieldSetup : MonoBehaviour
             Destroy(wobble.gameObject);
 
             if (PhotonNetwork.IsMasterClient)
-                PhotonNetwork.InstantiateRoomObject(Path.Combine("PhotonPrefabs", "RedWobble"), wobTrans.position, Quaternion.identity);
+                PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "RedWobble"), wobTrans.position, Quaternion.identity);
             else if (!PhotonNetwork.IsConnected)
                 Instantiate(prefabs[2], wobTrans.position, Quaternion.identity);
         }

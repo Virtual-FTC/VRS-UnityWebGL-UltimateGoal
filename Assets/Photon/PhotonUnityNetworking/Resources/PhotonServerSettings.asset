@@ -55,6 +55,8 @@ MonoBehaviour:
   - setFieldSetupRightHelper
   - setGameTypeLeftHelper
   - setGameTypeRightHelper
+  - Grab
+  - Release
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
