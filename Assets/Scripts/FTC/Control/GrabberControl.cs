@@ -50,11 +50,11 @@ public class GrabberControl : MonoBehaviourPun
     public void NetworkGrab(PhotonMessageInfo info)
     {
         wobble.transform.SetParent(info.photonView.gameObject.transform);        
-        wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
+        wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
 
         wobble.GetComponent<Rigidbody>().isKinematic = true;        
-        //wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
-        //wobble.GetComponent<PhotonTransformView>().enabled = true;
+        wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
+        wobble.GetComponent<PhotonTransformView>().enabled = true;
     }
 
     public void lift()

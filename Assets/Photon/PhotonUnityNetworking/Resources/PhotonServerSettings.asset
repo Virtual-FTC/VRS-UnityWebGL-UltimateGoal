@@ -58,6 +58,8 @@ MonoBehaviour:
   - Grab
   - Release
   - NetworkDestroy
+  - NetworkGrab
+  - NetworkStopGrab
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
