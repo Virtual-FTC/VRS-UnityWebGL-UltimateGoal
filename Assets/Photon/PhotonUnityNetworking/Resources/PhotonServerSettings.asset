@@ -60,6 +60,11 @@ MonoBehaviour:
   - NetworkDestroy
   - NetworkGrab
   - NetworkStopGrab
+  - RPC_StopGrab
+  - ScoreWobble
+  - ScoreWobbleTeleop
+  - UnscoreWobble
+  - UnscoreWobbleTeleop
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

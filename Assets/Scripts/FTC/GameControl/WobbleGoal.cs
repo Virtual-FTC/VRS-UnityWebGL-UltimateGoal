@@ -25,37 +25,37 @@ public class WobbleGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        if (collision.tag == tagOfGameObject)
+        if (!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
-            if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                Score(collision, ScoreKeeper._Instance.WobbleAuto);
-            else if (goalType == "line" && gameTimer.getGameType() == "end")
-                Score(collision, ScoreKeeper._Instance.WobbleLine);
-            else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                Score(collision, ScoreKeeper._Instance.WobbleDrop);
-            else
-                pointsPerGoal = 0;
+            if (collision.tag == tagOfGameObject)
+            {
+                if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
+                    Score(collision, ScoreKeeper._Instance.WobbleAuto);
+                else if (goalType == "line" && gameTimer.getGameType() == "end")
+                    Score(collision, ScoreKeeper._Instance.WobbleLine);
+                else if (goalType == "drop" && gameTimer.getGameType() == "end")
+                    Score(collision, ScoreKeeper._Instance.WobbleDrop);
+                else
+                    pointsPerGoal = 0;
+            }
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        if (collision.tag == tagOfGameObject)
+        if (!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
-            if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                Unscore(collision, ScoreKeeper._Instance.WobbleAuto);
-            else if (goalType == "line" && gameTimer.getGameType() == "end")
-                Unscore(collision, ScoreKeeper._Instance.WobbleLine);
-            else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
-            else
-                pointsPerGoal = 0;
+            if (collision.tag == tagOfGameObject)
+            {
+                if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
+                    Unscore(collision, ScoreKeeper._Instance.WobbleAuto);
+                else if (goalType == "line" && gameTimer.getGameType() == "end")
+                    Unscore(collision, ScoreKeeper._Instance.WobbleLine);
+                else if (goalType == "drop" && gameTimer.getGameType() == "end")
+                    Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
+                else
+                    pointsPerGoal = 0;
+            }
         }
     }
 
@@ -64,16 +64,36 @@ public class WobbleGoal : MonoBehaviour
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().ScoreWobble(points);
+            {
+                if(PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobble", RpcTarget.AllBuffered, points);
+                else
+                    collision.GetComponent<RedWobble>().ScoreWobble(points);
+            }
             else
-                collision.GetComponent<BlueWobble>().ScoreWobble(points);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobble", RpcTarget.AllBuffered, points);
+                else
+                    collision.GetComponent<BlueWobble>().ScoreWobble(points);
+            }
         }
         else
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().ScoreWobbleTeleop(goalType, points);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobbleTeleop", RpcTarget.AllBuffered, goalType, points);
+                else
+                    collision.GetComponent<RedWobble>().ScoreWobbleTeleop(goalType, points);
+            }
             else
-                collision.GetComponent<BlueWobble>().ScoreWobbleTeleop(goalType, points);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobbleTeleop", RpcTarget.AllBuffered, goalType, points);
+                else
+                    collision.GetComponent<BlueWobble>().ScoreWobbleTeleop(goalType, points);
+            }
         }
     }
 
@@ -82,16 +102,36 @@ public class WobbleGoal : MonoBehaviour
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobble();
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobble", RpcTarget.AllBuffered);
+                else
+                    collision.GetComponent<RedWobble>().UnscoreWobble();
+            }
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobble();
-    }
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobble", RpcTarget.AllBuffered);
+                else
+                    collision.GetComponent<BlueWobble>().UnscoreWobble();
+            }
+        }
         else
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered);
+                else
+                    collision.GetComponent<RedWobble>().UnscoreWobbleTeleop();
+            }
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered);
+                else
+                    collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop();
+            }
         }
     }
 }
