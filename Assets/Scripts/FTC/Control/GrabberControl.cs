@@ -69,10 +69,16 @@ public class GrabberControl : MonoBehaviourPun
             if (PhotonNetwork.IsConnected)
             {
                 wobble.GetPhotonView().RPC("NetworkStopGrab", RpcTarget.All);
+                photonView.RPC("RPC_StopGrab", RpcTarget.All);
                 PhotonNetwork.SendAllOutgoingCommands();
             }         
         }
         wobble = null;
     }
     
+    [PunRPC]
+    public void RPC_StopGrab()
+    {
+        wobble = null;
+    }
 }

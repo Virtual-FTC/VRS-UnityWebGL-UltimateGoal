@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class Wobble : MonoBehaviourPun
 {
     [PunRPC]
-    public void NetworkGrab(PhotonMessageInfo info, Player p)
+    public void NetworkGrab(Player p, PhotonMessageInfo info)
     {
         var photonViews = UnityEngine.Object.FindObjectsOfType<PhotonView>();
         foreach (var view in photonViews)
