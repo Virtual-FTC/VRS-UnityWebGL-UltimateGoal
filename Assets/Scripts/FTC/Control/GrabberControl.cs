@@ -94,5 +94,6 @@ public class GrabberControl : MonoBehaviourPun
         wobble.GetComponent<PhotonTransformView>().enabled = false;
         wobble.GetComponent<Rigidbody>().isKinematic = false;
         wobble.GetComponent<Rigidbody>().AddForce(Vector3.zero);
+        wobble = null;
     }
 }
