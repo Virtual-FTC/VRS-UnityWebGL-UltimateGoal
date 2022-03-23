@@ -64,16 +64,36 @@ public class WobbleGoal : MonoBehaviour
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().ScoreWobble(points);
+            {
+                if(PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobble", RpcTarget.AllBuffered, points);
+                else
+                    collision.GetComponent<RedWobble>().ScoreWobble(points);
+            }
             else
-                collision.GetComponent<BlueWobble>().ScoreWobble(points);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobble", RpcTarget.AllBuffered, points);
+                else
+                    collision.GetComponent<BlueWobble>().ScoreWobble(points);
+            }
         }
         else
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().ScoreWobbleTeleop(goalType, points);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobbleTeleop", RpcTarget.AllBuffered, goalType, points);
+                else
+                    collision.GetComponent<RedWobble>().ScoreWobbleTeleop(goalType, points);
+            }
             else
-                collision.GetComponent<BlueWobble>().ScoreWobbleTeleop(goalType, points);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("ScoreWobbleTeleop", RpcTarget.AllBuffered, goalType, points);
+                else
+                    collision.GetComponent<BlueWobble>().ScoreWobbleTeleop(goalType, points);
+            }
         }
     }
 
@@ -82,16 +102,36 @@ public class WobbleGoal : MonoBehaviour
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobble();
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobble", RpcTarget.AllBuffered);
+                else
+                    collision.GetComponent<RedWobble>().UnscoreWobble();
+            }
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobble();
-    }
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobble", RpcTarget.AllBuffered);
+                else
+                    collision.GetComponent<BlueWobble>().UnscoreWobble();
+            }
+        }
         else
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered, goalType);
+                else
+                    collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType);
+            }
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType);
+            {
+                if (PhotonNetwork.IsConnected)
+                    collision.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered, goalType);
+                else
+                    collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType);
+            }
         }
     }
 }

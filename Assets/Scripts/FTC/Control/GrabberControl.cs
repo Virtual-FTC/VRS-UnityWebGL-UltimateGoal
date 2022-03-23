@@ -64,7 +64,6 @@ public class GrabberControl : MonoBehaviourPun
     {
         if (wobble != null && grabbing)
         {
-            grabbing = false;            
 
             if (PhotonNetwork.IsConnected)
             {
@@ -73,6 +72,7 @@ public class GrabberControl : MonoBehaviourPun
                 PhotonNetwork.SendAllOutgoingCommands();
             }         
         }
+        grabbing = false;
         wobble = null;
     }
     
