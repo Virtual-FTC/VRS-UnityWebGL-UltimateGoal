@@ -21,7 +21,7 @@ public class GrabberControl : MonoBehaviourPun
 
     void OnTriggerEnter(Collider collision)
     {
-        if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && wobble == null)
+        if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && !grabbing)
         {
             wobble = collision.gameObject;
         }
@@ -37,21 +37,10 @@ public class GrabberControl : MonoBehaviourPun
             if (PhotonNetwork.IsConnected)
             {
                 wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
+                wobble.GetPhotonView().RPC("NetworkGrab", RpcTarget.All);
                 PhotonNetwork.SendAllOutgoingCommands();
-                photonView.RPC("NetworkGrab", RpcTarget.All);
             }
         }
-    }
-
-    [PunRPC]
-    public void NetworkGrab(PhotonMessageInfo info)
-    {
-        wobble.transform.SetParent(info.photonView.gameObject.GetComponent<GrabberControl>().robot);
-        wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
-
-        wobble.GetComponent<Rigidbody>().isKinematic = true;        
-        wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
-        wobble.GetComponent<PhotonTransformView>().enabled = true;
     }
 
     public void lift()
@@ -79,21 +68,11 @@ public class GrabberControl : MonoBehaviourPun
 
             if (PhotonNetwork.IsConnected)
             {
-                wobble.transform.SetParent(null);
-                photonView.RPC("NetworkStopGrab", RpcTarget.All);
+                wobble.GetPhotonView().RPC("NetworkStopGrab", RpcTarget.All);
+                PhotonNetwork.SendAllOutgoingCommands();
             }         
         }
         wobble = null;
     }
-
-    [PunRPC]
-    public void NetworkStopGrab(PhotonMessageInfo info)
-    {
-        wobble.transform.SetParent(null);
-        wobble.GetComponent<PhotonRigidbodyView>().enabled = true;
-        wobble.GetComponent<PhotonTransformView>().enabled = false;
-        wobble.GetComponent<Rigidbody>().isKinematic = false;
-        wobble.GetComponent<Rigidbody>().AddForce(Vector3.zero);
-        wobble = null;
-    }
+    
 }

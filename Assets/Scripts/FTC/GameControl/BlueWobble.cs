@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueWobble : MonoBehaviour
+public class BlueWobble : Wobble
 {
     private bool isTeleopLineScoring;
     private bool isTeleopDropScoring;
