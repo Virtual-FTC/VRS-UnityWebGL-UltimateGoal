@@ -37,7 +37,7 @@ public class GrabberControl : MonoBehaviourPun
             if (PhotonNetwork.IsConnected)
             {
                 wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
-                wobble.GetPhotonView().RPC("NetworkGrab", RpcTarget.All);
+                wobble.GetPhotonView().RPC("NetworkGrab", RpcTarget.All, PhotonNetwork.LocalPlayer);
                 PhotonNetwork.SendAllOutgoingCommands();
             }
         }

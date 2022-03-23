@@ -2,13 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Wobble : MonoBehaviourPun
 {
     [PunRPC]
-    public void NetworkGrab(PhotonMessageInfo info)
+    public void NetworkGrab(PhotonMessageInfo info, Player p)
     {
-        this.transform.SetParent(info.photonView.gameObject.GetComponent<GrabberControl>().robot);
+        var photonViews = UnityEngine.Object.FindObjectsOfType<PhotonView>();
+        foreach (var view in photonViews)
+        {
+            var player = view.Owner;
+            //Objects in the scene don't have an owner, its means view.owner will be null
+            if (player == p)
+            {
+                transform.SetParent(view.gameObject.transform);
+            }
+        }
+
         this.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
         this.GetComponent<Rigidbody>().isKinematic = true;
         this.GetComponent<PhotonRigidbodyView>().enabled = false;
