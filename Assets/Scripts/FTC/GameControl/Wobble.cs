@@ -9,14 +9,13 @@ public class Wobble : MonoBehaviourPun
     [PunRPC]
     public void NetworkGrab(Player p, PhotonMessageInfo info)
     {
-        var photonViews = UnityEngine.Object.FindObjectsOfType<PhotonView>();
-        foreach (var view in photonViews)
+        var robot = UnityEngine.Object.FindObjectsOfType<RobotController>();
+        foreach (var RobotController in robot)
         {
-            var player = view.Owner;
             //Objects in the scene don't have an owner, its means view.owner will be null
-            if (player == p)
+            if (RobotController.gameObject.GetPhotonView().Owner == p)
             {
-                transform.SetParent(view.gameObject.transform);
+                transform.SetParent(RobotController.gameObject.transform);
             }
         }
 

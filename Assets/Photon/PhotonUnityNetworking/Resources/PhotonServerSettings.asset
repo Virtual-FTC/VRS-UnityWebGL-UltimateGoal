@@ -60,6 +60,7 @@ MonoBehaviour:
   - NetworkDestroy
   - NetworkGrab
   - NetworkStopGrab
+  - RPC_StopGrab
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
