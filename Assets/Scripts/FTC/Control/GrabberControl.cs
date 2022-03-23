@@ -4,7 +4,7 @@ using UnityEngine;
 using Assets.Scripts.Control;
 using Photon.Pun;
 
-public class GrabberControl : MonoBehaviour
+public class GrabberControl : MonoBehaviourPun
 {
     public CommandProcessor Commands = new CommandProcessor();
 
@@ -38,14 +38,20 @@ public class GrabberControl : MonoBehaviour
             {
                 wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
                 PhotonNetwork.SendAllOutgoingCommands();
-                wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
-                wobble.GetComponent<PhotonTransformView>().enabled = true;
+                
+                photonView.RPC("NetworkGrab", RpcTarget.All);
             }
-
-            wobble.transform.SetParent(robot);
-            wobble.GetComponent<Rigidbody>().isKinematic = true;            
-            wobble.transform.localPosition = new Vector3(0f,-0.39f, 0.05f);
         }
+    }
+
+    [PunRPC]
+    public void NetworkGrab()
+    {
+        //wobble.transform.SetParent(robot);
+        wobble.GetComponent<Rigidbody>().isKinematic = true;
+        wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
+        wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
+        wobble.GetComponent<PhotonTransformView>().enabled = true;
     }
 
     public void lift()
@@ -72,14 +78,20 @@ public class GrabberControl : MonoBehaviour
             grabbing = false;            
 
             if (PhotonNetwork.IsConnected)
-            { 
-                wobble.GetComponent<PhotonRigidbodyView>().enabled = true;
-                wobble.GetComponent<PhotonTransformView>().enabled = false;
-            }
-
-            wobble.transform.SetParent(null);
-            wobble.GetComponent<Rigidbody>().isKinematic = false;            
+            {
+                photonView.RPC("NetworkStopGrab", RpcTarget.All);
+            }         
         }
         wobble = null;
+    }
+
+    [PunRPC]
+    public void NetworkStopGrab()
+    {
+        //wobble.transform.SetParent(robot);
+        wobble.GetComponent<PhotonRigidbodyView>().enabled = true;
+        wobble.GetComponent<PhotonTransformView>().enabled = false;
+        wobble.transform.SetParent(null);
+        wobble.GetComponent<Rigidbody>().isKinematic = false;
     }
 }
