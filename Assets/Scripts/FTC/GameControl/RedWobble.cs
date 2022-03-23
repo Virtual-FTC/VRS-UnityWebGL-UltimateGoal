@@ -63,15 +63,15 @@ public class RedWobble : Wobble
      * the parameter points should be negative when the method is called
      */
     [PunRPC]
-    public void UnscoreWobbleTeleop(string goalType)
+    public void UnscoreWobbleTeleop()
     {
-        if (isTeleopLineScoring && goalType == "line")
+        if (isTeleopLineScoring)
         {
             if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(-points);
             isTeleopLineScoring = false;
         }
-        if (isTeleopDropScoring && goalType == "drop")
+        if (isTeleopDropScoring)
         {
             if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(-points);

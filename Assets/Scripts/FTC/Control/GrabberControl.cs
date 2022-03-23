@@ -50,7 +50,10 @@ public class GrabberControl : MonoBehaviourPun
             wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
 
             if (PhotonNetwork.IsConnected)
+            {
                 wobble.GetComponent<PhotonView>().RPC("UnscoreWobble", RpcTarget.AllBuffered);
+                wobble.GetComponent<PhotonView>().RPC("UnscoreWobbleTeleop", RpcTarget.AllBuffered);
+            }
             else if (wobble.GetComponent<RedWobble>())
             {
                 wobble.GetComponent<RedWobble>().UnscoreWobble();
