@@ -25,37 +25,37 @@ public class WobbleGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        if (collision.tag == tagOfGameObject)
+        if (!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
-            if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                Score(collision, ScoreKeeper._Instance.WobbleAuto);
-            else if (goalType == "line" && gameTimer.getGameType() == "end")
-                Score(collision, ScoreKeeper._Instance.WobbleLine);
-            else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                Score(collision, ScoreKeeper._Instance.WobbleDrop);
-            else
-                pointsPerGoal = 0;
+            if (collision.tag == tagOfGameObject)
+            {
+                if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
+                    Score(collision, ScoreKeeper._Instance.WobbleAuto);
+                else if (goalType == "line" && gameTimer.getGameType() == "end")
+                    Score(collision, ScoreKeeper._Instance.WobbleLine);
+                else if (goalType == "drop" && gameTimer.getGameType() == "end")
+                    Score(collision, ScoreKeeper._Instance.WobbleDrop);
+                else
+                    pointsPerGoal = 0;
+            }
         }
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        if (!PhotonNetwork.IsMasterClient)
-            return;
-
-        if (collision.tag == tagOfGameObject)
+        if (!PhotonNetwork.IsConnected || PhotonNetwork.IsMasterClient)
         {
-            if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
-                Unscore(collision, ScoreKeeper._Instance.WobbleAuto);
-            else if (goalType == "line" && gameTimer.getGameType() == "end")
-                Unscore(collision, ScoreKeeper._Instance.WobbleLine);
-            else if (goalType == "drop" && gameTimer.getGameType() == "end")
-                Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
-            else
-                pointsPerGoal = 0;
+            if (collision.tag == tagOfGameObject)
+            {
+                if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
+                    Unscore(collision, ScoreKeeper._Instance.WobbleAuto);
+                else if (goalType == "line" && gameTimer.getGameType() == "end")
+                    Unscore(collision, ScoreKeeper._Instance.WobbleLine);
+                else if (goalType == "drop" && gameTimer.getGameType() == "end")
+                    Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
+                else
+                    pointsPerGoal = 0;
+            }
         }
     }
 
