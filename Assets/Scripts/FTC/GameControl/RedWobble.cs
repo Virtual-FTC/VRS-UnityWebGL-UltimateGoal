@@ -17,7 +17,7 @@ public class RedWobble : Wobble
     {
         if (!isScoring)
         {
-            if (photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(points);
             isScoring = true;
             this.points = points;
@@ -32,7 +32,7 @@ public class RedWobble : Wobble
     {
         if (isScoring)
         {
-            if (photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(-points);
             isScoring = false;
         }
@@ -45,14 +45,14 @@ public class RedWobble : Wobble
     {
         if (!isTeleopLineScoring && goalType == "line")
         {
-            if (photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(points);
             isTeleopLineScoring = true;
             this.points = points;
         }
         if (!isTeleopDropScoring && goalType == "drop")
         {
-            if (photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(points);
             isTeleopDropScoring = true;
             this.points = points;
@@ -67,13 +67,13 @@ public class RedWobble : Wobble
     {
         if (isTeleopLineScoring && goalType == "line")
         {
-            if (photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(-points);
             isTeleopLineScoring = false;
         }
         if (isTeleopDropScoring && goalType == "drop")
         {
-            if (photonView.IsMine || !PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsMasterClient || !PhotonNetwork.IsConnected)
                 ScoreKeeper._Instance.addScoreRed(-points);
             isTeleopDropScoring = false;
         }
