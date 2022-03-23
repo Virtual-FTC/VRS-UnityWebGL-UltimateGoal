@@ -51,7 +51,7 @@ public class GrabberControl : MonoBehaviourPun
 
         wobble.GetComponent<Rigidbody>().isKinematic = true;        
         wobble.GetComponent<PhotonRigidbodyView>().enabled = false;
-        wobble.GetComponent<PhotonTransformView>().enabled = false;
+        wobble.GetComponent<PhotonTransformView>().enabled = true;
     }
 
     public void lift()
