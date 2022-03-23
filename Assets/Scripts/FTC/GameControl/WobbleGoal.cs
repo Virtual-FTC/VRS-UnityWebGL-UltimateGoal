@@ -25,8 +25,9 @@ public class WobbleGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
-        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient)
             return;
+
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -42,8 +43,9 @@ public class WobbleGoal : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+        if (!PhotonNetwork.IsMasterClient)
             return;
+
         if (collision.tag == tagOfGameObject)
         {
             if (gameTimer.getGameSetup() == goalType && gameTimer.getGameType() == "auto")
@@ -54,7 +56,6 @@ public class WobbleGoal : MonoBehaviour
                 Unscore(collision, ScoreKeeper._Instance.WobbleDrop);
             else
                 pointsPerGoal = 0;
-
         }
     }
 
@@ -81,16 +82,16 @@ public class WobbleGoal : MonoBehaviour
         if (!(goalType == "line" || goalType == "drop"))
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobble(-points);
+                collision.GetComponent<RedWobble>().UnscoreWobble();
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobble(-points);
+                collision.GetComponent<BlueWobble>().UnscoreWobble();
     }
         else
         {
             if (goalCol == goalColor.red)
-                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType, -points);
+                collision.GetComponent<RedWobble>().UnscoreWobbleTeleop(goalType);
             else
-                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType, -points);
-}
+                collision.GetComponent<BlueWobble>().UnscoreWobbleTeleop(goalType);
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using Assets.Scripts.Control;
 using Photon.Pun;
 
-public class GrabberControl : MonoBehaviour
+public class GrabberControl : MonoBehaviourPun
 {
     public CommandProcessor Commands = new CommandProcessor();
 
@@ -17,10 +17,11 @@ public class GrabberControl : MonoBehaviour
     private GameObject field;
     public Transform robot;
     public BoxCollider wobblePlaceholder;
+    public Vector3 wobblePosition = Vector3.zero;
 
     void OnTriggerEnter(Collider collision)
     {
-        if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && wobble == null)
+        if ((collision.tag == tagOfGameObject1 || collision.tag == tagOfGameObject2) && !grabbing)
         {
             wobble = collision.gameObject;
         }
@@ -31,11 +32,14 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && !grabbing)
         {
             grabbing = true;
-            wobble.transform.SetParent(robot);
-            wobble.GetComponent<Rigidbody>().isKinematic = true;
-            //wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, false);
-            wobble.transform.localPosition = new Vector3(0f,-0.39f, 0.05f);
-            //wobblePlaceholder.enabled = true;
+            
+
+            if (PhotonNetwork.IsConnected)
+            {
+                wobble.GetPhotonView().TransferOwnership(PhotonNetwork.LocalPlayer);
+                wobble.GetPhotonView().RPC("NetworkGrab", RpcTarget.All, PhotonNetwork.LocalPlayer);
+                PhotonNetwork.SendAllOutgoingCommands();
+            }
         }
     }
 
@@ -44,7 +48,15 @@ public class GrabberControl : MonoBehaviour
         if (wobble != null && grabbing)
         {
             wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.3f);
-            //wobblePlaceholder.enabled = false;
+
+            if (wobble.GetComponent<RedWobble>())
+            {
+                wobble.GetComponent<RedWobble>().UnscoreWobble();
+            }
+            else if (wobble.GetComponent<BlueWobble>())
+            {
+                wobble.GetComponent<BlueWobble>().UnscoreWobble();
+            }
         }
     }
 
@@ -52,12 +64,21 @@ public class GrabberControl : MonoBehaviour
     {
         if (wobble != null && grabbing)
         {
-            grabbing = false;
-            wobble.transform.SetParent(null);
-            wobble.GetComponent<Rigidbody>().isKinematic = false;
-            //wobble.GetComponent<PhotonView>().RPC("swapPhotonViews", RpcTarget.AllBuffered, true);
-            //wobblePlaceholder.enabled = false;
+            grabbing = false;            
+
+            if (PhotonNetwork.IsConnected)
+            {
+                wobble.GetPhotonView().RPC("NetworkStopGrab", RpcTarget.All);
+                photonView.RPC("RPC_StopGrab", RpcTarget.All);
+                PhotonNetwork.SendAllOutgoingCommands();
+            }         
         }
+        wobble = null;
+    }
+    
+    [PunRPC]
+    public void RPC_StopGrab()
+    {
         wobble = null;
     }
 }
