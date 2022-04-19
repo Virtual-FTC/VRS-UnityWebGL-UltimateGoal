@@ -205,10 +205,10 @@ public class RobotController : MonoBehaviour
 
         try
         {
-            //updateFrontRightEncoders(frontRightWheelEnc);
-            //updateFrontLeftEncoders(frontLeftWheelEnc);
-            //updateBackRightEncoders(backRightWheelEnc);
-            //updateBackLeftEncoders(backLeftWheelEnc);
+            updateFrontRightEncoders(frontRightWheelEnc);
+            updateFrontLeftEncoders(frontLeftWheelEnc);
+            updateBackRightEncoders(backRightWheelEnc);
+            updateBackLeftEncoders(backLeftWheelEnc);
         }
         catch
         {
