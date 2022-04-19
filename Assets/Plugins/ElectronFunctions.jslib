@@ -11,4 +11,7 @@ mergeInto(LibraryManager.library, {
   updateBackRightEncoders: function (encoders) {
     setBackRightEncoders(encoders);
   },
+updateColorSensorData: function (R,G,B,Distance) {
+    setColorSensorData(R,G,B,Distance);
+  }
 });

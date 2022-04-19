@@ -52,7 +52,6 @@ public class GrabberControl : MonoBehaviourPun
 
         if (wobble != null && grabbing)
         {
-            Debug.Log("lifting");
             wobble.transform.localPosition = new Vector3(0f, -0.39f, 0.05f);
         }
     }

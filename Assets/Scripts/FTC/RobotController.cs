@@ -92,7 +92,7 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.Wobble.canceled += ctx => motorPower8 = 0.0f;
         controls.GamePlay.WobbleHigh.performed += ctx => motorPower8 = 1f;
         controls.GamePlay.WobbleHigh.canceled += ctx => motorPower8 = 0.0f;
-
+        
         //Driving Controls
         controls.GamePlay.DriveForward.started += ctx => usingJoystick = true;
         controls.GamePlay.DriveForward.performed += ctx => linearVelocityX = -1.5f*ctx.ReadValue<float>();
@@ -106,9 +106,9 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.DriveLeft.performed += ctx => linearVelocityY = 1.5f*ctx.ReadValue<float>();
         controls.GamePlay.DriveLeft.canceled += ctx => linearVelocityY = 0f;
 
-        controls.GamePlay.DriveRight.started += ctx => usingJoystick = true;
-        controls.GamePlay.DriveRight.performed += ctx => linearVelocityY = -1.5f*ctx.ReadValue<float>();
-        controls.GamePlay.DriveRight.canceled += ctx => linearVelocityY = 0f;
+        //controls.GamePlay.DriveRight.started += ctx => usingJoystick = true;
+        //controls.GamePlay.DriveRight.performed += ctx => linearVelocityY = -1.5f*ctx.ReadValue<float>();
+        //controls.GamePlay.DriveRight.canceled += ctx => linearVelocityY = 0f;
 
         controls.GamePlay.TurnLeft.started += ctx => usingJoystick = true;
         controls.GamePlay.TurnLeft.performed += ctx => angularVelocity = 6*ctx.ReadValue<float>();
@@ -205,10 +205,10 @@ public class RobotController : MonoBehaviour
 
         try
         {
-            updateFrontRightEncoders(frontRightWheelEnc);
-            updateFrontLeftEncoders(frontLeftWheelEnc);
-            updateBackRightEncoders(backRightWheelEnc);
-            updateBackLeftEncoders(backLeftWheelEnc);
+            //updateFrontRightEncoders(frontRightWheelEnc);
+            //updateFrontLeftEncoders(frontLeftWheelEnc);
+            //updateBackRightEncoders(backRightWheelEnc);
+            //updateBackLeftEncoders(backLeftWheelEnc);
         }
         catch
         {
