@@ -7,8 +7,9 @@ public class ColorSensor : MonoBehaviour//, ISensor
     Ray rayToSenseColor;
     RaycastHit rayCastHitForColoredObject;
     Collider detectedCollider;
-    public Color colorSensed;
+    public Color32 colorSensed;
     public Color colorTarget;
+    private Color noColor = new Color(0, 0, 0);
 
     public LayerMask layerMask;
     public float colorSensingRayLength;
@@ -43,9 +44,10 @@ public class ColorSensor : MonoBehaviour//, ISensor
             if (detectedCollider.GetComponent<Renderer>() == null)
                 return;
             colorSensed = detectedCollider.GetComponent<Renderer>().material.color;
-
             isColorSensed = CheckColorDifference();
         }
+        else
+            colorSensed = noColor;
     }
 
     private bool CheckColorDifference()
