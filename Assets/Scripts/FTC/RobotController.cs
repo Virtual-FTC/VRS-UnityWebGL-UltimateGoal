@@ -106,9 +106,9 @@ public class RobotController : MonoBehaviour
         controls.GamePlay.DriveLeft.performed += ctx => linearVelocityY = 1.5f*ctx.ReadValue<float>();
         controls.GamePlay.DriveLeft.canceled += ctx => linearVelocityY = 0f;
 
-        //controls.GamePlay.DriveRight.started += ctx => usingJoystick = true;
-        //controls.GamePlay.DriveRight.performed += ctx => linearVelocityY = -1.5f*ctx.ReadValue<float>();
-        //controls.GamePlay.DriveRight.canceled += ctx => linearVelocityY = 0f;
+        controls.GamePlay.DriveRight.started += ctx => usingJoystick = true;
+        controls.GamePlay.DriveRight.performed += ctx => linearVelocityY = -1.5f*ctx.ReadValue<float>();
+        controls.GamePlay.DriveRight.canceled += ctx => linearVelocityY = 0f;
 
         controls.GamePlay.TurnLeft.started += ctx => usingJoystick = true;
         controls.GamePlay.TurnLeft.performed += ctx => angularVelocity = 6*ctx.ReadValue<float>();
