@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public class DistanceSensor : MonoBehaviour//, ISensor
 {
+    [DllImport("__Internal")]
+    private static extern void updateDistanceSensorData(float r, float distance);
+
     Ray rayToSenseDistance;
     RaycastHit hit;
-    Collider detectedCollider;
 
     [Tooltip("value in centimeters")]
     public float rayLength;
@@ -39,7 +42,7 @@ public class DistanceSensor : MonoBehaviour//, ISensor
     private void DetectObjectInFront()
     {
         if (Physics.Raycast(rayToSenseDistance, out hit, convertedRayLength))
-        {
+        { 
             distanceSensed = hit.distance * fieldScaleFactor;
             print(hit.transform + "distance sensed: " + distanceSensed);
         }
@@ -51,5 +54,19 @@ public class DistanceSensor : MonoBehaviour//, ISensor
     private void OnDrawGizmos()
     {
         Debug.DrawRay(rayToSenseDistance.origin, rayToSenseDistance.direction * convertedRayLength, Color.red);
+    }
+
+    private void FixedUpdate()
+    {
+        //reports data to jslib
+        DebugUI.instance?.Display($"distance sensed: " + distanceSensed);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        //Debug.Log($"distance sensed: " + distanceSensed);
+        try
+        {
+            updateDistanceSensorData(distanceSensed, convertedRayLength);
+        }
+        catch { }
+#endif
     }
 }

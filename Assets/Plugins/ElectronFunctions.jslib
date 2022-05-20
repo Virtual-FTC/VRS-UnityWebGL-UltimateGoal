@@ -13,5 +13,8 @@ mergeInto(LibraryManager.library, {
   },
 updateColorSensorData: function (R,G,B,Distance) {
     setColorSensorData(R,G,B,Distance);
+  },
+updateDistanceSensorData: function (Distance,RayDistance) {
+    setDistanceSensorData(Distance,RayDistance);
   }
 });
