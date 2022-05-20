@@ -35,12 +35,6 @@ public class DistanceSensor : MonoBehaviour//, ISensor
     {
         if (Physics.Raycast(rayToSenseDistance, out hit, rayLength))
         {
-            detectedCollider = hit.collider;
-            if (detectedCollider.GetComponent<Renderer>() == null)
-            {
-                Debug.Log("Distance Sensor is sensing an unrendered object");
-                return;
-            }
             distanceSensed = hit.distance;
             print("distance sensed: " + distanceSensed);
         }
