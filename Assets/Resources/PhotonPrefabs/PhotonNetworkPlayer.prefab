@@ -4606,7 +4606,7 @@ PrefabInstance:
     - target: {fileID: 5029873256703913771, guid: 4cc4817c829989043b5238e73f32f04f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.142
+      value: -0.0013
       objectReference: {fileID: 0}
     - target: {fileID: 5029873256703913771, guid: 4cc4817c829989043b5238e73f32f04f,
         type: 3}
@@ -4653,7 +4653,8 @@ PrefabInstance:
       propertyPath: rayLength
       value: 200
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7299379822285926010, guid: 4cc4817c829989043b5238e73f32f04f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4cc4817c829989043b5238e73f32f04f, type: 3}
 --- !u!4 &4901074168249677203 stripped
 Transform:

@@ -7,6 +7,9 @@ public class DebugUI : MonoBehaviour
 {
     public static DebugUI instance;
 
+    private int counter;
+    public int lineCount = 22;
+
     public bool DebugMode = false;
     [SerializeField] private TMP_Text console;
 
@@ -22,9 +25,25 @@ public class DebugUI : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        counter = 0;
+    }
+
     public void Display(string message)
     {
         if(!DebugMode) { return; }
-        console.text = message;
+        counter++;
+        if(counter>lineCount)
+        {
+            console.text = "";
+            counter = 0;
+        }
+        console.text += $"\n{message}";
+    }
+
+    private void Update()
+    {
+        //console.text = "";
     }
 }

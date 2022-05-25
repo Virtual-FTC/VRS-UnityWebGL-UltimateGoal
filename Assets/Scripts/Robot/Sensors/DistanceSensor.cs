@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-public class DistanceSensor : MonoBehaviour//, ISensor
+public class DistanceSensor : MonoBehaviour
 {
     [DllImport("__Internal")]
     private static extern void updateDistanceSensorData(float r, float distance);
@@ -16,7 +16,7 @@ public class DistanceSensor : MonoBehaviour//, ISensor
 
     private float distanceSensed = -1;
     private float convertedRayLength;
-    private static float fieldScaleFactor = 200f;//field appears to be at half scale (value should be 100f at full scale)
+    private static float fieldScaleFactor = 200f;//field appears to be at half scale (value should be 100f at full scale), in centimeters
 
     // Start is called before the first frame update
     void Start()
@@ -29,22 +29,21 @@ public class DistanceSensor : MonoBehaviour//, ISensor
     void Update()
     {
         SetRayOriginAndDirection();
-        DetectObjectInFront();
+        DetectObject();
     }
 
     private void SetRayOriginAndDirection()
     {
         rayToSenseDistance.origin = transform.position;
         rayToSenseDistance.direction = transform.forward;
-
     }
 
-    private void DetectObjectInFront()
+    private void DetectObject()
     {
         if (Physics.Raycast(rayToSenseDistance, out hit, convertedRayLength))
         { 
             distanceSensed = hit.distance * fieldScaleFactor;
-            print(hit.transform + "distance sensed: " + distanceSensed);
+            Debug.Log(hit.transform + "distance sensed: " + distanceSensed, hit.transform.gameObject);
         }
         else
             distanceSensed = -1;

@@ -16,7 +16,7 @@ public class ColorSensorReporter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        DebugUI.instance?.Display($"color sensed: " + sensor.colorSensed.r + " : " + sensor.colorSensed.g + " : " + sensor.colorSensed.b + " : " + sensor.colorSensingRayLength);
+        //DebugUI.instance?.Display($"color sensed: " + sensor.colorSensed.r + " : " + sensor.colorSensed.g + " : " + sensor.colorSensed.b + " : " + sensor.colorSensingRayLength);
 #if UNITY_WEBGL && !UNITY_EDITOR
         //Debug.Log($"color sensed: " + sensor.colorSensed.r + " : " + sensor.colorSensed.g + " : " + sensor.colorSensed.b + " : " + sensor.colorSensingRayLength);
         try
