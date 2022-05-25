@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 public class DistanceSensor : MonoBehaviour
 {
     [DllImport("__Internal")]
-    private static extern void updateDistanceSensorData(float r, float distance);
+    private static extern void updateDistanceSensorData(float distance);
 
     Ray rayToSenseDistance;
     RaycastHit hit;
@@ -63,7 +63,7 @@ public class DistanceSensor : MonoBehaviour
         //Debug.Log($"distance sensed: " + distanceSensed);
         try
         {
-            updateDistanceSensorData(distanceSensed, convertedRayLength);
+            updateDistanceSensorData(distanceSensed);
         }
         catch { }
 #endif
