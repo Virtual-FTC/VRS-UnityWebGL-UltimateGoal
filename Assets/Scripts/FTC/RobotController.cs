@@ -182,6 +182,7 @@ public class RobotController : MonoBehaviour
 
     private void driveRobot()
     {
+        DebugUI.instance?.Display("Wheel commands: " + frontLeftWheelCmd + " - " + frontRightWheelCmd + " - " + backLeftWheelCmd + " - " + backRightWheelCmd);
         // Strafer Drivetrain Control
         if (!usingJoystick)
         {
@@ -189,6 +190,7 @@ public class RobotController : MonoBehaviour
             linearVelocityY = ((-frontLeftWheelCmd + frontRightWheelCmd + backLeftWheelCmd - backRightWheelCmd) / 4) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI);
             angularVelocity = (((-frontLeftWheelCmd + frontRightWheelCmd - backLeftWheelCmd + backRightWheelCmd) / 3) * ((motorRPM / 60) * 2 * wheelRadius * Mathf.PI) / (Mathf.PI * wheelSeparationWidth)) * 2 * Mathf.PI;
         }
+
         // Apply Local Velocity to Rigid Body        
         var locVel = transform.InverseTransformDirection(rb.velocity);
         locVel.x = -linearVelocityY;
