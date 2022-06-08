@@ -5,7 +5,6 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioSource endAuto;
-    public AudioSource startTeleop;
     public AudioSource startEndGame;
     public AudioSource endMatch;
 
@@ -72,10 +71,10 @@ public class AudioManager : MonoBehaviour
     {
         if (!playedStartTeleop)
         {
-            startTeleop.Play();
             playedStartTeleop = true;
+            return true;
         }
-        return startTeleop.isPlaying;
+        return false;
     }
 
     public bool playStartEndGame()
