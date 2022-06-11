@@ -251,14 +251,6 @@ public class RobotControllerUdp : MonoBehaviour
         grabberControl.Commands.Process();
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "Floor")
-        {
-            robotSoundControl.playRobotImpact();
-        }
-    }
-
     [System.Serializable]
     public class RobotPowers
     {

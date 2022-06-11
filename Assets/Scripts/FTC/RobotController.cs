@@ -302,14 +302,6 @@ public class RobotController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "Floor")
-        {
-            robotSoundControl.playRobotImpact();
-        }
-    }
-
     public void setStartPosition(Transform t)
     {
         posiiton = t;

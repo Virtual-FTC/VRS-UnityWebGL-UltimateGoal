@@ -6,7 +6,6 @@ public class RobotSoundControl : MonoBehaviour
 {
     // Robot specific sounds
     public AudioSource robotDrive;
-    public AudioSource robotImpact;
     public AudioSource robotShoot;
     public AudioSource shooterRev;
     public AudioSource intakeRev;
@@ -34,12 +33,6 @@ public class RobotSoundControl : MonoBehaviour
     public void playRobotShoot()
     {
         robotShoot.Play();
-    }
-
-    public void playRobotImpact()
-    {
-        robotImpact.volume = 0.1f;
-        robotImpact.Play();
     }
 
     public void playShooterRev(float power)
