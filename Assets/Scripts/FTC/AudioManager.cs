@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource countDown;
-    public AudioSource countDown2;
-    public AudioSource startAuto;
     public AudioSource endAuto;
-    public AudioSource startTeleop;
     public AudioSource startEndGame;
     public AudioSource endMatch;
 
@@ -35,30 +31,30 @@ public class AudioManager : MonoBehaviour
     {
         if (!playedCountDown)
         {
-            countDown.Play();
             playedCountDown = true;
+            return true;
         }
-        return countDown.isPlaying;
+        return false;
     }
 
     public bool playCountDown2()
     {
         if (!playedCountDown2)
         {
-            countDown2.Play();
             playedCountDown2 = true;
+            return true;
         }
-        return countDown2.isPlaying;
+        return false;
     }
 
     public bool playStartAuto()
     {
         if (!playedStartAuto)
         {
-            startAuto.Play();
             playedStartAuto = true;
+            return true;
         }
-        return startAuto.isPlaying;
+        return false;
     }
 
     public bool playEndAuto()
@@ -75,10 +71,10 @@ public class AudioManager : MonoBehaviour
     {
         if (!playedStartTeleop)
         {
-            startTeleop.Play();
             playedStartTeleop = true;
+            return true;
         }
-        return startTeleop.isPlaying;
+        return false;
     }
 
     public bool playStartEndGame()
@@ -109,8 +105,6 @@ public class AudioManager : MonoBehaviour
     public void reset()
     {
         playedStartAuto = false;
-        playedCountDown = false;
-        playedCountDown2 = false;
         playedEndAuto = false;
         playedStartTeleop = false;
         playedStartEndGame = false;
