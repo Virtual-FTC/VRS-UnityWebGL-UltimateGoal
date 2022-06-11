@@ -46,7 +46,7 @@ public class DistanceSensor : MonoBehaviour
             Debug.Log(hit.transform + "distance sensed: " + distanceSensed, hit.transform.gameObject);
         }
         else
-            distanceSensed = -1;
+            distanceSensed = 200;
     }
 
 
