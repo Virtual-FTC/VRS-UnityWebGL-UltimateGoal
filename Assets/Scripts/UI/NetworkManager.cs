@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.UI;
-using UnityEngine.Events;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     private string playerName;
 
     // Join Field
-    public GameObject[] objList;
-    private List<RoomInfo> rooms;
     private bool lobbyIsActive;
 
     // Create Field
@@ -35,6 +29,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connected to the master!");
         PhotonNetwork.JoinLobby();
+         
     }
 
     public override void OnJoinedLobby()
@@ -43,27 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         lobbyIsActive = true;
     }
 
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        Debug.Log("Got new room List");
-        rooms = roomList;
-        for (int i = 0; i < objList.Length; i++)
-        {
-            objList[i].SetActive(false);
-        }
-        if (roomList.Count > 0)
-        {
-            for (int i = 0; i < roomList.Count; ++i)
-            {
-                RoomInfo room = roomList[i];
-                GameObject gam = objList[i];
-
-                gam.GetComponentInChildren<Text>().text = room.Name;
-                if(room.PlayerCount < room.MaxPlayers)
-                    gam.SetActive(true);
-            }
-        }
-    }
+    
 
     /*
     // Photon Methods
@@ -132,7 +107,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 return;
             PhotonNetwork.LocalPlayer.NickName = playerName; //1
             Debug.Log(PhotonNetwork.LocalPlayer.NickName);
-            PhotonNetwork.CreateRoom(fieldName, new RoomOptions() { MaxPlayers = (byte)maxPlayers }, null); //4
+            RoomOptions options = new RoomOptions();
+            options.MaxPlayers = (byte)maxPlayers;
+            options.IsVisible = true;
+            options.EmptyRoomTtl = 0;
+            PhotonNetwork.JoinOrCreateRoom(fieldName, options, TypedLobby.Default);
         }
     }
 
@@ -142,7 +121,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             lobbyIsActive = true;
             PhotonNetwork.LocalPlayer.NickName = playerName; //1
-            PhotonNetwork.JoinRoom(rooms[index].Name);
+            //PhotonNetwork.JoinRoom(rooms[index].Name);
             Debug.Log("Trying to join room");
         }
     }
@@ -153,7 +132,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.ConnectUsingSettings();
-        }
+        }        
     }
 
     public void ChangeScene(int sceneInx)

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using QuantumTek.QuantumUI;
 
-public class SettingsControl : MonoBehaviour
+public class SettingsControl : MonoBehaviourPunCallbacks
 {
     public QUI_OptionList gameTypeOptions;
     public QUI_OptionList fieldSetupOptions;
@@ -118,5 +119,15 @@ public class SettingsControl : MonoBehaviour
     public void joinGame()
     {
         PhotonRoom.room.joinGame();
+    }
+
+    public void DisconnectPhoton()
+    {
+        PhotonNetwork.Disconnect();
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        ChangeToScene(0);
     }
 }
