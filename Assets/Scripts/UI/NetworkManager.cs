@@ -12,14 +12,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Create Field
     private string fieldName;
     private int maxPlayers = 1;
+    public string region = "us";
 
     // Start is called before the first frame update
     void Start()
     {
         //DontDestroyOnLoad(this.gameObject);
-        if (!PhotonNetwork.IsConnected)
+       if (!PhotonNetwork.IsConnected)
        {
             PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = FindObjectOfType<PhotonStats>().region.ToString();
+            
             PhotonNetwork.ConnectUsingSettings();
        }
     }
@@ -27,7 +30,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Callbacks
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Connected to the master!");
+        if (PhotonNetwork.CloudRegion != FindObjectOfType<PhotonStats>().region.ToString() + "/*")
+            Debug.Log("failed to connecto correct server");
+
+        Debug.Log($"Connected to master server: {PhotonNetwork.CloudRegion}");
         PhotonNetwork.JoinLobby();
          
     }
