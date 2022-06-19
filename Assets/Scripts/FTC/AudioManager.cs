@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     {
         if (!playedEndAuto)
         {
-            endAuto.Play();
+            //endAuto.Play();
             playedEndAuto = true;
         }
         return endAuto.isPlaying;
@@ -81,7 +81,7 @@ public class AudioManager : MonoBehaviour
     {
         if (!playedStartEndGame)
         {
-            startEndGame.Play();
+            //startEndGame.Play();
             playedStartEndGame = true;
         }
         return startEndGame.isPlaying;
@@ -91,7 +91,7 @@ public class AudioManager : MonoBehaviour
     {
         if (!playedEndMatch)
         {
-            endMatch.Play();
+            //endMatch.Play();
             playedEndMatch = true;
         }
         return endMatch.isPlaying;
@@ -99,7 +99,7 @@ public class AudioManager : MonoBehaviour
 
     public void playEStop()
     {
-        eStop.Play();
+        //eStop.Play();
     }
 
     public void reset()
@@ -119,6 +119,6 @@ public class AudioManager : MonoBehaviour
     public void playRingImpact()
     {
         ringImpact.volume = 0.1f;
-        ringImpact.Play();
+        //ringImpact.Play();
     }
 }
