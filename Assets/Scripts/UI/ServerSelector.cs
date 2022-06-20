@@ -12,11 +12,12 @@ public class ServerSelector : MonoBehaviourPunCallbacks
     public bool showDebugUI = false;
     public Text log;
     public TMPro.TMP_Dropdown dropdownMenu;
-    public GameObject root_UI;    
+    public GameObject root_debugUI, root_menu;
 
     private string lastLog = "";
     public static readonly string SERVER_PREFS = "ServerPrefs"; //Player prefs key
     private string currentRegion = "";
+    private bool showMenu = true;
 
     /// <summary>
     /// List of Servers for Players to choose from. Key is Regular Server Name and Value is the PUN Server Token
@@ -39,10 +40,11 @@ public class ServerSelector : MonoBehaviourPunCallbacks
         else
             Destroy(this.gameObject);
 
-        root_UI.SetActive(showDebugUI);
+        ShowUI(true);
         LoadServerPrefs();
         CreateDropDownMenu();
         SetDropdownSelectionTo(currentRegion);
+        
     }
 
     // Update is called once per frame
@@ -61,6 +63,18 @@ public class ServerSelector : MonoBehaviourPunCallbacks
         }
         else
             LogMessage($"Photon disconnected. Chosen Region: {currentRegion}", clearScreen: true);
+
+        ShowUI(!PhotonNetwork.IsConnected);
+    }
+
+    public void ShowUI(bool show)
+    {
+        if(showMenu != show)
+        {
+            root_debugUI.SetActive(showDebugUI);
+            root_menu.SetActive(show);
+            showMenu = show;
+        }
     }
 
     public string GetRegion()

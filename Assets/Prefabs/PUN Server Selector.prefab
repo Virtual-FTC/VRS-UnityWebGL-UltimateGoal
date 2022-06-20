@@ -228,7 +228,8 @@ MonoBehaviour:
   showDebugUI: 0
   log: {fileID: 1598985943699611641}
   dropdownMenu: {fileID: 4946535264374270392}
-  root_UI: {fileID: 1598985942964900733}
+  root_debugUI: {fileID: 1598985942964900733}
+  root_menu: {fileID: 5738524855856333825}
 --- !u!1 &1598985942964900733
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ GameObject:
   - component: {fileID: 1598985942964900720}
   - component: {fileID: 1598985942964900735}
   m_Layer: 5
-  m_Name: UI Root
+  m_Name: Debug UI Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
