@@ -43,7 +43,7 @@ public class DistanceSensor : MonoBehaviour
         if (Physics.Raycast(rayToSenseDistance, out hit, convertedRayLength))
         { 
             distanceSensed = hit.distance * fieldScaleFactor;
-            Debug.Log(hit.transform + "distance sensed: " + distanceSensed, hit.transform.gameObject);
+            //Debug.Log(hit.transform + "distance sensed: " + distanceSensed, hit.transform.gameObject);
         }
         else
             distanceSensed = 200;
