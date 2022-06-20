@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
@@ -40,7 +41,6 @@ public class ServerSelector : MonoBehaviourPunCallbacks
         else
             Destroy(this.gameObject);
 
-        ShowUI(true);
         LoadServerPrefs();
         CreateDropDownMenu();
         SetDropdownSelectionTo(currentRegion);
@@ -64,7 +64,7 @@ public class ServerSelector : MonoBehaviourPunCallbacks
         else
             LogMessage($"Photon disconnected. Chosen Region: {currentRegion}", clearScreen: true);
 
-        ShowUI(!PhotonNetwork.IsConnected);
+        ShowUI(SceneManager.GetActiveScene().buildIndex == 0);
     }
 
     public void ShowUI(bool show)
