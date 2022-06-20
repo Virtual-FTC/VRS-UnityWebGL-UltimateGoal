@@ -21,7 +21,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
        if (!PhotonNetwork.IsConnected)
        {
             PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = FindObjectOfType<PhotonStats>().region.ToString();
+            PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = ServerSelector.instance?.GetRegion();
             
             PhotonNetwork.ConnectUsingSettings();
        }
@@ -30,7 +30,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     // Callbacks
     public override void OnConnectedToMaster()
     {
-        if (PhotonNetwork.CloudRegion != FindObjectOfType<PhotonStats>().region.ToString() + "/*")
+        if (PhotonNetwork.CloudRegion != ServerSelector.instance?.GetRegion() + "/*")
             Debug.Log("failed to connecto correct server");
 
         Debug.Log($"Connected to master server: {PhotonNetwork.CloudRegion}");
