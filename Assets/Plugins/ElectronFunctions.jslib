@@ -16,5 +16,8 @@ updateColorSensorData: function (R,G,B,Distance) {
   },
 updateDistanceSensorData: function (Distance) {
     setDistanceSensorData(Distance);
+  },
+updateTouchSensorData: function (Touch) {
+    setTouchSensorData(Touch);
   }
 });
