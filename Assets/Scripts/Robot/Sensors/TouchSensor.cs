@@ -19,7 +19,7 @@ public class TouchSensor : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Ignore Raycast"))
             return;
-        print(other.gameObject);
+        //print(other.gameObject);
         isTouching = true;
     }
 
