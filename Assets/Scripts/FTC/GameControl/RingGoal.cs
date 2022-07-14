@@ -33,6 +33,8 @@ public class RingGoal : MonoBehaviour
 
     void OnTriggerEnter(Collider collision)
     {
+        if (gameTimer.getTimer() <= 0)
+            return;
         PhotonView colView = collision.GetComponentInParent<PhotonView>();
         if (PhotonNetwork.IsConnected && !colView.IsMine)
             return;
@@ -50,15 +52,19 @@ public class RingGoal : MonoBehaviour
             {
                 scoreRing(collision.gameObject.transform.parent.gameObject, ScoreKeeper._Instance.FreeplayRingHigh, ScoreKeeper._Instance.AutoRingHigh);
             }
-            if (goalType == goal.power && gameTimer.getTimer() < 30f && powerGoalUsable)
+            if (goalType == goal.power && gameTimer.getTimer() < 30f)
             {
-                if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
+                pointsPerGoal = 0;
+                if (powerGoalUsable)
                 {
-                    pointsPerGoal = ScoreKeeper._Instance.PowerGoal;
-                    collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
-                    audioManager.playRingBounce();
-                    powerGoal.RotateAround(powerGoal.position, Vector3.left, ScoreKeeper._Instance.powerGoalKnockback);
-                    powerGoalUsable = false;
+                    if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
+                    {
+                        pointsPerGoal = ScoreKeeper._Instance.PowerGoal;
+                        collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+                        audioManager.playRingBounce();
+                        powerGoal.RotateAround(powerGoal.position, Vector3.left, ScoreKeeper._Instance.powerGoalKnockback);
+                        powerGoalUsable = false;
+                    }
                 }
             }
             if(goalCol == goalColor.red)
