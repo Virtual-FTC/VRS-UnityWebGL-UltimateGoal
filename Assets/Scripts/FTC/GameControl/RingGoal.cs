@@ -11,8 +11,11 @@ public class RingGoal : MonoBehaviour
     public goal goalType;
     public enum goalColor { red, blue }
     public goalColor goalCol;
+    [Tooltip("reference to the power goal mesh, leave empty for other goal types")]
+    public Transform powerGoal;
 
     private int pointsPerGoal = 0;
+    private bool powerGoalUsable;
     private GameTimer gameTimer;
     private AudioManager audioManager;
 
@@ -25,6 +28,7 @@ public class RingGoal : MonoBehaviour
         partSystem = particle.GetComponent<ParticleSystem>();
         gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
         audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
+        powerGoalUsable = true;
     }
 
     void OnTriggerEnter(Collider collision)
@@ -46,14 +50,15 @@ public class RingGoal : MonoBehaviour
             {
                 scoreRing(collision.gameObject.transform.parent.gameObject, ScoreKeeper._Instance.FreeplayRingHigh, ScoreKeeper._Instance.AutoRingHigh);
             }
-            if (goalType == goal.power)
+            if (goalType == goal.power && gameTimer.getTimer() < 30f && powerGoalUsable)
             {
-                pointsPerGoal = 0;
                 if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
                 {
                     pointsPerGoal = ScoreKeeper._Instance.PowerGoal;
                     collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
                     audioManager.playRingBounce();
+                    powerGoal.RotateAround(powerGoal.position, Vector3.left, ScoreKeeper._Instance.powerGoalKnockback);
+                    powerGoalUsable = false;
                 }
             }
             if(goalCol == goalColor.red)

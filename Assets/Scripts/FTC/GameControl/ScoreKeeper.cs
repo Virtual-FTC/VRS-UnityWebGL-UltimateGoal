@@ -24,6 +24,9 @@ public class ScoreKeeper : MonoBehaviour
     public int AutoRingLow = 3;
     public int WhiteLineGoal = 5;
 
+    [Tooltip("Amount to rotate power goal when it scores")]
+    public float powerGoalKnockback = 70f;
+
     [HideInInspector]
     public PhotonView thisView;
 

@@ -183,6 +183,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 2
   goalCol: 0
+  powerGoal: {fileID: 0}
 --- !u!1001 &187605189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6099,6 +6100,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 1
   goalCol: 1
+  powerGoal: {fileID: 0}
 --- !u!1 &422227431
 GameObject:
   m_ObjectHideFlags: 0
@@ -6418,6 +6420,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 1
+  powerGoal: {fileID: 4796757292004324281}
 --- !u!224 &508094679 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5716465713065431417, guid: ce875ceeaf5474c83a7ae0fce3b869b4,
@@ -6484,6 +6487,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 0
+  powerGoal: {fileID: 5823600880089581039}
 --- !u!1 &594992077
 GameObject:
   m_ObjectHideFlags: 0
@@ -6817,6 +6821,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 0
+  powerGoal: {fileID: 3442795433358210473}
 --- !u!1 &758895128
 GameObject:
   m_ObjectHideFlags: 0
@@ -7308,6 +7313,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 0
+  powerGoal: {fileID: 3189802014816377750}
 --- !u!1 &918206872
 GameObject:
   m_ObjectHideFlags: 0
@@ -7598,6 +7604,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 1
+  powerGoal: {fileID: 5334132816188625640}
 --- !u!1 &962991541
 GameObject:
   m_ObjectHideFlags: 0
@@ -8493,6 +8500,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 0
   goalCol: 1
+  powerGoal: {fileID: 0}
 --- !u!1 &1210851193
 GameObject:
   m_ObjectHideFlags: 0
@@ -10729,6 +10737,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 1
   goalCol: 0
+  powerGoal: {fileID: 0}
 --- !u!1001 &1761118014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16222,6 +16231,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 1
   goalCol: 0
+  powerGoal: {fileID: 0}
 --- !u!1 &1962518727
 GameObject:
   m_ObjectHideFlags: 0
@@ -16713,6 +16723,7 @@ MonoBehaviour:
   AutoRingMid: 6
   AutoRingLow: 3
   WhiteLineGoal: 5
+  powerGoalKnockback: 70
   thisView: {fileID: 2060291417}
   lights: []
 --- !u!114 &2060291400
@@ -17990,6 +18001,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 3
   goalCol: 1
+  powerGoal: {fileID: 2968625815474604015}
 --- !u!1 &2108980440
 GameObject:
   m_ObjectHideFlags: 0
@@ -18091,6 +18103,7 @@ MonoBehaviour:
   tagOfGameObject: Ring
   goalType: 2
   goalCol: 1
+  powerGoal: {fileID: 0}
 --- !u!1 &2124137037
 GameObject:
   m_ObjectHideFlags: 0
@@ -44628,14 +44641,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6149327520515183112}
-  m_LocalRotation: {x: -0.2703794, y: 9.848699e-17, z: -4.272514e-17, w: 0.9627539}
+  m_LocalRotation: {x: -0.27038196, y: 0, z: 0, w: 0.9627531}
   m_LocalPosition: {x: -0.189865, y: -0.0047625, z: 0.03730625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 674125313736930827}
   m_Father: {fileID: 9135920277452978352}
   m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -31.374, y: 0, z: 0}
 --- !u!4 &2973499475621396980
 Transform:
   m_ObjectHideFlags: 0
