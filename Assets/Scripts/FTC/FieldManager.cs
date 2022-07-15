@@ -171,6 +171,10 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 gameTimer.setGameSetup("C");
                 type = "C";
             }
+            if(gameTimer.getGameType() == "auto")
+            {
+                type = "NoRedAuto";
+            }
 
             emptyField();
 
@@ -190,7 +194,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 }
             }
         }
-        else if(!PhotonNetwork.IsConnected)
+        else if (!PhotonNetwork.IsConnected)
         {
             resetRobot();
             ScoreKeeper._Instance.resetScore();
@@ -214,8 +218,19 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 gameTimer.setGameSetup("C");
             }
+            if (gameTimer.getGameType() == "auto")
+            {
+                index = 3;
+            }
             emptyField();
             setup = (GameObject)Instantiate(setupPrefab[index], new Vector3(0, 0.0f, 0), Quaternion.identity);
+            for (int x = 0; x < setup.GetComponentsInChildren<Rigidbody>().Length; x++)
+            {
+                if (setup.GetComponentsInChildren<Rigidbody>()[x].tag == "Wobble")
+                {
+                    setup.GetComponentsInChildren<Rigidbody>()[x].centerOfMass = new Vector3(0, -0.9f, 0);
+                }
+            }
         }
         else//for non-master clients
         {
