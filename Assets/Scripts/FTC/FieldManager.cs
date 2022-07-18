@@ -174,7 +174,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 gameTimer.setGameSetup("C");
                 type = "C";
             }
-            if(gameTimer.getGameType() == "auto")
+            
+            if (vrs_messenger.instance?.GetPlaymode() == "Auto")
             {
                 type = "NoRedAuto";
             }
@@ -220,7 +221,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 gameTimer.setGameSetup("C");
             }
-            if (gameTimer.getGameType() == "auto")
+            
+            if (vrs_messenger.instance?.GetPlaymode() == "Auto")
             {
                 index = 3;
             }

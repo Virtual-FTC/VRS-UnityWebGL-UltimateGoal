@@ -182,7 +182,7 @@ public class RobotController : MonoBehaviour
 
     private void driveRobot()
     {
-        DebugUI.instance?.Display("Wheel commands: " + frontLeftWheelCmd + " - " + frontRightWheelCmd + " - " + backLeftWheelCmd + " - " + backRightWheelCmd);
+        //DebugUI.instance?.Display("Wheel commands: " + frontLeftWheelCmd + " - " + frontRightWheelCmd + " - " + backLeftWheelCmd + " - " + backRightWheelCmd);
         // Strafer Drivetrain Control
         if (!usingJoystick)
         {
