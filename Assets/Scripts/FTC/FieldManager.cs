@@ -177,6 +177,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             
             if (vrs_messenger.instance?.GetPlaymode() == "Auto")
             {
+                gameTimer.setGameSetup("C");
                 type = "NoRedAuto";
             }
 
@@ -224,6 +225,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             
             if (vrs_messenger.instance?.GetPlaymode() == "Auto")
             {
+                gameTimer.setGameSetup("C");
                 index = 3;
             }
             emptyField();
