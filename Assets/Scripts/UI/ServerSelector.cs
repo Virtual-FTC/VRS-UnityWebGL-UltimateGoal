@@ -180,7 +180,7 @@ public class ServerSelector : MonoBehaviourPunCallbacks
         if(lastLog != msg)
         {
             lastLog = msg;
-            Debug.Log(msg);
+            //Debug.Log(msg);
         }
 
     }

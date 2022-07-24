@@ -19,6 +19,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public bool isGameLoaded;
     public int currentScene;
     public int multiplayScene;
+    private PlayerListPanel playerListPanel;
 
     // Player Info
     Player[] photonPlayers;
@@ -44,19 +45,14 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     // Start is called before the first frame update
     void Awake()
     {
+        playerListPanel = FindObjectOfType<PlayerListPanel>();
+
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Destroyed PhotonRoom");
             Destroy(transform.gameObject);
         }
 
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            for(int x = 0; x < playerUI.Length; x++)
-            {
-                playerUI[x].SetActive(false);
-            }
-        }
         // Setup singleton (error over photonview is ok)
         if(PhotonRoom.room == null)
         {
@@ -145,8 +141,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         base.OnJoinedRoom();
         Debug.Log("You are now in a room" + PhotonNetwork.CurrentRoom.ToString());
         checkPlayers();
-        foreach(Player p in PhotonNetwork.PlayerList )
-            addNewPlayerToUI(p);
+        
+        if(PhotonNetwork.IsMasterClient)
+        {
+            foreach (Player p in PhotonNetwork.PlayerList)
+                playerListPanel.AddNewPlayer(p);
+        }
 
         SetPlayerCustomProperties();
     }
@@ -168,7 +168,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         checkPlayers();
-        addNewPlayerToUI(newPlayer);
+        addNewPlayerToUI(newPlayer);        
     }
 
     private void checkPlayers()
@@ -242,7 +242,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 if ((int)p.CustomProperties[PLAYERPROPS.PLAYER_TYPE] == (int)User.supervisor)
                 {
-                    removeNewPlayerFromUI(p);
+                    //removeNewPlayerFromUI(p);
                     return;
                 }
             }
@@ -271,8 +271,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     }
                     customPlayers[x].player = p;
                     Debug.Log("New player named : " + customPlayers[x].player.NickName);
-                    playerUI[x].GetComponentInChildren<Text>().text = customPlayers[x].player.NickName;
-                    playerUI[x].SetActive(true);
+                    playerListPanel.AddNewPlayer(p);
                     return;
                 }
             }
@@ -287,8 +286,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 continue;
             if (customPlayers[x].player.ActorNumber == p.ActorNumber)
             {
-                customPlayers[x] = null;
-                playerUI[x].SetActive(false);
+                customPlayers[x] = null;                
+                playerListPanel.RemovePlayer(p.ActorNumber);
                 break;
             }
         }
@@ -299,6 +298,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         photonPlayers = PhotonNetwork.PlayerList;
+            
         removeNewPlayerFromUI(otherPlayer);
     }
 
@@ -346,10 +346,12 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     }
 
-    public class CustomPlayer
-    {
-        public int team; // Tells me team as well as UI slot
-        public int pos; // Tells me position as well as UI slot
-        public Player player; // Tells me name
-    }
+    
+}
+
+public class CustomPlayer
+{
+    public int team; // Tells me team as well as UI slot
+    public int pos; // Tells me position as well as UI slot
+    public Player player = null; // Tells me name
 }
