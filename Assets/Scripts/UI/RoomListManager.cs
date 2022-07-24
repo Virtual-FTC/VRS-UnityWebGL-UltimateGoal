@@ -9,6 +9,13 @@ public class RoomListManager : MonoBehaviourPunCallbacks
     public Transform roomContentRoot;
     private Dictionary<string, GameObject> cachedRoomList = new Dictionary<string, GameObject>();
 
+    private NetworkManager netMan;
+
+    private void Awake()
+    {
+        netMan = FindObjectOfType<NetworkManager>();
+    }
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         foreach (RoomInfo info in roomList)
@@ -42,6 +49,9 @@ public class RoomListManager : MonoBehaviourPunCallbacks
             PhotonNetwork.LeaveLobby();
         }
 
+
+        PhotonNetwork.LocalPlayer.NickName = netMan.playerName;
+        Debug.Log(PhotonNetwork.LocalPlayer.NickName);
         PhotonNetwork.JoinRoom(_roomName);
     }
 }

@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
+
+    private ExitGames.Client.Photon.Hashtable _customProperties = new ExitGames.Client.Photon.Hashtable();
+
     // Room info
     public static PhotonRoom room;
     private PhotonView PV;
@@ -140,10 +143,28 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        Debug.Log("You are now in a room");
+        Debug.Log("You are now in a room" + PhotonNetwork.CurrentRoom.ToString());
         checkPlayers();
-        addNewPlayerToUI(PhotonNetwork.LocalPlayer);
+        foreach(Player p in PhotonNetwork.PlayerList )
+            addNewPlayerToUI(p);
+
+        SetPlayerCustomProperties();
     }
+
+
+    private void SetPlayerCustomProperties()
+    {
+        if (UserSingleton.instance?.localUserType == User.supervisor)
+        {
+            _customProperties[PLAYERPROPS.PLAYER_TYPE] = (int)User.supervisor;
+        }
+        else
+        {
+            _customProperties[PLAYERPROPS.PLAYER_TYPE] = (int)User.student;
+        }
+        PhotonNetwork.LocalPlayer.SetCustomProperties(_customProperties);
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         checkPlayers();
@@ -170,6 +191,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 if (!PhotonNetwork.IsMasterClient)
                     return;
                 PhotonNetwork.CurrentRoom.IsOpen = false;
+            }
+            else
+            {
+                readyToStart = false;
+                PhotonNetwork.CurrentRoom.IsOpen = true;
             }
         }
         else
@@ -206,9 +232,26 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     }
 
+    private void Update()
+    {
+        photonPlayers = PhotonNetwork.PlayerList;
+
+        foreach(Player p in photonPlayers)
+        {
+            if (p.CustomProperties.ContainsKey(PLAYERPROPS.PLAYER_TYPE))
+            {
+                if ((int)p.CustomProperties[PLAYERPROPS.PLAYER_TYPE] == (int)User.supervisor)
+                {
+                    removeNewPlayerFromUI(p);
+                    return;
+                }
+            }
+        }
+    }
+
     private void addNewPlayerToUI(Player p)
     {
-        if (PhotonNetwork.IsMasterClient)
+        //if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log(customPlayers.Length);
             for (int x = 0; x < customPlayers.Length; x++)
@@ -227,7 +270,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                         customPlayers[x].pos = x - 2;
                     }
                     customPlayers[x].player = p;
-                    Debug.Log(customPlayers[x].player.NickName);
+                    Debug.Log("New player named : " + customPlayers[x].player.NickName);
                     playerUI[x].GetComponentInChildren<Text>().text = customPlayers[x].player.NickName;
                     playerUI[x].SetActive(true);
                     return;
@@ -240,12 +283,17 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         for (int x = 0; x < customPlayers.Length; x++)
         {
-            if (customPlayers[x].player.UserId == p.UserId)
+            if (customPlayers[x] == null)
+                continue;
+            if (customPlayers[x].player.ActorNumber == p.ActorNumber)
             {
                 customPlayers[x] = null;
                 playerUI[x].SetActive(false);
+                break;
             }
         }
+
+        checkPlayers();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
