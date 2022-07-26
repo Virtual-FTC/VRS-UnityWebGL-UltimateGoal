@@ -2820,6 +2820,7 @@ MonoBehaviour:
   - {fileID: 1887455486}
   - {fileID: 1405910026}
   - {fileID: 1571170862}
+  actorNumbers: 00000000000000000000000000000000
 --- !u!1 &818715135240604857
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,7 +3576,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Red
+  m_text: Blue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94372b37536c348c69ca263f84cda3f8, type: 2}
   m_sharedMaterial: {fileID: 9160878908442058744, guid: 94372b37536c348c69ca263f84cda3f8,
@@ -3585,8 +3586,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294912000
+  m_fontColor: {r: 0, g: 0.15686275, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3857,7 +3858,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Blue
+  m_text: Red
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94372b37536c348c69ca263f84cda3f8, type: 2}
   m_sharedMaterial: {fileID: 9160878908442058744, guid: 94372b37536c348c69ca263f84cda3f8,
@@ -3867,8 +3868,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294912000
-  m_fontColor: {r: 0, g: 0.15586233, b: 1, a: 1}
+    rgba: 4278845695
+  m_fontColor: {r: 1, g: 0, b: 0.040576935, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

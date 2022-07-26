@@ -117,8 +117,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
             if (!lobbyIsActive)
                 return;
-            PhotonNetwork.LocalPlayer.NickName = playerName; //1
-            Debug.Log(PhotonNetwork.LocalPlayer.NickName);
+            PhotonNetwork.LocalPlayer.NickName = playerName; //1            
             RoomOptions options = new RoomOptions();
 
             //Photon Player Properties
@@ -166,4 +165,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 public struct PLAYERPROPS
 {
     public static string PLAYER_TYPE = "PlayerType";
+    public static string PLAYER_POS = "PlayerPos";
+    public static string PLAYER_TEAM = "PlayerTeam";
 }

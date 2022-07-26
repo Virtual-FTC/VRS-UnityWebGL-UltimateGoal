@@ -128,8 +128,10 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 if (masterPlayers[x].UserId == PhotonNetwork.LocalPlayer.UserId)
                 {
-                    var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[x].transform.position, spawnPositions[x].transform.rotation, 0);
-                    robot.GetComponent<RobotController>().setStartPosition(spawnPositions[x].transform);
+                    int spawnPos = (int)PhotonNetwork.LocalPlayer.CustomProperties[PLAYERPROPS.PLAYER_POS];
+
+                    var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[spawnPos].transform.position, spawnPositions[spawnPos].transform.rotation, 0);
+                    robot.GetComponent<RobotController>().setStartPosition(spawnPositions[spawnPos].transform);
                 }
             }
         }
@@ -148,11 +150,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 playerListPanel.AddNewPlayer(p);
         }
 
-        SetPlayerCustomProperties();
+        SetPlayerType();
     }
 
 
-    private void SetPlayerCustomProperties()
+    private void SetPlayerType()
     {
         if (UserSingleton.instance?.localUserType == User.supervisor)
         {
@@ -163,6 +165,18 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             _customProperties[PLAYERPROPS.PLAYER_TYPE] = (int)User.student;
         }
         PhotonNetwork.LocalPlayer.SetCustomProperties(_customProperties);
+    }
+
+    public void UpdatePlayerProperties(Player targetPlayer, int pos)
+    {
+        Team newTeam = pos <= 1 ? Team.blue : Team.red;
+        Debug.Log($"Updating player custom properties: {targetPlayer.NickName} pos = {pos}, team = {newTeam}");
+        
+        ExitGames.Client.Photon.Hashtable _customProperties = new ExitGames.Client.Photon.Hashtable();
+        _customProperties[PLAYERPROPS.PLAYER_POS] = pos;
+        _customProperties[PLAYERPROPS.PLAYER_TEAM] = newTeam;
+        targetPlayer.SetCustomProperties(_customProperties);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(_customProperties);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -319,7 +333,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void joinGame()
     {
-        Debug.Log("I trying to join game");
+        //Debug.Log("I trying to join game");
         if (PhotonNetwork.IsConnected)
         {
             if (readyToStart)
@@ -354,4 +368,9 @@ public class CustomPlayer
     public int team; // Tells me team as well as UI slot
     public int pos; // Tells me position as well as UI slot
     public Player player = null; // Tells me name
+}
+
+public enum Team
+{
+    blue, red
 }

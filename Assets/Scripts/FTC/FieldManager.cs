@@ -37,7 +37,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            Debug.Log("Using Photon");
+            //Debug.Log("Using Photon");
         }
         else
         {
@@ -78,7 +78,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         
 
-        print("Started.....");
+        //print("Started.....");
     }
 
     private void resetRobot()
