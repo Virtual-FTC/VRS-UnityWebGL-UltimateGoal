@@ -24,6 +24,13 @@ public class PlayerListPanel : MonoBehaviourPunCallbacks, IOnEventCallback
 
     public void AddNewPlayer(Player newPlayer)
     {
+        //Don't add player list item if they are supervisor
+        if(newPlayer.CustomProperties.ContainsKey(PLAYERPROPS.PLAYER_TYPE))
+        {
+            if ((int)newPlayer.CustomProperties[PLAYERPROPS.PLAYER_TYPE] == (int)User.supervisor)
+                    return; 
+        }
+
         int tempActorNumber = 0;
         int tempPos = 0;
         //Add new player to players array

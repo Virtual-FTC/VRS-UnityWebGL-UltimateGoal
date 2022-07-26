@@ -121,20 +121,15 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [PunRPC]
     private void CreatePlayer()
     {
-        var masterPlayers = PhotonNetwork.PlayerList;
-        for (int x = 0; x < masterPlayers.Length; x++)
-        {
-            if(masterPlayers[x] != null)
-            {
-                if (masterPlayers[x].UserId == PhotonNetwork.LocalPlayer.UserId)
-                {
-                    int spawnPos = (int)PhotonNetwork.LocalPlayer.CustomProperties[PLAYERPROPS.PLAYER_POS];
+        if (UserSingleton.instance?.localUserType == User.supervisor)
+            return;
 
-                    var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[spawnPos].transform.position, spawnPositions[spawnPos].transform.rotation, 0);
-                    robot.GetComponent<RobotController>().setStartPosition(spawnPositions[spawnPos].transform);
-                }
-            }
-        }
+        
+        int spawnPos = (int)PhotonNetwork.LocalPlayer.CustomProperties[PLAYERPROPS.PLAYER_POS];
+
+        var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[spawnPos].transform.position, spawnPositions[spawnPos].transform.rotation, 0);
+        robot.GetComponent<RobotController>().setStartPosition(spawnPositions[spawnPos].transform);
+        
         Destroy(transform.gameObject);
     }
 
@@ -143,14 +138,23 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         base.OnJoinedRoom();
         Debug.Log("You are now in a room" + PhotonNetwork.CurrentRoom.ToString());
         checkPlayers();
-        
-        if(PhotonNetwork.IsMasterClient)
+        SetPlayerType();
+
+        if (PhotonNetwork.IsMasterClient)
         {
             foreach (Player p in PhotonNetwork.PlayerList)
+            {
+                //skip supervisor
+                if (UserSingleton.instance?.localUserType == User.supervisor)
+                {
+                    if(p.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                    {
+                        continue;
+                    }
+                }
                 playerListPanel.AddNewPlayer(p);
+            }
         }
-
-        SetPlayerType();
     }
 
 

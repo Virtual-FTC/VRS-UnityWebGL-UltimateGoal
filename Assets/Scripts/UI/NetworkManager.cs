@@ -123,7 +123,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             //Photon Player Properties
             if (UserSingleton.instance?.localUserType == User.supervisor)
             {
-                maxPlayers++;                
+                maxPlayers++;
             }
 
             options.MaxPlayers = (byte)maxPlayers;
