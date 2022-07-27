@@ -31,7 +31,7 @@ public class TouchSensor : MonoBehaviour
     private void FixedUpdate()
     {
         //reports data to jslib
-        DebugUI.instance?.Display($"touch sensed: " + isTouching);
+        //DebugUI.instance?.Display($"touch sensed: " + isTouching);
 #if UNITY_WEBGL && !UNITY_EDITOR
         //Debug.Log($"touch sensed: " + isTouching);
         try

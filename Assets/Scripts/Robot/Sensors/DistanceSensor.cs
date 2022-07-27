@@ -58,7 +58,7 @@ public class DistanceSensor : MonoBehaviour
     private void FixedUpdate()
     {
         //reports data to jslib
-        DebugUI.instance?.Display($"distance sensed: " + distanceSensed);
+        //DebugUI.instance?.Display($"distance sensed: " + distanceSensed);
 #if UNITY_WEBGL && !UNITY_EDITOR
         //Debug.Log($"distance sensed: " + distanceSensed);
         try

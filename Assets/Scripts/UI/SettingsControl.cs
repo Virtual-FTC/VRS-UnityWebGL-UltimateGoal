@@ -123,6 +123,11 @@ public class SettingsControl : MonoBehaviourPunCallbacks
 
     public void DisconnectPhoton()
     {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            FindObjectOfType<PhotonRoom>().OnPlayerLeftRoom(PhotonNetwork.LocalPlayer);
+            PhotonNetwork.SendAllOutgoingCommands();
+        }
         PhotonNetwork.Disconnect();
     }
 

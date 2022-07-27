@@ -11,13 +11,23 @@ public class RingGoal : MonoBehaviour
     public goal goalType;
     public enum goalColor { red, blue }
     public goalColor goalCol;
+    [Tooltip("reference to the power goal mesh, leave empty for other goal types")]
+    public Transform powerGoal;
+    private Quaternion startingRotation;
 
     private int pointsPerGoal = 0;
+    private bool powerGoalUsable;
     private GameTimer gameTimer;
     private AudioManager audioManager;
 
     private GameObject particle;
     private ParticleSystem partSystem;
+
+    private void Awake()
+    {
+        if (powerGoal != null)
+            startingRotation = powerGoal.transform.rotation;
+    }
 
     void Start()
     {
@@ -25,10 +35,13 @@ public class RingGoal : MonoBehaviour
         partSystem = particle.GetComponent<ParticleSystem>();
         gameTimer = ScoreKeeper._Instance.GetComponent<GameTimer>();
         audioManager = GameObject.Find("ScoreKeeper").GetComponent<AudioManager>();
+        powerGoalUsable = true;        
     }
 
     void OnTriggerEnter(Collider collision)
     {
+        if (gameTimer.getTimer() <= 0)
+            return;
         PhotonView colView = collision.GetComponentInParent<PhotonView>();
         if (PhotonNetwork.IsConnected && !colView.IsMine)
             return;
@@ -46,14 +59,20 @@ public class RingGoal : MonoBehaviour
             {
                 scoreRing(collision.gameObject.transform.parent.gameObject, ScoreKeeper._Instance.FreeplayRingHigh, ScoreKeeper._Instance.AutoRingHigh);
             }
-            if (goalType == goal.power)
+            if (goalType == goal.power && gameTimer.getTimer() < 30f)
             {
                 pointsPerGoal = 0;
-                if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
+                if (powerGoalUsable)
                 {
-                    pointsPerGoal = ScoreKeeper._Instance.PowerGoal;
-                    collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
-                    audioManager.playRingBounce();
+                    if (gameTimer.getGameType() == "auto" || gameTimer.getGameType() == "end" || gameTimer.getGameType() == "freeplay")
+                    {
+                        pointsPerGoal = ScoreKeeper._Instance.PowerGoal;
+                        if(PhotonNetwork.IsConnected)
+                            collision.gameObject.transform.parent.gameObject.GetComponent<PhotonView>().RPC("DestroyRing", RpcTarget.MasterClient);
+                        audioManager.playRingBounce();
+                        powerGoal.RotateAround(powerGoal.position, Vector3.left, ScoreKeeper._Instance.powerGoalKnockback);
+                        powerGoalUsable = false;
+                    }
                 }
             }
             if(goalCol == goalColor.red)
@@ -74,5 +93,12 @@ public class RingGoal : MonoBehaviour
         pointsPerGoal = pointA;
         if (gameTimer.getGameType() == "auto")
             pointsPerGoal = pointB;
+    }
+
+    public void Reset()
+    {
+        if(powerGoal == null) { return; }
+        powerGoal.rotation = startingRotation;
+        powerGoalUsable = true;
     }
 }

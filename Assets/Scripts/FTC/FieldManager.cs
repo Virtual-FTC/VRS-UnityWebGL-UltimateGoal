@@ -26,6 +26,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public GameObject[] setupPrefab;
     private GameObject setup;
+    private RingGoal [] powershots;
 
     public Transform[] spawnPositions;
 
@@ -36,7 +37,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
-            Debug.Log("Using Photon");
+            //Debug.Log("Using Photon");
         }
         else
         {
@@ -64,6 +65,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         }
         camera = GameObject.Find("Camera").GetComponent<CameraPosition>();
         gameTimer = GameObject.Find("ScoreKeeper").GetComponent<GameTimer>();
+        powershots = FindObjectsOfType<RingGoal>();
 
         resetField();
         if (MultiplayerSetting.multiplayerSetting != null)
@@ -75,7 +77,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             gameTimer.setGameType("auto");
 
         
-        print("Started.....");
+
+        //print("Started.....");
     }
 
     private void resetRobot()
@@ -171,13 +174,16 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 gameTimer.setGameSetup("C");
                 type = "C";
             }
+            
+            if (vrs_messenger.instance?.GetPlaymode() == "Auto")
+            {
+                gameTimer.setGameSetup("C");
+                type = "NoRedAuto";
+            }
 
             emptyField();
 
-            if (!PhotonNetwork.IsConnected)
-            {
-            }
-            else
+            if (PhotonNetwork.IsConnected)
             {
                 setup = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "DynamicField-" + type), new Vector3(0, 0.0f, 0), Quaternion.identity, 0);
                 PhotonNetwork.SendAllOutgoingCommands();
@@ -189,8 +195,10 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                     setup.GetComponentsInChildren<Rigidbody>()[x].centerOfMass = new Vector3(0, -0.9f, 0);
                 }
             }
+
+            
         }
-        else if(!PhotonNetwork.IsConnected)
+        else if (!PhotonNetwork.IsConnected)
         {
             resetRobot();
             ScoreKeeper._Instance.resetScore();
@@ -214,12 +222,31 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             {
                 gameTimer.setGameSetup("C");
             }
+            
+            if (vrs_messenger.instance?.GetPlaymode() == "Auto")
+            {
+                gameTimer.setGameSetup("C");
+                index = 3;
+            }
             emptyField();
             setup = (GameObject)Instantiate(setupPrefab[index], new Vector3(0, 0.0f, 0), Quaternion.identity);
+            for (int x = 0; x < setup.GetComponentsInChildren<Rigidbody>().Length; x++)
+            {
+                if (setup.GetComponentsInChildren<Rigidbody>()[x].tag == "Wobble")
+                {
+                    setup.GetComponentsInChildren<Rigidbody>()[x].centerOfMass = new Vector3(0, -0.9f, 0);
+                }
+            }
         }
         else//for non-master clients
         {
-            resetRobot();
+            resetRobot();   
+        }
+
+        //all clients
+        foreach (RingGoal pshot in powershots)
+        {
+            pshot.Reset();
         }
     }
 

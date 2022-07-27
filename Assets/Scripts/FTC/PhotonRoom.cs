@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
+
+    private ExitGames.Client.Photon.Hashtable _customProperties = new ExitGames.Client.Photon.Hashtable();
+
     // Room info
     public static PhotonRoom room;
     private PhotonView PV;
@@ -16,6 +19,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public bool isGameLoaded;
     public int currentScene;
     public int multiplayScene;
+    private PlayerListPanel playerListPanel;
 
     // Player Info
     Player[] photonPlayers;
@@ -41,19 +45,14 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     // Start is called before the first frame update
     void Awake()
     {
+        playerListPanel = FindObjectOfType<PlayerListPanel>();
+
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Destroyed PhotonRoom");
             Destroy(transform.gameObject);
         }
 
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            for(int x = 0; x < playerUI.Length; x++)
-            {
-                playerUI[x].SetActive(false);
-            }
-        }
         // Setup singleton (error over photonview is ok)
         if(PhotonRoom.room == null)
         {
@@ -122,32 +121,72 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     [PunRPC]
     private void CreatePlayer()
     {
-        var masterPlayers = PhotonNetwork.PlayerList;
-        for (int x = 0; x < masterPlayers.Length; x++)
-        {
-            if(masterPlayers[x] != null)
-            {
-                if (masterPlayers[x].UserId == PhotonNetwork.LocalPlayer.UserId)
-                {
-                    var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[x].transform.position, spawnPositions[x].transform.rotation, 0);
-                    robot.GetComponent<RobotController>().setStartPosition(spawnPositions[x].transform);
-                }
-            }
-        }
+        if (UserSingleton.instance?.localUserType == User.supervisor)
+            return;
+
+        
+        int spawnPos = (int)PhotonNetwork.LocalPlayer.CustomProperties[PLAYERPROPS.PLAYER_POS];
+
+        var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[spawnPos].transform.position, spawnPositions[spawnPos].transform.rotation, 0);
+        robot.GetComponent<RobotController>().setStartPosition(spawnPositions[spawnPos].transform);
+        
         Destroy(transform.gameObject);
     }
 
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        Debug.Log("You are now in a room");
+        Debug.Log("You are now in a room" + PhotonNetwork.CurrentRoom.ToString());
         checkPlayers();
-        addNewPlayerToUI(PhotonNetwork.LocalPlayer);
+        SetPlayerType();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            foreach (Player p in PhotonNetwork.PlayerList)
+            {
+                //skip supervisor
+                if (UserSingleton.instance?.localUserType == User.supervisor)
+                {
+                    if(p.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                    {
+                        continue;
+                    }
+                }
+                playerListPanel.AddNewPlayer(p);
+            }
+        }
     }
+
+
+    private void SetPlayerType()
+    {
+        if (UserSingleton.instance?.localUserType == User.supervisor)
+        {
+            _customProperties[PLAYERPROPS.PLAYER_TYPE] = (int)User.supervisor;
+        }
+        else
+        {
+            _customProperties[PLAYERPROPS.PLAYER_TYPE] = (int)User.student;
+        }
+        PhotonNetwork.LocalPlayer.SetCustomProperties(_customProperties);
+    }
+
+    public void UpdatePlayerProperties(Player targetPlayer, int pos)
+    {
+        Team newTeam = pos <= 1 ? Team.blue : Team.red;
+        Debug.Log($"Updating player custom properties: {targetPlayer.NickName} pos = {pos}, team = {newTeam}");
+        
+        ExitGames.Client.Photon.Hashtable _customProperties = new ExitGames.Client.Photon.Hashtable();
+        _customProperties[PLAYERPROPS.PLAYER_POS] = pos;
+        _customProperties[PLAYERPROPS.PLAYER_TEAM] = newTeam;
+        targetPlayer.SetCustomProperties(_customProperties);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(_customProperties);
+    }
+
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         checkPlayers();
-        addNewPlayerToUI(newPlayer);
+        addNewPlayerToUI(newPlayer);        
     }
 
     private void checkPlayers()
@@ -170,6 +209,11 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 if (!PhotonNetwork.IsMasterClient)
                     return;
                 PhotonNetwork.CurrentRoom.IsOpen = false;
+            }
+            else
+            {
+                readyToStart = false;
+                PhotonNetwork.CurrentRoom.IsOpen = true;
             }
         }
         else
@@ -206,9 +250,26 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     }
 
+    private void Update()
+    {
+        photonPlayers = PhotonNetwork.PlayerList;
+
+        foreach(Player p in photonPlayers)
+        {
+            if (p.CustomProperties.ContainsKey(PLAYERPROPS.PLAYER_TYPE))
+            {
+                if ((int)p.CustomProperties[PLAYERPROPS.PLAYER_TYPE] == (int)User.supervisor)
+                {
+                    //removeNewPlayerFromUI(p);
+                    return;
+                }
+            }
+        }
+    }
+
     private void addNewPlayerToUI(Player p)
     {
-        if (PhotonNetwork.IsMasterClient)
+        //if (PhotonNetwork.IsMasterClient)
         {
             Debug.Log(customPlayers.Length);
             for (int x = 0; x < customPlayers.Length; x++)
@@ -227,9 +288,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
                         customPlayers[x].pos = x - 2;
                     }
                     customPlayers[x].player = p;
-                    Debug.Log(customPlayers[x].player.NickName);
-                    playerUI[x].GetComponentInChildren<Text>().text = customPlayers[x].player.NickName;
-                    playerUI[x].SetActive(true);
+                    Debug.Log("New player named : " + customPlayers[x].player.NickName);
+                    playerListPanel.AddNewPlayer(p);
                     return;
                 }
             }
@@ -240,17 +300,23 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         for (int x = 0; x < customPlayers.Length; x++)
         {
-            if (customPlayers[x].player.UserId == p.UserId)
+            if (customPlayers[x] == null)
+                continue;
+            if (customPlayers[x].player.ActorNumber == p.ActorNumber)
             {
-                customPlayers[x] = null;
-                playerUI[x].SetActive(false);
+                customPlayers[x] = null;                
+                playerListPanel.RemovePlayer(p.ActorNumber);
+                break;
             }
         }
+
+        checkPlayers();
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         photonPlayers = PhotonNetwork.PlayerList;
+            
         removeNewPlayerFromUI(otherPlayer);
     }
 
@@ -271,7 +337,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void joinGame()
     {
-        Debug.Log("I trying to join game");
+        //Debug.Log("I trying to join game");
         if (PhotonNetwork.IsConnected)
         {
             if (readyToStart)
@@ -298,10 +364,17 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     }
 
-    public class CustomPlayer
-    {
-        public int team; // Tells me team as well as UI slot
-        public int pos; // Tells me position as well as UI slot
-        public Player player; // Tells me name
-    }
+    
+}
+
+public class CustomPlayer
+{
+    public int team; // Tells me team as well as UI slot
+    public int pos; // Tells me position as well as UI slot
+    public Player player = null; // Tells me name
+}
+
+public enum Team
+{
+    blue, red
 }

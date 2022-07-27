@@ -4,7 +4,7 @@ using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
-    private string playerName;
+    public string playerName;
 
     // Join Field
     private bool lobbyIsActive;
@@ -102,6 +102,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             maxPlayers = 1;
         else if (maxPlayers < 1)
             maxPlayers = 4;
+
+        
+
         Debug.Log("maxPlayers: " + maxPlayers);
     }
 
@@ -109,14 +112,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsConnected)
         {
+            if (string.IsNullOrEmpty(fieldName))
+                fieldName = "Room " + Random.Range(0, 10000).ToString();
+
             if (!lobbyIsActive)
                 return;
-            PhotonNetwork.LocalPlayer.NickName = playerName; //1
-            Debug.Log(PhotonNetwork.LocalPlayer.NickName);
+            PhotonNetwork.LocalPlayer.NickName = playerName; //1            
             RoomOptions options = new RoomOptions();
+
+            //Photon Player Properties
+            if (UserSingleton.instance?.localUserType == User.supervisor)
+            {
+                maxPlayers++;
+            }
+
             options.MaxPlayers = (byte)maxPlayers;
             options.IsVisible = true;
             options.EmptyRoomTtl = 0;
+            Debug.Log("maxPlayers: " + maxPlayers);
             PhotonNetwork.JoinOrCreateRoom(fieldName, options, TypedLobby.Default);
         }
     }
@@ -147,4 +160,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             return;
         PhotonNetwork.LoadLevel(sceneInx);
     }
+}
+
+public struct PLAYERPROPS
+{
+    public static string PLAYER_TYPE = "PlayerType";
+    public static string PLAYER_POS = "PlayerPos";
+    public static string PLAYER_TEAM = "PlayerTeam";
 }
