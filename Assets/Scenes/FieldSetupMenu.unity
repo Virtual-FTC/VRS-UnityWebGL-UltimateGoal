@@ -3542,8 +3542,8 @@ GameObject:
   - component: {fileID: 3987586268437193043}
   - component: {fileID: 3987586268437193040}
   m_Layer: 5
-  m_Name: Players Label
-  m_TagString: Untagged
+  m_Name: Room Label
+  m_TagString: roomlabel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

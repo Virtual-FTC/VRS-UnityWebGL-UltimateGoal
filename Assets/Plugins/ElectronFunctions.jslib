@@ -20,4 +20,7 @@ updateDistanceSensorData: function (Distance) {
 updateTouchSensorData: function (Touch) {
     setTouchSensorData(Touch);
   }
+updateIMUSensorData: function (x,y,z,angularX,angularY,angularZ,positionX,positionY,positionZ) {
+    setIMUSensorData(x,y,z,angularX,angularY,angularZ,positionX,positionY,positionZ);
+  }
 });

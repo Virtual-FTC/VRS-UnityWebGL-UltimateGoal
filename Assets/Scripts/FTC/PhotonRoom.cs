@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
@@ -137,6 +138,17 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         base.OnJoinedRoom();
         Debug.Log("You are now in a room" + PhotonNetwork.CurrentRoom.ToString());
+        
+        GameObject roomLabel = GameObject.FindGameObjectWithTag("roomlabel");
+        if(roomLabel != null)
+        {
+            try
+            {
+                roomLabel.GetComponent<TextMeshProUGUI>().text = "Room: " + PhotonNetwork.CurrentRoom.Name;
+            }
+            catch{}
+            
+        }
         checkPlayers();
         SetPlayerType();
 
