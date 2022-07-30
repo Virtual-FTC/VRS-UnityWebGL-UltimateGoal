@@ -384,6 +384,8 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     private void OnDisable()
     {
+        if (PhotonNetwork.IsConnected) { return; }
+            
         FindObjectOfType<RobotSelector>().OnRobotChanged -= UpdateOnRobotChange;
     }
 }
