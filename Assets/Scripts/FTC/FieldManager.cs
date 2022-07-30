@@ -32,6 +32,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     private GameObject robot;
     public GameObject robotPrefab;
+    private RobotSelector rs;
 
     private void Awake()
     {
@@ -40,8 +41,9 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             //Debug.Log("Using Photon");
         }
         else
-        {   
-            FindObjectOfType<RobotSelector>().OnRobotChanged += UpdateOnRobotChange;
+        {
+            rs = FindObjectOfType<RobotSelector>();
+            rs.OnRobotChanged += UpdateOnRobotChange;
             SetupRobot(robotPrefab);
         }
     }
@@ -385,7 +387,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     private void OnDisable()
     {
         if (PhotonNetwork.IsConnected) { return; }
-            
-        FindObjectOfType<RobotSelector>().OnRobotChanged -= UpdateOnRobotChange;
+
+        rs.OnRobotChanged -= UpdateOnRobotChange;
     }
 }
