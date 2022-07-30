@@ -130,7 +130,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         var robot = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PhotonNetworkPlayer"), spawnPositions[spawnPos].transform.position, spawnPositions[spawnPos].transform.rotation, 0);
         robot.GetComponent<RobotController>().setStartPosition(spawnPositions[spawnPos].transform);
-        
+        robot.name = "PhotonNetworkPlayer(Clone)";
         Destroy(transform.gameObject);
     }
 

@@ -25,7 +25,7 @@ public class IMUSensor : MonoBehaviour
 
         Vector3 pos = rb.position;
         #if UNITY_EDITOR
-        //DebugUI.instance.Display($"Acceleration x:{acceleration.x} y:{acceleration.y} z:{acceleration.z}  \n Angular Velocity x:{angularVelocity.x}, y:{angularVelocity.y}, z:{angularVelocity.z} ");
+        DebugUI.instance?.Display($"Acceleration x:{acceleration.x} y:{acceleration.y} z:{acceleration.z}  \n Angular Velocity x:{angularVelocity.x}, y:{angularVelocity.y}, z:{angularVelocity.z} ");
         #endif
         #if UNITY_WEBGL && !UNITY_EDITOR
         //Debug.Log($"distance sensed: " + distanceSensed);

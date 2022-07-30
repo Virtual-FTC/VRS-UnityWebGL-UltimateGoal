@@ -87,6 +87,7 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         robot = (GameObject)Instantiate(robotPrefab, spawnPositions[0].transform.position, spawnPositions[0].transform.rotation);
         robot.GetComponent<RobotController>().setStartPosition(spawnPositions[0].transform);
+        robot.name = "PhotonNetworkPlayer(Clone)";
     }
 
     private void resetRobot()
