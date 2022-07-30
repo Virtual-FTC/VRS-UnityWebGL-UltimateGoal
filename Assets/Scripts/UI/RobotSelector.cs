@@ -6,6 +6,9 @@ using Photon.Pun;
 
 public class RobotSelector : MonoBehaviour
 {
+    public delegate void RobotChangedEvent(GameObject newRobot);
+    public RobotChangedEvent OnRobotChanged;
+
     public string[] prefabNames;
     public GameObject[] spawnPositions;
 
@@ -42,15 +45,15 @@ public class RobotSelector : MonoBehaviour
             robot.GetComponent<RobotController>().setStartPosition(spawnPositions[spawnPos].transform);
 
             toggleRobotOptions();
+            OnRobotChanged?.Invoke(robot);
         }
         else
         {
             Destroy(GameObject.FindGameObjectWithTag("Player"));
 
-            int spawnPos = 0;
-            var robot = Instantiate(robotPrefabs[robotType], spawnPositions[spawnPos].transform.position, spawnPositions[spawnPos].transform.rotation);
-
             toggleRobotOptions();
+            OnRobotChanged?.Invoke(robotPrefabs[robotType]);
         }
+        
     }
 }

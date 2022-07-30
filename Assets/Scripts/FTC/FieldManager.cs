@@ -40,9 +40,9 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
             //Debug.Log("Using Photon");
         }
         else
-        {
-            robot = (GameObject)Instantiate(robotPrefab, spawnPositions[0].transform.position, spawnPositions[0].transform.rotation);
-            robot.GetComponent<RobotController>().setStartPosition(spawnPositions[0].transform);
+        {   
+            FindObjectOfType<RobotSelector>().OnRobotChanged += UpdateOnRobotChange;
+            SetupRobot(robotPrefab);
         }
     }
 
@@ -79,6 +79,12 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
         
 
         //print("Started.....");
+    }
+
+    private void SetupRobot(GameObject robotPrefab)
+    {
+        robot = (GameObject)Instantiate(robotPrefab, spawnPositions[0].transform.position, spawnPositions[0].transform.rotation);
+        robot.GetComponent<RobotController>().setStartPosition(spawnPositions[0].transform);
     }
 
     private void resetRobot()
@@ -369,5 +375,15 @@ public class FieldManager : MonoBehaviourPunCallbacks, IInRoomCallbacks
                 }
             }
         }
+    }
+
+    private void UpdateOnRobotChange(GameObject newRobot)
+    {
+        SetupRobot(newRobot);
+    }
+
+    private void OnDisable()
+    {
+        FindObjectOfType<RobotSelector>().OnRobotChanged -= UpdateOnRobotChange;
     }
 }
